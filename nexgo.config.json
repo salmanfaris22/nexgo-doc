@@ -1,6 +1,6 @@
 {
   "projectName": "nexgo-website",
-  "port": 3000,
+  "port": 8080,
   "host": "localhost",
   "pagesDir": "pages",
   "staticDir": "static",
