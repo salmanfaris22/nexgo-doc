@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nexgo-website — NexGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta property="og:title" content="nexgo-website — NexGo">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#7c3aed">
+
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/global.css">
+
+  
+  <script>
+    (function(){
+      var t = localStorage.getItem('nexgo-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t || d);
+    })();
+  </script>
+
+  <style>
+     
+    body { visibility: visible; }
+    .page-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; }
+  </style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <nav class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-mark">N</div>
+      NexGo
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/compare">Compare</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="btn-github btn">
+        
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+        
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+
+      <button class="nav-mobile-toggle" aria-label="Menu">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+
+<div class="page-wrapper">
+  <main id="nexgo-root">
+    
+
+<section style="padding:5rem 0 2rem;">
+  <div class="container">
+    <div class="text-center mb-lg reveal">
+      <div class="section-eyebrow">Framework Comparison</div>
+      <h1 class="heading-xl">NexGo vs<br><span class="gradient-violet">The Alternatives</span></h1>
+      <p class="text-muted" style="max-width:540px;margin:1rem auto 0;">
+        How does NexGo stack up against Next.js, Gin, Echo, and Fiber? Here's a detailed breakdown.
+      </p>
+    </div>
+
+    
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;" class="reveal">
+      <span class="badge badge-violet">Go 1.22+</span>
+      <span class="badge badge-cyan">Zero Dependencies</span>
+      <span class="badge badge-green">50k+ req/s</span>
+      <span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">~10MB binary</span>
+      <span class="badge" style="background:rgba(244,114,182,0.1);border-color:rgba(244,114,182,0.3);color:#f472b6;">SSR + SSG + SPA</span>
+    </div>
+
+    
+    <div class="grid-4 stagger" style="margin-bottom:4rem;">
+      <div class="card text-center">
+        <div class="stat-value" data-count="50000" data-suffix="+" style="font-size:2rem;">0</div>
+        <div class="stat-label">Req/s (NexGo)</div>
+      </div>
+      <div class="card text-center">
+        <div class="stat-value" data-count="10" data-suffix="MB" style="font-size:2rem;">0</div>
+        <div class="stat-label">Binary size</div>
+      </div>
+      <div class="card text-center">
+        <div class="stat-value" data-count="0" data-suffix="" style="font-size:2rem;">0</div>
+        <div class="stat-label">npm packages</div>
+      </div>
+      <div class="card text-center">
+        <div class="stat-value" data-count="3130" data-suffix="" style="font-size:2rem;">0</div>
+        <div class="stat-label">Lines of source</div>
+      </div>
+    </div>
+
+    
+    <div class="reveal" style="margin-bottom:4rem;">
+      <h2 class="heading-md" style="margin-bottom:1.5rem;">Feature Comparison</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th style="color:var(--violet-light);">NexGo</th>
+              <th>Next.js</th>
+              <th>Gin</th>
+              <th>Echo</th>
+              <th>Fiber</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Language</strong></td>
+              <td><span class="badge badge-cyan">Go</span></td>
+              <td><span class="badge" style="background:rgba(255,255,0,0.08);border-color:rgba(255,255,0,0.2);color:#facc15;">JS/TS</span></td>
+              <td><span class="badge badge-cyan">Go</span></td>
+              <td><span class="badge badge-cyan">Go</span></td>
+              <td><span class="badge badge-cyan">Go</span></td>
+            </tr>
+            <tr>
+              <td><strong>File-Based Routing</strong></td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Server-Side Rendering</strong></td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="partial">~</td>
+              <td class="partial">~</td>
+              <td class="partial">~</td>
+            </tr>
+            <tr>
+              <td><strong>Static Site Generation</strong></td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Hot Reload (HMR)</strong></td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Built-in Data Loaders</strong></td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>API Routes</strong></td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td><strong>Layouts System</strong></td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Zero Runtime Deps</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="partial">~</td>
+              <td class="partial">~</td>
+              <td class="partial">~</td>
+            </tr>
+            <tr>
+              <td><strong>Single Binary Deploy</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td><strong>Built-in DevTools</strong></td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>No Node.js Required</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td><strong>Template Engine</strong></td>
+              <td>Go html/template</td>
+              <td>JSX / React</td>
+              <td>Any</td>
+              <td>Any</td>
+              <td>HTML</td>
+            </tr>
+            <tr>
+              <td><strong>Built-in Middleware</strong></td>
+              <td class="check">✓</td>
+              <td class="partial">~</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td><strong>XSS Safe by Default</strong></td>
+              <td class="check">✓</td>
+              <td class="partial">~</td>
+              <td class="partial">~</td>
+              <td class="partial">~</td>
+              <td class="partial">~</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.75rem;color:var(--text-subtle);margin-top:0.75rem;">
+        <span class="check" style="font-size:0.8rem;">✓</span> Native support &nbsp;
+        <span class="partial" style="font-size:0.8rem;">~</span> Partial/Plugin &nbsp;
+        <span class="cross" style="font-size:0.8rem;">✗</span> Not included
+      </p>
+    </div>
+
+    
+    <div class="reveal" style="margin-bottom:4rem;">
+      <h2 class="heading-md" style="margin-bottom:1.5rem;">
+        NexGo <span class="gradient-violet">vs Next.js</span>
+      </h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;" class="responsive-split">
+        <div class="card" style="border-color:rgba(124,58,237,0.3);background:var(--violet-dim);">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+            <div class="logo-mark">N</div>
+            <h3 style="font-size:1.1rem;font-weight:700;">NexGo</h3>
+          </div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;font-size:0.875rem;">
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">No Node.js, no npm, no runtime</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Single ~10MB binary</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">50,000+ requests per second</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Go's type safety and performance</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Zero external dependencies</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Deploy anywhere Go runs</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">No React ecosystem</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Smaller community (for now)</span></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;">
+            <div style="width:32px;height:32px;border-radius:8px;background:#000;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:0.875rem;">N</div>
+            <h3 style="font-size:1.1rem;font-weight:700;">Next.js</h3>
+          </div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;font-size:0.875rem;">
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Huge React ecosystem</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Large community &amp; resources</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">TypeScript first-class support</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Rich component ecosystem (shadcn, etc.)</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Requires Node.js runtime</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Heavy node_modules (~300MB+)</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Slower cold starts</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Lower throughput vs Go</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="reveal" style="margin-bottom:4rem;">
+      <h2 class="heading-md" style="margin-bottom:1.5rem;">
+        NexGo <span class="gradient-violet">vs Go Frameworks</span>
+      </h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th style="color:var(--violet-light);">NexGo</th>
+              <th>Gin</th>
+              <th>Echo</th>
+              <th>Fiber</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Focus</td>
+              <td>Full-stack framework</td>
+              <td>HTTP router</td>
+              <td>HTTP router</td>
+              <td>HTTP router</td>
+            </tr>
+            <tr>
+              <td>Template / Views</td>
+              <td><span class="check">✓</span> Built-in layout system</td>
+              <td>Manual setup</td>
+              <td>Manual setup</td>
+              <td>Manual setup</td>
+            </tr>
+            <tr>
+              <td>Route Discovery</td>
+              <td><span class="check">✓</span> Automatic (filesystem)</td>
+              <td>Manual register</td>
+              <td>Manual register</td>
+              <td>Manual register</td>
+            </tr>
+            <tr>
+              <td>Dev Experience</td>
+              <td>Next.js-like DX</td>
+              <td>Low-level API</td>
+              <td>Low-level API</td>
+              <td>Express-like</td>
+            </tr>
+            <tr>
+              <td>Hot Reload</td>
+              <td><span class="check">✓</span> Built-in SSE HMR</td>
+              <td>Use Air/reflex</td>
+              <td>Use Air/reflex</td>
+              <td>Use Air/reflex</td>
+            </tr>
+            <tr>
+              <td>DevTools</td>
+              <td><span class="check">✓</span> Built-in panel</td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
+              <td>Static Site Generation</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
+              <td>Performance</td>
+              <td>~50k req/s</td>
+              <td>~80k req/s</td>
+              <td>~80k req/s</td>
+              <td>~120k req/s</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" style="margin-top:1rem;background:var(--violet-dim);border-color:rgba(124,58,237,0.25);">
+        <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
+          <strong style="color:var(--violet-light);">💡 Note:</strong>
+          Gin, Echo, and Fiber are excellent HTTP routers. NexGo is a full-stack framework — the comparison is about developer experience for building complete web applications, not raw routing performance.
+        </p>
+      </div>
+    </div>
+
+    
+    <div class="reveal">
+      <h2 class="heading-md" style="margin-bottom:1.5rem;">When to use NexGo</h2>
+      <div class="grid-2">
+        <div class="card" style="border-color:rgba(74,222,128,0.25);background:rgba(34,197,94,0.05);">
+          <h3 style="font-size:1rem;color:#4ade80;margin-bottom:1rem;">✓ Use NexGo when...</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;font-size:0.875rem;color:var(--text-muted);">
+            <li>→ You want Next.js DX with Go performance</li>
+            <li>→ You're building a content site, blog, or docs</li>
+            <li>→ You want a single binary with no Node.js</li>
+            <li>→ You need SSR + SSG + API in one framework</li>
+            <li>→ You want zero external dependencies</li>
+            <li>→ You deploy to resource-constrained servers</li>
+            <li>→ Your team knows Go</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color:rgba(248,113,113,0.25);background:rgba(239,68,68,0.05);">
+          <h3 style="font-size:1rem;color:#f87171;margin-bottom:1rem;">✗ Consider alternatives when...</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;font-size:0.875rem;color:var(--text-muted);">
+            <li>→ You need React components and ecosystem</li>
+            <li>→ Your team only knows JavaScript/TypeScript</li>
+            <li>→ You need a complex SPA with rich UI</li>
+            <li>→ You need maximum raw routing performance</li>
+            <li>→ You want GraphQL subscriptions or WebSockets (coming soon)</li>
+          </ul>
+        </div>
+      </div>
+
+      
+      <div style="text-align:center;margin-top:4rem;padding:3rem;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--radius-xl);">
+        <h3 class="heading-md" style="margin-bottom:0.75rem;">Convinced? <span class="gradient-violet">Start building.</span></h3>
+        <p class="text-muted text-sm" style="max-width:400px;margin:0 auto 2rem;">
+          Get NexGo running in under 2 minutes. One install, one command.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="/docs#quick-start" class="btn btn-primary btn-lg">Get Started →</a>
+          <a href="/docs" class="btn btn-secondary btn-lg">Read the Docs</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+@media (max-width: 768px) {
+  .responsive-split { grid-template-columns: 1fr !important; }
+}
+</style>
+
+  </main>
+
+  
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-mark">N</div>
+          NexGo
+        </a>
+        <p>The Go-powered web framework inspired by Next.js. Build full-stack apps with zero dependencies.</p>
+        <div class="social-links">
+          
+          <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          
+          <a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          
+          <a href="https://instagram.com/salmanfaris" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          
+          <a href="https://wa.me/919961821977" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.63.07-1.74-.87-2.88-1.55-4.03-3.52-.3-.53.3-.49.87-1.63.1-.2.05-.37-.03-.52-.07-.15-.66-1.6-.91-2.19-.24-.57-.48-.49-.66-.5-.17-.01-.37-.01-.56-.01-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.06 2.85 1.2 3.05c.15.2 2.08 3.18 5.05 4.46.7.3 1.25.48 1.68.62.7.22 1.34.19 1.84.11.56-.08 1.74-.71 1.98-1.4.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.57-.34zM12.05 21.8h-.04a9.75 9.75 0 01-4.97-1.36l-.36-.21-3.7.97 1-3.6-.23-.37a9.75 9.75 0 01-1.5-5.2C2.25 7.05 6.74 2.56 12.09 2.56a9.75 9.75 0 019.75 9.74c0 5.35-4.49 9.5-9.79 9.5zm8.3-17.93A11.56 11.56 0 0012.05.7C5.56.7.27 5.99.27 12.48c0 2.18.57 4.31 1.65 6.18L.2 23.3l4.77-1.25a11.6 11.6 0 005.56 1.42h.01c6.5 0 11.78-5.29 11.78-11.78 0-3.15-1.22-6.1-3.45-8.32l.48.43z"/>
+            </svg>
+          </a>
+          
+          <a href="mailto:salmanfariskalm@gmail.com" class="social-btn" title="Email">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Framework</h4>
+        <ul>
+          <li><a href="/docs#quick-start">Quick Start</a></li>
+          <li><a href="/docs#routing">File-Based Routing</a></li>
+          <li><a href="/docs#api-routes">API Routes</a></li>
+          <li><a href="/docs#data-loaders">Data Loaders</a></li>
+          <li><a href="/docs#middleware">Middleware</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/compare">Compare</a></li>
+          <li><a href="https://github.com/salmanfaris22/nexgo/releases" target="_blank">Changelog</a></li>
+          <li><a href="https://github.com/salmanfaris22/nexgo/issues" target="_blank">Issues</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Creator</h4>
+        <ul>
+          <li><a href="https://salmanfaris.dev" target="_blank">salmanfaris.dev</a></li>
+          <li><a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/salmanfaris22" target="_blank">GitHub</a></li>
+          <li><a href="mailto:salmanfariskalm@gmail.com">Email</a></li>
+          <li><a href="https://wa.me/919961821977" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 NexGo · Built with Go · Inspired by Next.js · Made with ♥ by <a href="https://salmanfaris.dev" target="_blank" style="color:var(--violet-light)">Salman Faris</a></p>
+      <div class="flex gap-sm">
+        <span class="badge badge-violet">v1.0.0</span>
+        <span class="badge badge-green">MIT License</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../static/js/app.js"></script>
+
+</body>
+</html>

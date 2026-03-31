@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nexgo-website — NexGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta property="og:title" content="nexgo-website — NexGo">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#7c3aed">
+
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/global.css">
+
+  
+  <script>
+    (function(){
+      var t = localStorage.getItem('nexgo-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t || d);
+    })();
+  </script>
+
+  <style>
+     
+    body { visibility: visible; }
+    .page-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; }
+  </style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <nav class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-mark">N</div>
+      NexGo
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/compare">Compare</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="btn-github btn">
+        
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+        
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+
+      <button class="nav-mobile-toggle" aria-label="Menu">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+
+<div class="page-wrapper">
+  <main id="nexgo-root">
+    
+
+<div class="docs-layout">
+
+  
+  <aside class="docs-sidebar">
+    <ul class="sidebar-nav">
+      <li class="nav-section">Getting Started</li>
+      <li><a href="#quick-start" class="active">Quick Start</a></li>
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#project-structure">Project Structure</a></li>
+
+      <li class="nav-section">Core Concepts</li>
+      <li><a href="#routing">File-Based Routing</a></li>
+      <li><a href="#dynamic-routes">Dynamic Routes</a></li>
+      <li><a href="#layouts">Layouts</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#templates">Template Engine</a></li>
+
+      <li class="nav-section">Server</li>
+      <li><a href="#api-routes">API Routes</a></li>
+      <li><a href="#data-loaders">Data Loaders</a></li>
+      <li><a href="#middleware">Middleware</a></li>
+      <li><a href="#static-files">Static Files</a></li>
+
+      <li class="nav-section">Development</li>
+      <li><a href="#hot-reload">Hot Reload</a></li>
+      <li><a href="#devtools">DevTools Panel</a></li>
+
+      <li class="nav-section">Production</li>
+      <li><a href="#building">Building</a></li>
+      <li><a href="#deploying">Deploying</a></li>
+      <li><a href="#config">Configuration</a></li>
+
+      <li class="nav-section">Reference</li>
+      <li><a href="#template-functions">Template Functions</a></li>
+      <li><a href="#api-helpers">API Helpers</a></li>
+      <li><a href="#cli">CLI Commands</a></li>
+    </ul>
+  </aside>
+
+  
+  <article class="docs-content">
+
+    <div style="margin-bottom:2rem;">
+      <div class="section-eyebrow">Documentation</div>
+      <h1 class="heading-xl" style="margin-bottom:0.75rem;">NexGo <span class="gradient-violet">Reference</span></h1>
+      <p>Complete documentation for the NexGo web framework — the Go-powered alternative to Next.js.</p>
+      <div style="display:flex;gap:0.5rem;margin-top:1rem;flex-wrap:wrap;">
+        <span class="badge badge-violet">v1.0.0</span>
+        <span class="badge badge-cyan">Go 1.22+</span>
+        <span class="badge badge-green">Zero Dependencies</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    
+    <h2 id="quick-start">Quick Start</h2>
+    <p>Get a NexGo project running in under 2 minutes.</p>
+
+    <h3 id="installation">1. Install NexGo</h3>
+    <div class="install-box" style="max-width:100%;margin:1rem 0;">
+      <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.0</span></div>
+      <button class="copy-btn" data-copy="go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.0">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy
+      </button>
+    </div>
+
+    <div class="card" style="background:var(--violet-dim);border-color:rgba(124,58,237,0.25);margin:1rem 0;">
+      <p style="font-size:0.875rem;margin:0;"><strong style="color:var(--violet-light);">⚠️ PATH Setup (Important):</strong></p>
+      <pre style="margin-top:0.5rem;background:transparent;border:none;padding:0;font-size:0.8rem;">export PATH=$PATH:$(go env GOPATH)/bin
+echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc &amp;&amp; source ~/.bashrc</pre>
+    </div>
+
+    <h3>2. Create a New Project</h3>
+    <pre><code>nexgo create my-app
+cd my-app
+go mod tidy
+nexgo dev</code></pre>
+
+    <p>Open <code>http://localhost:3000</code> — your app is live with hot reload enabled.</p>
+
+    
+    <h2 id="project-structure">Project Structure</h2>
+    <p>Running <code>nexgo create my-app</code> generates this structure:</p>
+
+    <pre><code>my-app/
+├── main.go                  # Application entry point
+├── nexgo.config.json        # Framework configuration
+├── go.mod
+│
+├── pages/                   # File-based routes
+│   ├── index.html           #   → /
+│   ├── about.html           #   → /about
+│   ├── blog/
+│   │   ├── index.html       #   → /blog
+│   │   └── [slug].html      #   → /blog/:slug (dynamic)
+│   └── api/
+│       └── hello.go         #   → /api/hello
+│
+├── layouts/
+│   └── default.html         # Default layout
+├── components/              # Reusable partials
+├── static/                  # Static assets → /static/
+│   ├── css/global.css
+│   └── js/
+└── .nexgo/out/              # Build output (generated)</code></pre>
+
+    
+    <h2 id="routing">File-Based Routing</h2>
+    <p>Drop HTML files in <code>pages/</code> and NexGo creates routes automatically — no manual registration needed.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>File Path</th>
+            <th>URL Pattern</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>pages/index.html</code></td><td><code>/</code></td><td><code>/</code></td></tr>
+          <tr><td><code>pages/about.html</code></td><td><code>/about</code></td><td><code>/about</code></td></tr>
+          <tr><td><code>pages/blog/index.html</code></td><td><code>/blog</code></td><td><code>/blog</code></td></tr>
+          <tr><td><code>pages/blog/[slug].html</code></td><td><code>/blog/:slug</code></td><td><code>/blog/my-post</code></td></tr>
+          <tr><td><code>pages/docs/[...path].html</code></td><td><code>/docs/*</code></td><td><code>/docs/api/auth</code></td></tr>
+          <tr><td><code>pages/api/users.go</code></td><td><code>/api/users</code></td><td><code>/api/users</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="dynamic-routes">Dynamic Routes</h3>
+    <p>Use <code>[param]</code> syntax for dynamic URL segments:</p>
+    <pre><code>pages/
+├── users/
+│   ├── [id].html          → /users/123
+│   └── [id]/posts.html    → /users/123/posts
+└── [...catchall].html     → /any/path/here</code></pre>
+
+    <p>Access parameters in templates:</p>
+    <pre><code>&lt;h1&gt;User &lt;/h1&gt;
+&lt;p&gt;Post: &lt;/p&gt;</code></pre>
+
+    
+    <h2 id="layouts">Layouts &amp; Components</h2>
+    <p>Layouts wrap page content. NexGo walks up the directory tree to find the nearest layout:</p>
+    <pre><code>&lt;!-- layouts/default.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;nexgo-website&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/static/css/global.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+  
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+   
+    <p>Reusable template partials stored in <code>components/</code>:</p>
+    <pre><code>&lt;!-- components/card.html --&gt;
+&lt;div class="card"&gt;
+
+&lt;/div&gt;
+
+&lt;!-- Usage in pages --&gt;
+
+</code></pre>
+
+    
+    <h2 id="templates">Template Engine</h2>
+    <p>NexGo uses Go's <code>html/template</code> package. Every page receives a <code>PageData</code> struct:</p>
+    <pre><code>type PageData struct {
+    Title        string
+    Description  string
+    Path         string                 // Current URL path
+    Params       map[string]string      // Route params
+    Query        map[string]string      // Query string
+    Props        map[string]interface{} // From DataLoader
+    DevMode      bool
+    BuildID      string
+}</code></pre>
+
+    
+    <h2 id="api-routes">API Routes</h2>
+    <p>Create <code>.go</code> files in <code>pages/api/</code> to build REST endpoints:</p>
+    <pre><code>// pages/api/hello.go
+package api
+
+import (
+    "net/http"
+    "github.com/salmanfaris22/nexgo/pkg/api"
+    "github.com/salmanfaris22/nexgo/pkg/router"
+)
+
+func init() {
+    router.RegisterAPI("/api/hello", Hello)
+}
+
+func Hello(w http.ResponseWriter, r *http.Request) {
+    api.JSON(w, map[string]interface{}{
+        "message": "Hello from NexGo!",
+        "method":  r.Method,
+    })
+}</code></pre>
+
+    
+    <h2 id="data-loaders">Data Loaders</h2>
+    <p>Data loaders work like Next.js <code>getServerSideProps</code> — fetch data server-side before rendering:</p>
+    <pre><code>// main.go
+srv.RegisterDataLoader("/blog/[slug]", func(
+    req *http.Request,
+    params map[string]string,
+) (map[string]interface{}, error) {
+    slug := params["slug"]
+    post, err := db.GetPost(slug)
+    if err != nil {
+        return nil, err
+    }
+    return map[string]interface{}{"post": post}, nil
+})</code></pre>
+
+    <pre><code>&lt;!-- pages/blog/[slug].html --&gt;
+&lt;h1&gt;&lt;/h1&gt;
+
+
+    
+    <h2 id="middleware">Middleware</h2>
+    <p>Built-in middleware is applied in this order:</p>
+    <pre><code>Request → Recover → Logger → SecurityHeaders → [Gzip] → Handler</code></pre>
+
+    <div class="table-wrap" style="margin:1rem 0;">
+      <table>
+        <thead><tr><th>Middleware</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>Recover</code></td><td>Catches panics, returns 500</td></tr>
+          <tr><td><code>Logger</code></td><td>Logs method, path, status, duration</td></tr>
+          <tr><td><code>SecurityHeaders</code></td><td>X-Content-Type-Options, X-Frame-Options, etc.</td></tr>
+          <tr><td><code>Gzip</code></td><td>Compresses responses (configurable)</td></tr>
+          <tr><td><code>CORS(origins...)</code></td><td>Configurable CORS headers</td></tr>
+          <tr><td><code>Cache(maxAge)</code></td><td>Sets Cache-Control headers</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <h2 id="hot-reload">Hot Reload (HMR)</h2>
+    <p>Run <code>nexgo dev</code> — file watcher polls every 500ms, broadcasts reload via SSE to all connected browsers.</p>
+    <pre><code>nexgo dev
+# [NexGo] Dev server → http://localhost:3000
+# [NexGo] Hot reload enabled. Press Ctrl+C to stop.</code></pre>
+
+    
+    <h2 id="devtools">DevTools Panel</h2>
+    <p>In dev mode, visit <code>http://localhost:3000/_nexgo/devtools</code>:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tab</th><th>Shows</th></tr></thead>
+        <tbody>
+          <tr><td>Routes</td><td>All routes with type badges (PAGE / API)</td></tr>
+          <tr><td>Requests</td><td>Live log with method, status, path, duration</td></tr>
+          <tr><td>Logs</td><td>Server logs, HMR events, errors</td></tr>
+          <tr><td>Performance</td><td>Total requests, avg response time, error rate</td></tr>
+          <tr><td>Config</td><td>Current server and build configuration</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <h2 id="building">Building for Production</h2>
+    <pre><code>nexgo build       # Static site generation → .nexgo/out/
+nexgo start       # Production server (no HMR, Gzip on)
+nexgo start --port 4000</code></pre>
+
+    
+    <h2 id="deploying">Deploying</h2>
+    <p>NexGo compiles to a single binary — deploy anywhere Go runs:</p>
+    <pre><code># Build the binary
+go build -o myapp ./main.go
+
+# Copy to server
+scp myapp server:/opt/myapp/
+scp -r pages/ layouts/ static/ nexgo.config.json server:/opt/myapp/
+
+# Run on server
+ssh server '/opt/myapp/myapp'</code></pre>
+
+    
+    <h2 id="config">Configuration</h2>
+    <pre><code>// nexgo.config.json
+{
+  "projectName": "my-app",
+  "port": 3000,
+  "host": "localhost",
+  "pagesDir": "pages",
+  "staticDir": "static",
+  "layoutsDir": "layouts",
+  "componentsDir": "components",
+  "outputDir": ".nexgo/out",
+  "hotReload": true,
+  "compression": true,
+  "minify": true,
+  "defaultRenderMode": "ssr"
+}</code></pre>
+
+    
+    <h2 id="template-functions">Template Functions Reference</h2>
+
+    <h3>String</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Usage</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>upper</code></td><td><code>HELLO</code></td><td>Uppercase</td></tr>
+          <tr><td><code>lower</code></td><td><code>hi</code></td><td>Lowercase</td></tr>
+          <tr><td><code>title</code></td><td><code>Hello World</code></td><td>Title case</td></tr>
+          <tr><td><code>trim</code></td><td><code>hi</code></td><td>Trim whitespace</td></tr>
+          <tr><td><code>replace</code></td><td><code>hey</code></td><td>Replace substring</td></tr>
+          <tr><td><code>split</code></td><td><code>[a b]</code></td><td>Split to slice</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Utility</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>json .Data</code></td><td>JSON encode a value</td></tr>
+          <tr><td><code>safeHTML "&lt;b&gt;bold&lt;/b&gt;"</code></td><td>Render as raw HTML (trusted content only)</td></tr>
+          <tr><td><code>dict "key" "val"</code></td><td>Create a key-value map</td></tr>
+          <tr><td><code>asset "/static/css/app.css"</code></td><td>Cache-busted asset URL</td></tr>
+          <tr><td><code>default "fallback" .Value</code></td><td>Default if nil/empty</td></tr>
+          <tr><td><code>times 5</code></td><td>Iterate n times</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <h2 id="api-helpers">API Helpers Reference</h2>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/api"
+
+// Responses
+api.JSON(w, data)               // 200 + JSON
+api.JSONStatus(w, 201, data)    // Custom status
+api.Error(w, 400, "bad input")  // JSON error
+
+// Status shortcuts
+api.BadRequest(w, "invalid id") // 400
+api.NotFound(w, "not found")    // 404
+api.Unauthorized(w)             // 401
+api.InternalError(w, err)       // 500
+
+// Request parsing
+var input CreateUserInput
+if !api.Decode(w, r, &amp;input) { return }
+
+// Method routing
+api.Route(w, r, api.Methods{
+    "GET":  listUsers,
+    "POST": createUser,
+})
+
+// Pagination
+page, limit := api.Paginate(r) // ?page=2&amp;limit=10</code></pre>
+
+    
+    <h2 id="cli">CLI Commands</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>nexgo create &lt;name&gt;</code></td><td>Scaffold a new NexGo project</td></tr>
+          <tr><td><code>nexgo dev</code></td><td>Start dev server with hot reload</td></tr>
+          <tr><td><code>nexgo build</code></td><td>Static site generation (SSG)</td></tr>
+          <tr><td><code>nexgo start</code></td><td>Start production server</td></tr>
+          <tr><td><code>nexgo version</code></td><td>Print version</td></tr>
+          <tr><td><code>nexgo help</code></td><td>Show help</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:3rem;padding:1.5rem;background:var(--violet-dim);border:1px solid rgba(124,58,237,0.25);border-radius:var(--radius-lg);">
+      <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
+        <strong style="color:var(--violet-light);">💬 Need help?</strong>
+        Open an issue on <a href="https://github.com/salmanfaris22/nexgo/issues" target="_blank">GitHub</a>,
+        or reach out to <a href="mailto:salmanfariskalm@gmail.com">salmanfariskalm@gmail.com</a>.
+      </p>
+    </div>
+
+  </article>
+</div>
+
+<style>
+.docs-content pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.docs-content code {
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+</style>
+
+  </main>
+
+  
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-mark">N</div>
+          NexGo
+        </a>
+        <p>The Go-powered web framework inspired by Next.js. Build full-stack apps with zero dependencies.</p>
+        <div class="social-links">
+          
+          <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          
+          <a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          
+          <a href="https://instagram.com/salmanfaris" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          
+          <a href="https://wa.me/919961821977" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.63.07-1.74-.87-2.88-1.55-4.03-3.52-.3-.53.3-.49.87-1.63.1-.2.05-.37-.03-.52-.07-.15-.66-1.6-.91-2.19-.24-.57-.48-.49-.66-.5-.17-.01-.37-.01-.56-.01-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.06 2.85 1.2 3.05c.15.2 2.08 3.18 5.05 4.46.7.3 1.25.48 1.68.62.7.22 1.34.19 1.84.11.56-.08 1.74-.71 1.98-1.4.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.57-.34zM12.05 21.8h-.04a9.75 9.75 0 01-4.97-1.36l-.36-.21-3.7.97 1-3.6-.23-.37a9.75 9.75 0 01-1.5-5.2C2.25 7.05 6.74 2.56 12.09 2.56a9.75 9.75 0 019.75 9.74c0 5.35-4.49 9.5-9.79 9.5zm8.3-17.93A11.56 11.56 0 0012.05.7C5.56.7.27 5.99.27 12.48c0 2.18.57 4.31 1.65 6.18L.2 23.3l4.77-1.25a11.6 11.6 0 005.56 1.42h.01c6.5 0 11.78-5.29 11.78-11.78 0-3.15-1.22-6.1-3.45-8.32l.48.43z"/>
+            </svg>
+          </a>
+          
+          <a href="mailto:salmanfariskalm@gmail.com" class="social-btn" title="Email">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Framework</h4>
+        <ul>
+          <li><a href="/docs#quick-start">Quick Start</a></li>
+          <li><a href="/docs#routing">File-Based Routing</a></li>
+          <li><a href="/docs#api-routes">API Routes</a></li>
+          <li><a href="/docs#data-loaders">Data Loaders</a></li>
+          <li><a href="/docs#middleware">Middleware</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/compare">Compare</a></li>
+          <li><a href="https://github.com/salmanfaris22/nexgo/releases" target="_blank">Changelog</a></li>
+          <li><a href="https://github.com/salmanfaris22/nexgo/issues" target="_blank">Issues</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Creator</h4>
+        <ul>
+          <li><a href="https://salmanfaris.dev" target="_blank">salmanfaris.dev</a></li>
+          <li><a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/salmanfaris22" target="_blank">GitHub</a></li>
+          <li><a href="mailto:salmanfariskalm@gmail.com">Email</a></li>
+          <li><a href="https://wa.me/919961821977" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 NexGo · Built with Go · Inspired by Next.js · Made with ♥ by <a href="https://salmanfaris.dev" target="_blank" style="color:var(--violet-light)">Salman Faris</a></p>
+      <div class="flex gap-sm">
+        <span class="badge badge-violet">v1.0.0</span>
+        <span class="badge badge-green">MIT License</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../static/js/app.js"></script>
+
+</body>
+</html>

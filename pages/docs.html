@@ -1,0 +1,415 @@
+<!-- pages/docs.html — Documentation Page -->
+
+<div class="docs-layout">
+
+  <!-- ─── Sidebar ─────────────────────────────── -->
+  <aside class="docs-sidebar">
+    <ul class="sidebar-nav">
+      <li class="nav-section">Getting Started</li>
+      <li><a href="#quick-start" class="active">Quick Start</a></li>
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#project-structure">Project Structure</a></li>
+
+      <li class="nav-section">Core Concepts</li>
+      <li><a href="#routing">File-Based Routing</a></li>
+      <li><a href="#dynamic-routes">Dynamic Routes</a></li>
+      <li><a href="#layouts">Layouts</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#templates">Template Engine</a></li>
+
+      <li class="nav-section">Server</li>
+      <li><a href="#api-routes">API Routes</a></li>
+      <li><a href="#data-loaders">Data Loaders</a></li>
+      <li><a href="#middleware">Middleware</a></li>
+      <li><a href="#static-files">Static Files</a></li>
+
+      <li class="nav-section">Development</li>
+      <li><a href="#hot-reload">Hot Reload</a></li>
+      <li><a href="#devtools">DevTools Panel</a></li>
+
+      <li class="nav-section">Production</li>
+      <li><a href="#building">Building</a></li>
+      <li><a href="#deploying">Deploying</a></li>
+      <li><a href="#config">Configuration</a></li>
+
+      <li class="nav-section">Reference</li>
+      <li><a href="#template-functions">Template Functions</a></li>
+      <li><a href="#api-helpers">API Helpers</a></li>
+      <li><a href="#cli">CLI Commands</a></li>
+    </ul>
+  </aside>
+
+  <!-- ─── Content ─────────────────────────────── -->
+  <article class="docs-content">
+
+    <div style="margin-bottom:2rem;">
+      <div class="section-eyebrow">Documentation</div>
+      <h1 class="heading-xl" style="margin-bottom:0.75rem;">NexGo <span class="gradient-violet">Reference</span></h1>
+      <p>Complete documentation for the NexGo web framework — the Go-powered alternative to Next.js.</p>
+      <div style="display:flex;gap:0.5rem;margin-top:1rem;flex-wrap:wrap;">
+        <span class="badge badge-violet">v1.0.0</span>
+        <span class="badge badge-cyan">Go 1.22+</span>
+        <span class="badge badge-green">Zero Dependencies</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- QUICK START -->
+    <h2 id="quick-start">Quick Start</h2>
+    <p>Get a NexGo project running in under 2 minutes.</p>
+
+    <h3 id="installation">1. Install NexGo</h3>
+    <div class="install-box" style="max-width:100%;margin:1rem 0;">
+      <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.0</span></div>
+      <button class="copy-btn" data-copy="go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.0">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy
+      </button>
+    </div>
+
+    <div class="card" style="background:var(--violet-dim);border-color:rgba(124,58,237,0.25);margin:1rem 0;">
+      <p style="font-size:0.875rem;margin:0;"><strong style="color:var(--violet-light);">⚠️ PATH Setup (Important):</strong></p>
+      <pre style="margin-top:0.5rem;background:transparent;border:none;padding:0;font-size:0.8rem;">export PATH=$PATH:$(go env GOPATH)/bin
+echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc &amp;&amp; source ~/.bashrc</pre>
+    </div>
+
+    <h3>2. Create a New Project</h3>
+    <pre><code>nexgo create my-app
+cd my-app
+go mod tidy
+nexgo dev</code></pre>
+
+    <p>Open <code>http://localhost:3000</code> — your app is live with hot reload enabled.</p>
+
+    <!-- PROJECT STRUCTURE -->
+    <h2 id="project-structure">Project Structure</h2>
+    <p>Running <code>nexgo create my-app</code> generates this structure:</p>
+
+    <pre><code>my-app/
+├── main.go                  # Application entry point
+├── nexgo.config.json        # Framework configuration
+├── go.mod
+│
+├── pages/                   # File-based routes
+│   ├── index.html           #   → /
+│   ├── about.html           #   → /about
+│   ├── blog/
+│   │   ├── index.html       #   → /blog
+│   │   └── [slug].html      #   → /blog/:slug (dynamic)
+│   └── api/
+│       └── hello.go         #   → /api/hello
+│
+├── layouts/
+│   └── default.html         # Default layout
+├── components/              # Reusable partials
+├── static/                  # Static assets → /static/
+│   ├── css/global.css
+│   └── js/
+└── .nexgo/out/              # Build output (generated)</code></pre>
+
+    <!-- ROUTING -->
+    <h2 id="routing">File-Based Routing</h2>
+    <p>Drop HTML files in <code>pages/</code> and NexGo creates routes automatically — no manual registration needed.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>File Path</th>
+            <th>URL Pattern</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>pages/index.html</code></td><td><code>/</code></td><td><code>/</code></td></tr>
+          <tr><td><code>pages/about.html</code></td><td><code>/about</code></td><td><code>/about</code></td></tr>
+          <tr><td><code>pages/blog/index.html</code></td><td><code>/blog</code></td><td><code>/blog</code></td></tr>
+          <tr><td><code>pages/blog/[slug].html</code></td><td><code>/blog/:slug</code></td><td><code>/blog/my-post</code></td></tr>
+          <tr><td><code>pages/docs/[...path].html</code></td><td><code>/docs/*</code></td><td><code>/docs/api/auth</code></td></tr>
+          <tr><td><code>pages/api/users.go</code></td><td><code>/api/users</code></td><td><code>/api/users</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="dynamic-routes">Dynamic Routes</h3>
+    <p>Use <code>[param]</code> syntax for dynamic URL segments:</p>
+    <pre><code>pages/
+├── users/
+│   ├── [id].html          → /users/123
+│   └── [id]/posts.html    → /users/123/posts
+└── [...catchall].html     → /any/path/here</code></pre>
+
+    <p>Access parameters in templates:</p>
+    <pre><code>&lt;h1&gt;User {{ .Params.id }}&lt;/h1&gt;
+&lt;p&gt;Post: {{ .Params.slug }}&lt;/p&gt;</code></pre>
+
+    <!-- LAYOUTS -->
+    <h2 id="layouts">Layouts &amp; Components</h2>
+    <p>Layouts wrap page content. NexGo walks up the directory tree to find the nearest layout:</p>
+    <pre><code>&lt;!-- layouts/default.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;{{ .Title }}&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/static/css/global.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+  
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+   
+    <p>Reusable template partials stored in <code>components/</code>:</p>
+    <pre><code>&lt;!-- components/card.html --&gt;
+&lt;div class="card"&gt;
+
+&lt;/div&gt;
+
+&lt;!-- Usage in pages --&gt;
+
+</code></pre>
+
+    <!-- TEMPLATE ENGINE -->
+    <h2 id="templates">Template Engine</h2>
+    <p>NexGo uses Go's <code>html/template</code> package. Every page receives a <code>PageData</code> struct:</p>
+    <pre><code>type PageData struct {
+    Title        string
+    Description  string
+    Path         string                 // Current URL path
+    Params       map[string]string      // Route params
+    Query        map[string]string      // Query string
+    Props        map[string]interface{} // From DataLoader
+    DevMode      bool
+    BuildID      string
+}</code></pre>
+
+    <!-- API ROUTES -->
+    <h2 id="api-routes">API Routes</h2>
+    <p>Create <code>.go</code> files in <code>pages/api/</code> to build REST endpoints:</p>
+    <pre><code>// pages/api/hello.go
+package api
+
+import (
+    "net/http"
+    "github.com/salmanfaris22/nexgo/pkg/api"
+    "github.com/salmanfaris22/nexgo/pkg/router"
+)
+
+func init() {
+    router.RegisterAPI("/api/hello", Hello)
+}
+
+func Hello(w http.ResponseWriter, r *http.Request) {
+    api.JSON(w, map[string]interface{}{
+        "message": "Hello from NexGo!",
+        "method":  r.Method,
+    })
+}</code></pre>
+
+    <!-- DATA LOADERS -->
+    <h2 id="data-loaders">Data Loaders</h2>
+    <p>Data loaders work like Next.js <code>getServerSideProps</code> — fetch data server-side before rendering:</p>
+    <pre><code>// main.go
+srv.RegisterDataLoader("/blog/[slug]", func(
+    req *http.Request,
+    params map[string]string,
+) (map[string]interface{}, error) {
+    slug := params["slug"]
+    post, err := db.GetPost(slug)
+    if err != nil {
+        return nil, err
+    }
+    return map[string]interface{}{"post": post}, nil
+})</code></pre>
+
+    <pre><code>&lt;!-- pages/blog/[slug].html --&gt;
+&lt;h1&gt;{{ .Props.post.Title }}&lt;/h1&gt;
+
+
+    <!-- MIDDLEWARE -->
+    <h2 id="middleware">Middleware</h2>
+    <p>Built-in middleware is applied in this order:</p>
+    <pre><code>Request → Recover → Logger → SecurityHeaders → [Gzip] → Handler</code></pre>
+
+    <div class="table-wrap" style="margin:1rem 0;">
+      <table>
+        <thead><tr><th>Middleware</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>Recover</code></td><td>Catches panics, returns 500</td></tr>
+          <tr><td><code>Logger</code></td><td>Logs method, path, status, duration</td></tr>
+          <tr><td><code>SecurityHeaders</code></td><td>X-Content-Type-Options, X-Frame-Options, etc.</td></tr>
+          <tr><td><code>Gzip</code></td><td>Compresses responses (configurable)</td></tr>
+          <tr><td><code>CORS(origins...)</code></td><td>Configurable CORS headers</td></tr>
+          <tr><td><code>Cache(maxAge)</code></td><td>Sets Cache-Control headers</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- HOT RELOAD -->
+    <h2 id="hot-reload">Hot Reload (HMR)</h2>
+    <p>Run <code>nexgo dev</code> — file watcher polls every 500ms, broadcasts reload via SSE to all connected browsers.</p>
+    <pre><code>nexgo dev
+# [NexGo] Dev server → http://localhost:3000
+# [NexGo] Hot reload enabled. Press Ctrl+C to stop.</code></pre>
+
+    <!-- DEVTOOLS -->
+    <h2 id="devtools">DevTools Panel</h2>
+    <p>In dev mode, visit <code>http://localhost:3000/_nexgo/devtools</code>:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tab</th><th>Shows</th></tr></thead>
+        <tbody>
+          <tr><td>Routes</td><td>All routes with type badges (PAGE / API)</td></tr>
+          <tr><td>Requests</td><td>Live log with method, status, path, duration</td></tr>
+          <tr><td>Logs</td><td>Server logs, HMR events, errors</td></tr>
+          <tr><td>Performance</td><td>Total requests, avg response time, error rate</td></tr>
+          <tr><td>Config</td><td>Current server and build configuration</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- BUILDING -->
+    <h2 id="building">Building for Production</h2>
+    <pre><code>nexgo build       # Static site generation → .nexgo/out/
+nexgo start       # Production server (no HMR, Gzip on)
+nexgo start --port 4000</code></pre>
+
+    <!-- DEPLOYING -->
+    <h2 id="deploying">Deploying</h2>
+    <p>NexGo compiles to a single binary — deploy anywhere Go runs:</p>
+    <pre><code># Build the binary
+go build -o myapp ./main.go
+
+# Copy to server
+scp myapp server:/opt/myapp/
+scp -r pages/ layouts/ static/ nexgo.config.json server:/opt/myapp/
+
+# Run on server
+ssh server '/opt/myapp/myapp'</code></pre>
+
+    <!-- CONFIG -->
+    <h2 id="config">Configuration</h2>
+    <pre><code>// nexgo.config.json
+{
+  "projectName": "my-app",
+  "port": 3000,
+  "host": "localhost",
+  "pagesDir": "pages",
+  "staticDir": "static",
+  "layoutsDir": "layouts",
+  "componentsDir": "components",
+  "outputDir": ".nexgo/out",
+  "hotReload": true,
+  "compression": true,
+  "minify": true,
+  "defaultRenderMode": "ssr"
+}</code></pre>
+
+    <!-- TEMPLATE FUNCTIONS -->
+    <h2 id="template-functions">Template Functions Reference</h2>
+
+    <h3>String</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Usage</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>upper</code></td><td><code>{{ upper "hello" }}</code></td><td>Uppercase</td></tr>
+          <tr><td><code>lower</code></td><td><code>{{ lower "HI" }}</code></td><td>Lowercase</td></tr>
+          <tr><td><code>title</code></td><td><code>{{ title "hello world" }}</code></td><td>Title case</td></tr>
+          <tr><td><code>trim</code></td><td><code>{{ trim "  hi  " }}</code></td><td>Trim whitespace</td></tr>
+          <tr><td><code>replace</code></td><td><code>{{ replace "hi" "i" "ey" }}</code></td><td>Replace substring</td></tr>
+          <tr><td><code>split</code></td><td><code>{{ split "a,b" "," }}</code></td><td>Split to slice</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Utility</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>json .Data</code></td><td>JSON encode a value</td></tr>
+          <tr><td><code>safeHTML "&lt;b&gt;bold&lt;/b&gt;"</code></td><td>Render as raw HTML (trusted content only)</td></tr>
+          <tr><td><code>dict "key" "val"</code></td><td>Create a key-value map</td></tr>
+          <tr><td><code>asset "/static/css/app.css"</code></td><td>Cache-busted asset URL</td></tr>
+          <tr><td><code>default "fallback" .Value</code></td><td>Default if nil/empty</td></tr>
+          <tr><td><code>times 5</code></td><td>Iterate n times</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- API HELPERS -->
+    <h2 id="api-helpers">API Helpers Reference</h2>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/api"
+
+// Responses
+api.JSON(w, data)               // 200 + JSON
+api.JSONStatus(w, 201, data)    // Custom status
+api.Error(w, 400, "bad input")  // JSON error
+
+// Status shortcuts
+api.BadRequest(w, "invalid id") // 400
+api.NotFound(w, "not found")    // 404
+api.Unauthorized(w)             // 401
+api.InternalError(w, err)       // 500
+
+// Request parsing
+var input CreateUserInput
+if !api.Decode(w, r, &amp;input) { return }
+
+// Method routing
+api.Route(w, r, api.Methods{
+    "GET":  listUsers,
+    "POST": createUser,
+})
+
+// Pagination
+page, limit := api.Paginate(r) // ?page=2&amp;limit=10</code></pre>
+
+    <!-- CLI -->
+    <h2 id="cli">CLI Commands</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>nexgo create &lt;name&gt;</code></td><td>Scaffold a new NexGo project</td></tr>
+          <tr><td><code>nexgo dev</code></td><td>Start dev server with hot reload</td></tr>
+          <tr><td><code>nexgo build</code></td><td>Static site generation (SSG)</td></tr>
+          <tr><td><code>nexgo start</code></td><td>Start production server</td></tr>
+          <tr><td><code>nexgo version</code></td><td>Print version</td></tr>
+          <tr><td><code>nexgo help</code></td><td>Show help</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:3rem;padding:1.5rem;background:var(--violet-dim);border:1px solid rgba(124,58,237,0.25);border-radius:var(--radius-lg);">
+      <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
+        <strong style="color:var(--violet-light);">💬 Need help?</strong>
+        Open an issue on <a href="https://github.com/salmanfaris22/nexgo/issues" target="_blank">GitHub</a>,
+        or reach out to <a href="mailto:salmanfariskalm@gmail.com">salmanfariskalm@gmail.com</a>.
+      </p>
+    </div>
+
+  </article>
+</div>
+
+<style>
+.docs-content pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.docs-content code {
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+</style>

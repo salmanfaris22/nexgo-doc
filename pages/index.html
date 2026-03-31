@@ -1,0 +1,368 @@
+<!-- pages/index.html — NexGo Landing Page -->
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+
+  <!-- Glow orbs -->
+  <div class="glow-orb glow-orb-violet" style="width:600px;height:600px;top:-200px;left:50%;transform:translateX(-50%);opacity:0.6;"></div>
+  <div class="glow-orb glow-orb-cyan" style="width:300px;height:300px;top:60%;left:20%;opacity:0.4;"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      v1.0.3 is live — Star us on GitHub
+    </div>
+
+    <h1 class="display">
+     Where Performance<br>
+      <span class="gradient-text"> Meets Simplicity</span>
+    </h1>
+
+ <p class="hero-desc">
+  Everything you need — routing, rendering, and APIs — packed into a 
+  <strong style="color:var(--text)">lightweight, high-performance engine</strong>. 
+  <strong style="color:var(--text)">No setup. Just build fast.</strong>
+</p>
+
+    <div class="hero-actions">
+      <a href="/docs#quick-start" class="btn btn-primary btn-lg">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        Get Started
+      </a>
+      <a href="https://github.com/salmanfaris22/nexgo" target="_blank" class="btn btn-secondary btn-lg">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View on GitHub
+      </a>
+    </div>
+
+    <!-- Install command -->
+    <div class="hero-install">
+      <div class="install-box" style="max-width:600px;width:100%;">
+        <div class="install-cmd">
+          <span class="cmd-prefix">$</span>
+          <span class="cmd-text">go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.0</span>
+        </div>
+        <button class="copy-btn" data-copy="go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.0" title="Copy to clipboard">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+          </svg>
+          Copy
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick steps -->
+    <div style="margin-top:3rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;flex-wrap:wrap;" class="animate-fadein">
+      <span class="badge badge-violet">1. Install</span>
+      <span style="color:var(--text-subtle);font-size:0.8rem;">→</span>
+      <span class="badge badge-cyan">2. nexgo create my-app</span>
+      <span style="color:var(--text-subtle);font-size:0.8rem;">→</span>
+      <span class="badge badge-green">3. nexgo dev</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ STATS ════════════════════════════ -->
+<section class="section-sm" style="border-top:1px solid var(--border-2);border-bottom:1px solid var(--border-2);background:var(--bg-2);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;" class="stagger">
+      <div class="stat-card">
+        <div class="stat-value" data-count="50000" data-suffix="+">0</div>
+        <div class="stat-label">Requests / second</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-count="10" data-suffix="MB">0</div>
+        <div class="stat-label">Binary size</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-count="0" data-suffix=" deps">0</div>
+        <div class="stat-label">Runtime dependencies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" data-count="3130" data-suffix=" loc">0</div>
+        <div class="stat-label">Lines of source code</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FEATURES ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="text-center mb-lg reveal">
+      <div class="section-eyebrow">Core Features</div>
+      <h2 class="heading-xl">Everything you need,<br><span class="gradient-violet">nothing you don't</span></h2>
+      <p style="color:var(--text-muted);max-width:500px;margin:1rem auto 0;">
+        NexGo ships with all the primitives to build production web apps — without the complexity.
+      </p>
+    </div>
+
+    <div class="grid-3 stagger">
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-violet">📁</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">File-Based Routing</h3>
+        <p class="text-muted text-sm">Drop HTML files in <code>pages/</code> and routes are created automatically. Dynamic segments with <code>[param]</code> syntax, catch-all routes, and nested layouts.</p>
+      </div>
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-cyan">⚡</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Server-Side Rendering</h3>
+        <p class="text-muted text-sm">Full SSR, SSG, and SPA modes. Data loaders run server-side before rendering — just like Next.js <code>getServerSideProps</code>.</p>
+      </div>
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-green">🔥</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Hot Reload</h3>
+        <p class="text-muted text-sm">Save a file and your browser refreshes instantly. Powered by SSE-based HMR — no WebSockets, no complex setup.</p>
+      </div>
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-pink">🔌</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">API Routes</h3>
+        <p class="text-muted text-sm">Add <code>.go</code> files in <code>pages/api/</code> to create REST endpoints with method routing, JSON helpers, pagination, and more.</p>
+      </div>
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-violet">📦</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Single Binary Deploy</h3>
+        <p class="text-muted text-sm">Compile to a ~10MB binary. Deploy anywhere Go runs. Just copy the binary + your pages — no Node.js, no npm, no runtime.</p>
+      </div>
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-cyan">🛠</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">DevTools Panel</h3>
+        <p class="text-muted text-sm">Built-in debug panel at <code>/_nexgo/devtools</code>. Live request logs, route inspector, performance metrics, and config viewer.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CODE EXAMPLE ════════════════════════ -->
+<section style="background:var(--bg-2);border-top:1px solid var(--border-2);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="responsive-split">
+      <div class="reveal">
+        <div class="section-eyebrow">Simple by Design</div>
+        <h2 class="heading-lg" style="margin-bottom:1rem;">Next.js DX,<br><span class="gradient-violet">Go Performance</span></h2>
+        <p class="text-muted" style="margin-bottom:1.5rem;line-height:1.75;">
+          NexGo brings the familiar Next.js developer experience to Go. File-based routing, data loaders, and layouts — all powered by Go's blazing-fast runtime.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
+            <span class="text-muted">Zero runtime dependencies — stdlib only</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
+            <span class="text-muted">Go's <code>html/template</code> engine — XSS safe by default</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
+            <span class="text-muted">Compile once, run anywhere — Docker-friendly</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
+            <span class="text-muted">Built-in middleware: CORS, Gzip, Security headers</span>
+          </div>
+        </div>
+        <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="/docs" class="btn btn-primary">Read the Docs</a>
+          <a href="/compare" class="btn btn-ghost">Compare Frameworks</a>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.1s;">
+        <div class="code-block animate-float">
+          <div class="code-block-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-label">pages/api/posts.go</span>
+          </div>
+          <div class="code-body"><pre><span class="c-keyword">package</span> <span class="c-type">api</span>
+
+<span class="c-keyword">import</span> (
+    <span class="c-string">"net/http"</span>
+    <span class="c-string">"github.com/salmanfaris22/nexgo/pkg/api"</span>
+    <span class="c-string">"github.com/salmanfaris22/nexgo/pkg/router"</span>
+)
+
+<span class="c-keyword">func</span> <span class="c-func">init</span>() {
+    router.<span class="c-func">RegisterAPI</span>(<span class="c-string">"/api/posts"</span>, Posts)
+}
+
+<span class="c-keyword">func</span> <span class="c-func">Posts</span>(w http.ResponseWriter, r *http.Request) {
+    api.<span class="c-func">Route</span>(w, r, api.Methods{
+        <span class="c-string">"GET"</span>: <span class="c-keyword">func</span>(w http.ResponseWriter, r *http.Request) {
+            page, limit := api.<span class="c-func">Paginate</span>(r)
+            posts := <span class="c-func">getAllPosts</span>(page, limit)
+            api.<span class="c-func">JSON</span>(w, posts)
+        },
+        <span class="c-string">"POST"</span>: createPost,
+    })
+}</pre></div>
+        </div>
+
+        <div style="margin-top:1rem;">
+          <div class="code-block">
+            <div class="code-block-header">
+              <div class="code-dots"><span></span><span></span><span></span></div>
+              <span class="code-label">pages/blog/[slug].html</span>
+            </div>
+            <div class="code-body"><pre><span class="c-comment">&lt;!-- Auto-mapped to /blog/:slug --&gt;</span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@media (max-width: 768px) {
+  .responsive-split { grid-template-columns: 1fr !important; gap: 2rem !important; }
+}
+</style>
+
+<!-- ═══════════════════════════ PROJECT STRUCTURE ════════════════════ -->
+<section>
+  <div class="container">
+    <div class="text-center mb-lg reveal">
+      <div class="section-eyebrow">Project Structure</div>
+      <h2 class="heading-xl">Familiar,<br><span class="gradient-violet">Intuitive Layout</span></h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="responsive-split">
+      <div class="reveal">
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-label">my-app/</span>
+          </div>
+          <div class="code-body" style="font-size:0.82rem;line-height:1.9;">
+<pre><span style="color:var(--violet-light)">my-app/</span>
+├── <span style="color:var(--cyan)">main.go</span>               <span class="c-comment"># Entry point</span>
+├── <span style="color:var(--cyan)">nexgo.config.json</span>     <span class="c-comment"># Config</span>
+├── <span style="color:var(--cyan)">go.mod</span>
+│
+├── <span style="color:var(--violet-light)">pages/</span>               <span class="c-comment"># Routes (auto)</span>
+│   ├── index.html        <span class="c-comment"># → /</span>
+│   ├── about.html        <span class="c-comment"># → /about</span>
+│   ├── <span style="color:var(--violet-light)">blog/</span>
+│   │   ├── index.html    <span class="c-comment"># → /blog</span>
+│   │   └── [slug].html   <span class="c-comment"># → /blog/:slug</span>
+│   └── <span style="color:var(--violet-light)">api/</span>
+│       └── hello.go      <span class="c-comment"># → /api/hello</span>
+│
+├── <span style="color:var(--violet-light)">layouts/</span>
+│   └── default.html      <span class="c-comment"># Wraps pages</span>
+├── <span style="color:var(--violet-light)">components/</span>           <span class="c-comment"># Partials</span>
+└── <span style="color:var(--violet-light)">static/</span>              <span class="c-comment"># Assets → /static/</span>
+    ├── css/
+    └── js/</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.1s;">
+        <h3 class="heading-md" style="margin-bottom:1rem;">CLI Commands</h3>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div class="install-box" style="max-width:100%;">
+            <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">nexgo create my-app</span></div>
+            <button class="copy-btn" data-copy="nexgo create my-app">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="install-box" style="max-width:100%;">
+            <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">nexgo dev</span></div>
+            <button class="copy-btn" data-copy="nexgo dev">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="install-box" style="max-width:100%;">
+            <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">nexgo build</span></div>
+            <button class="copy-btn" data-copy="nexgo build">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="install-box" style="max-width:100%;">
+            <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">nexgo start --port 4000</span></div>
+            <button class="copy-btn" data-copy="nexgo start --port 4000">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;background:var(--violet-dim);border-color:rgba(124,58,237,0.25);">
+          <p style="font-size:0.875rem;color:var(--text-muted);">
+            <strong style="color:var(--violet-light);">⚡ PATH tip:</strong> After install, run
+            <code>export PATH=$PATH:$(go env GOPATH)/bin</code> to use the <code>nexgo</code> command globally.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CTA ════════════════════════════════ -->
+<section style="background:var(--bg-2);border-top:1px solid var(--border-2);">
+  <div class="container">
+    <div style="text-align:center;padding:4rem 0;position:relative;overflow:hidden;">
+      <div class="glow-orb glow-orb-violet" style="width:500px;height:300px;top:-50px;left:50%;transform:translateX(-50%);opacity:0.5;position:absolute;"></div>
+      <div style="position:relative;z-index:1;" class="reveal">
+        <div class="section-eyebrow" style="justify-content:center;">Open Source · MIT License</div>
+        <h2 class="heading-xl" style="margin-bottom:1rem;">Ready to build something<br><span class="gradient-text">blazing fast?</span></h2>
+        <p class="text-muted" style="max-width:480px;margin:0 auto 2.5rem;">
+          Join the community. Star the repo. Build your next project with the simplicity of Next.js and the power of Go.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="/docs#quick-start" class="btn btn-primary btn-lg">
+            Start Building →
+          </a>
+          <a href="https://github.com/salmanfaris22/nexgo" target="_blank" class="btn btn-secondary btn-lg">
+            ⭐ Star on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONTACT ════════════════════════════ -->
+<section style="border-top:1px solid var(--border-2);">
+  <div class="container">
+    <div class="text-center mb-lg reveal">
+      <div class="section-eyebrow">Creator</div>
+      <h2 class="heading-lg">Made by <span class="gradient-violet">Salman Faris</span></h2>
+      <p class="text-muted" style="margin-top:0.75rem;">Full-stack developer building cool things with Go and modern web tech.</p>
+    </div>
+
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" class="reveal">
+      <a href="https://salmanfaris.dev" target="_blank" class="btn btn-secondary">
+        🌐 salmanfaris.dev
+      </a>
+      <a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank" class="btn btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        LinkedIn
+      </a>
+      <a href="mailto:salmanfariskalm@gmail.com" class="btn btn-secondary">
+        ✉️ Email
+      </a>
+      <a href="https://wa.me/919961821977" target="_blank" class="btn btn-secondary">
+        📱 WhatsApp
+      </a>
+      <a href="https://github.com/salmanfaris22" target="_blank" class="btn btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>

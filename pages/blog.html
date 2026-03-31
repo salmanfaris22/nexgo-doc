@@ -1,0 +1,129 @@
+<!-- pages/blog.html — Blog Page -->
+
+<section style="padding:5rem 0 2rem;">
+  <div class="container">
+    <div class="text-center mb-lg">
+      <div class="section-eyebrow">From the creator</div>
+      <h1 class="heading-xl">NexGo <span class="gradient-violet">Blog</span></h1>
+      <p class="text-muted" style="max-width:480px;margin:1rem auto 0;">
+        Tutorials, release notes, and deep-dives into building Go web applications with NexGo.
+      </p>
+    </div>
+
+    <!-- Featured post -->
+    <div class="card" style="background:var(--surface-2);border-color:var(--border);margin-bottom:3rem;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;" class="featured-post">
+      <div>
+        <span class="badge badge-violet" style="margin-bottom:1rem;">📌 Featured</span>
+        <h2 style="font-size:1.75rem;margin-bottom:0.75rem;line-height:1.25;">
+          <a href="/blog/introducing-nexgo" style="color:var(--text);">Introducing NexGo — The Go Web Framework Inspired by Next.js</a>
+        </h2>
+        <p class="text-muted" style="margin-bottom:1.5rem;line-height:1.7;">
+          After months of development, NexGo v1.0.0 is here. Learn what makes it different from other Go frameworks and why we built it with Next.js DX principles in mind.
+        </p>
+        <div style="display:flex;align-items:center;gap:1.5rem;font-size:0.85rem;color:var(--text-muted);">
+          <span>Salman Faris</span>
+          <span>·</span>
+          <span>Dec 2024</span>
+          <span>·</span>
+          <span>8 min read</span>
+        </div>
+      </div>
+      <div style="background:var(--surface-3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;font-family:var(--font-code);font-size:0.8rem;line-height:1.8;color:var(--text-muted);">
+        <span style="color:var(--violet-light);">$ nexgo create blog-app</span><br>
+        <span style="color:#4ade80;">✓</span> Created blog-app/<br>
+        <span style="color:var(--text-subtle);">  pages/index.html</span><br>
+        <span style="color:var(--text-subtle);">  layouts/default.html</span><br>
+        <span style="color:var(--text-subtle);">  nexgo.config.json</span><br>
+        <span style="color:var(--text-subtle);">  main.go</span><br>
+        <br>
+        <span style="color:var(--violet-light);">$ nexgo dev</span><br>
+        <span style="color:#22d3ee;">⚡ NexGo Dev Server → :3000</span><br>
+        <span style="color:#4ade80;">✓</span> Hot reload enabled
+      </div>
+    </div>
+
+    <!-- Post grid -->
+    <div class="grid-3 stagger">
+
+      <article class="blog-card">
+        <span class="blog-tag badge badge-cyan">Tutorial</span>
+        <h3><a href="/blog/file-based-routing" style="color:var(--text);">File-Based Routing in NexGo: A Complete Guide</a></h3>
+        <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">Learn how NexGo's automatic route discovery works, from static pages to dynamic segments and catch-all routes.</p>
+        <div class="blog-meta">
+          <span>Salman Faris</span>
+          <span>6 min read</span>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <span class="blog-tag badge badge-violet">Deep Dive</span>
+        <h3><a href="/blog/data-loaders" style="color:var(--text);">Server-Side Data Loading: NexGo's getServerSideProps</a></h3>
+        <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">How to use RegisterDataLoader to fetch data on the server before rendering — and why it's faster than client-side fetching.</p>
+        <div class="blog-meta">
+          <span>Salman Faris</span>
+          <span>10 min read</span>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <span class="blog-tag badge badge-green">Release</span>
+        <h3><a href="/blog/v1-release" style="color:var(--text);">NexGo v1.0.0 — What's New</a></h3>
+        <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">Full changelog for the 1.0.0 release: file watching improvements, DevTools panel, new template functions, and more.</p>
+        <div class="blog-meta">
+          <span>Salman Faris</span>
+          <span>4 min read</span>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <span class="blog-tag badge badge-cyan">Tutorial</span>
+        <h3><a href="/blog/building-rest-api" style="color:var(--text);">Building a REST API with NexGo API Routes</a></h3>
+        <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">Step-by-step guide to creating a full CRUD REST API using NexGo's API route system, method routing, and JSON helpers.</p>
+        <div class="blog-meta">
+          <span>Salman Faris</span>
+          <span>12 min read</span>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <span class="blog-tag badge badge-violet">Performance</span>
+        <h3><a href="/blog/benchmark" style="color:var(--text);">50,000+ req/s — How NexGo Achieves Go-Native Performance</a></h3>
+        <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">Breaking down the benchmarks: how zero dependencies and Go's stdlib HTTP server deliver exceptional throughput.</p>
+        <div class="blog-meta">
+          <span>Salman Faris</span>
+          <span>7 min read</span>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <span class="blog-tag badge badge-green">Guide</span>
+        <h3><a href="/blog/deploying" style="color:var(--text);">Deploying a NexGo App to Production</a></h3>
+        <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">From single-binary build to running on a VPS, Docker, or serverless platform. All the deployment options explained.</p>
+        <div class="blog-meta">
+          <span>Salman Faris</span>
+          <span>9 min read</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Subscribe / connect -->
+    <div style="margin-top:5rem;text-align:center;padding:3rem;background:var(--surface);border:1px solid var(--border-2);border-radius:var(--radius-xl);" class="reveal">
+      <div class="section-eyebrow" style="justify-content:center;">Stay Updated</div>
+      <h3 class="heading-md" style="margin-bottom:0.75rem;">Follow the journey</h3>
+      <p class="text-muted text-sm" style="max-width:380px;margin:0 auto 1.75rem;">Get notified about new posts, releases, and NexGo updates through your favourite channel.</p>
+      <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+        <a href="https://github.com/salmanfaris22/nexgo" target="_blank" class="btn btn-primary">⭐ Star on GitHub</a>
+        <a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank" class="btn btn-secondary">Connect on LinkedIn</a>
+        <a href="mailto:salmanfariskalm@gmail.com" class="btn btn-ghost">✉️ Email</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+@media (max-width: 768px) {
+  .featured-post { grid-template-columns: 1fr !important; }
+}
+</style>
