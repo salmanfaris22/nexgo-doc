@@ -1,0 +1,4 @@
+{
+  "buildCommand": "go install github.com/salmanfaris22/nexgo/cmd/nexgo@latest && nexgo build",
+  "outputDirectory": ".nexgo/out"
+}
