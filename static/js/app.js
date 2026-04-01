@@ -76,9 +76,34 @@ document.addEventListener('DOMContentLoaded', () => {
     gridObs.observe(container);
   });
 
+  // ── Mobile Menu Toggle ────────────────
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (mobileToggle && mobileMenu) {
+    const iconMenu = mobileToggle.querySelector('.icon-menu');
+    const iconClose = mobileToggle.querySelector('.icon-close');
+
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', isOpen);
+      iconMenu.style.display = isOpen ? 'none' : 'block';
+      iconClose.style.display = isOpen ? 'block' : 'none';
+    });
+
+    // Close menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        iconMenu.style.display = 'block';
+        iconClose.style.display = 'none';
+      });
+    });
+  }
+
   // ── Active Nav Link ───────────────────
   const path = window.location.pathname;
-  document.querySelectorAll('.nav-links a').forEach(a => {
+  document.querySelectorAll('.nav-links a, .mobile-menu-links a').forEach(a => {
     if (a.getAttribute('href') === path ||
        (path.startsWith(a.getAttribute('href')) && a.getAttribute('href') !== '/')) {
       a.classList.add('active');
