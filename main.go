@@ -43,7 +43,7 @@ func main() {
 	// Docs page metadata
 	srv.RegisterDataLoader("/docs", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
 		return map[string]interface{}{
-			"version":   "1.0.0",
+			"version":   "1.0.5",
 			"goVersion": "1.22+",
 		}, nil
 	})
