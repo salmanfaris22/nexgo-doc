@@ -13,6 +13,7 @@
   "sourceMap": false,
   "baseURL": "",
   "trailingSlash": false,
-  "defaultRenderMode": "ssr",
+  "defaultRenderMode": "spa",
   "cacheControl": "public, max-age=31536000"
+  
 }
