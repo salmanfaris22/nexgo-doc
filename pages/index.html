@@ -69,7 +69,7 @@
 <!-- ═══════════════════════════ STATS ════════════════════════════ -->
 <section class="section-sm" style="border-top:1px solid var(--border-2);border-bottom:1px solid var(--border-2);background:var(--bg-2);">
   <div class="container">
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;" class="stagger">
+    <div class="stats-grid stagger">
       <div class="stat-card">
         <div class="stat-value" data-count="50000" data-suffix="+">0</div>
         <div class="stat-label">Requests / second</div>
@@ -222,11 +222,6 @@
   </div>
 </section>
 
-<style>
-@media (max-width: 768px) {
-  .responsive-split { grid-template-columns: 1fr !important; gap: 2rem !important; }
-}
-</style>
 
 <!-- ═══════════════════════════ PROJECT STRUCTURE ════════════════════ -->
 <section>

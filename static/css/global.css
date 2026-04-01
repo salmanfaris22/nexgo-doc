@@ -1047,3 +1047,106 @@ tr:hover td { background: var(--surface-2); }
 .w-full       { width: 100%; }
 .relative     { position: relative; }
 .overflow-h   { overflow: hidden; }
+
+/* ── Stats Grid ───────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+/* ── Responsive Split ─────────────────── */
+.responsive-split {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ══════════════════════════════════════════
+   Responsive — Tablet
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero { padding: 5rem 0 3.5rem; }
+
+  .hero h1 br { display: none; }
+
+  section { padding: 3.5rem 0; }
+  .section-sm { padding: 2rem 0; }
+  .section-lg { padding: 5rem 0; }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+  .responsive-split { grid-template-columns: 1fr !important; gap: 2rem !important; }
+
+  .install-cmd {
+    white-space: normal;
+    word-break: break-all;
+    font-size: 0.78rem;
+  }
+
+  .hero-actions .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .code-body {
+    padding: 1rem;
+    font-size: 0.78rem;
+  }
+
+  .heading-xl br,
+  .heading-lg br { display: none; }
+}
+
+/* ══════════════════════════════════════════
+   Responsive — Mobile
+   ══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .hero { padding: 3.5rem 0 2.5rem; }
+
+  .container { padding: 0 1rem; }
+  .container-narrow { padding: 0 1rem; }
+
+  section { padding: 2.5rem 0; }
+  .section-sm { padding: 1.5rem 0; }
+
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .stat-label { font-size: 0.75rem; }
+
+  .hero-badge { font-size: 0.7rem; padding: 0.3rem 0.75rem; }
+
+  .hero-desc { margin-bottom: 1.5rem; }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+
+  .hero-install .install-box { padding: 0.75rem 1rem; }
+
+  .btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .code-body {
+    padding: 0.75rem;
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+
+  .code-body pre { white-space: pre-wrap; word-break: break-word; }
+
+  .feat-card { padding: 1.25rem; }
+
+  .card { padding: 1.25rem; border-radius: var(--radius); }
+
+  .nav-inner { padding: 0 1rem; }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
