@@ -40,7 +40,7 @@ nexgo-website/
 
 ```bash
 # Install NexGo CLI
-go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.0
+go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.5
 
 # Fix PATH
 export PATH=$PATH:$(go env GOPATH)/bin
