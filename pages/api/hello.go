@@ -17,7 +17,7 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 		"GET": func(w http.ResponseWriter, r *http.Request) {
 			api.JSON(w, map[string]interface{}{
 				"message": "Welcome to NexGo!",
-				"version": "1.0.0",
+				"version": "1.0.5",
 				"docs":    "https://salmanfaris.dev/nexgo/docs",
 			})
 		},
