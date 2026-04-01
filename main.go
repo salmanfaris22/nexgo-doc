@@ -65,7 +65,7 @@ func getBlogPosts() []map[string]interface{} {
 		{
 			"slug":        "introducing-nexgo",
 			"title":       "Introducing NexGo — The Go Web Framework Inspired by Next.js",
-			"description": "After months of development, NexGo v1.0.0 is here.",
+			"description": "After months of development, NexGo v1.0.5 is here.",
 			"date":        "December 2024",
 			"readTime":    "8 min read",
 			"tag":         "Release",
