@@ -923,7 +923,10 @@ tr:hover td { background: var(--surface-2); }
 .docs-sidebar {
   position: sticky;
   top: 80px;
-  height: fit-content;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding-right: 8px;
 }
 
 .sidebar-nav { list-style: none; }
