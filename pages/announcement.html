@@ -1,0 +1,389 @@
+<!-- pages/announcement.html — NexGo v1.2.0 Announcement -->
+
+<section class="announcement-hero">
+  <div class="glow-orb glow-orb-violet" style="width:600px;height:600px;top:-200px;left:50%;transform:translateX(-50%);opacity:0.5;"></div>
+  <div class="glow-orb glow-orb-cyan" style="width:300px;height:300px;top:70%;left:20%;opacity:0.3;"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="announcement-badge">
+      <span class="dot"></span>
+      Just Released
+    </div>
+
+    <h1 class="display">
+      NexGo <span class="gradient-violet">v1.2.0</span>
+    </h1>
+
+    <p class="announcement-desc">
+      Production-ready features: <strong>SEO tools</strong>, <strong>Streaming SSR</strong>, <strong>ISR</strong>, <strong>Worker Pools</strong>, <strong>Response Caching</strong>, <strong>Parallel Data Loading</strong>, and <strong>Template Caching</strong>.
+    </p>
+
+    <div class="announcement-actions">
+      <a href="/docs" class="btn btn-primary btn-lg">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        Read the Docs
+      </a>
+      <a href="/versions" class="btn btn-secondary btn-lg">
+        View Changelog
+      </a>
+    </div>
+
+    <div class="install-box" style="max-width:600px;width:100%;margin:2rem auto 0;">
+      <div class="install-cmd">
+        <span class="cmd-prefix">$</span>
+        <span class="cmd-text">go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.2.0</span>
+      </div>
+      <button class="copy-btn" data-copy="go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.2.0" title="Copy to clipboard">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+        </svg>
+        Copy
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHAT'S NEW ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="text-center mb-lg">
+      <div class="section-eyebrow">What's New</div>
+      <h2 class="heading-xl">7 New <span class="gradient-violet">Features</span></h2>
+      <p class="text-muted" style="max-width:500px;margin:1rem auto 0;">
+        Everything you need to build production-grade web apps with Go.
+      </p>
+    </div>
+
+    <div class="grid-3 stagger">
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-violet">🔍</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">SEO Package</h3>
+        <p class="text-muted text-sm">Meta tags, OpenGraph, Twitter Cards, sitemap.xml, robots.txt, and JSON-LD structured data — all built into <code>pkg/seo</code>.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">OpenGraph</span>
+          <span class="announce-tag">Twitter Cards</span>
+          <span class="announce-tag">Sitemap</span>
+          <span class="announce-tag">JSON-LD</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-cyan">⚡</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Streaming SSR</h3>
+        <p class="text-muted text-sm">Send HTML progressively as it's ready. Show the shell immediately, stream content later. Includes SSE support for real-time updates.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">Progressive</span>
+          <span class="announce-tag">SSE</span>
+          <span class="announce-tag">Fast TTFB</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-green">🔄</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">ISR</h3>
+        <p class="text-muted text-sm">Incremental Static Regeneration — cache pages and rebuild them in the background after a configurable interval, like Next.js ISR.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">Cache</span>
+          <span class="announce-tag">Background Rebuild</span>
+          <span class="announce-tag">TTL</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-pink">🧵</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Worker Pools</h3>
+        <p class="text-muted text-sm">Run tasks concurrently with controlled parallelism. Map, ForEach, and global pool support with error handling.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">Concurrent</span>
+          <span class="announce-tag">Map</span>
+          <span class="announce-tag">ForEach</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-violet">💾</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Response Caching</h3>
+        <p class="text-muted text-sm">Cache GET responses in memory with TTL. Automatic X-Cache: HIT/MISS headers. Middleware and manual API.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">TTL</span>
+          <span class="announce-tag">Middleware</span>
+          <span class="announce-tag">X-Cache</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-cyan">🔀</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Parallel Data Loading</h3>
+        <p class="text-muted text-sm">Load multiple data sources concurrently and merge results — like Promise.all() in JS. Perfect for dashboards and complex pages.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">Promise.all</span>
+          <span class="announce-tag">Concurrent</span>
+          <span class="announce-tag">Merge</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-green">📦</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Template Caching</h3>
+        <p class="text-muted text-sm">Templates compiled once and cached for fast subsequent renders. Parallel template loading with worker pool for large projects.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">Compile Once</span>
+          <span class="announce-tag">Parallel Load</span>
+          <span class="announce-tag">Cache Stats</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ SEO DEEP DIVE ═══════════════════════════ -->
+<section style="background:var(--bg-2);border-top:1px solid var(--border-2);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="responsive-split">
+      <div class="reveal">
+        <div class="section-eyebrow">New in v1.2.0</div>
+        <h2 class="heading-lg" style="margin-bottom:1rem;">Built-in <span class="gradient-violet">SEO Tools</span></h2>
+        <p class="text-muted" style="margin-bottom:1.5rem;line-height:1.75;">
+          NexGo now ships with a complete SEO package. Generate meta tags, sitemaps, robots.txt, and JSON-LD structured data — no external libraries needed.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
+            <span class="text-muted">Meta tags with OpenGraph & Twitter Cards</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
+            <span class="text-muted">Automatic sitemap.xml generation</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
+            <span class="text-muted">Robots.txt with allow/disallow rules</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
+            <span class="text-muted">JSON-LD structured data for rich results</span>
+          </div>
+        </div>
+        <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="/docs#seo" class="btn btn-primary">SEO Docs →</a>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:0.1s;">
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="code-dots"><span></span><span></span><span></span></div>
+            <span class="code-label">SEO Setup</span>
+          </div>
+          <div class="code-body"><pre><span class="c-keyword">import</span> <span class="c-string">"github.com/salmanfaris22/nexgo/pkg/seo"</span>
+
+<span class="c-comment">// Meta tags</span>
+meta := seo.<span class="c-func">DefaultMeta</span>(<span class="c-string">"My Site"</span>, <span class="c-string">"A great website"</span>, <span class="c-string">"https://mysite.com"</span>)
+meta.Keywords = []<span class="c-type">string</span>{<span class="c-string">"go"</span>, <span class="c-string">"web"</span>, <span class="c-string">"framework"</span>}
+meta.OGImage = <span class="c-string">"https://mysite.com/og.png"</span>
+meta.TwitterCard = <span class="c-string">"summary_large_image"</span>
+
+<span class="c-comment">// Sitemap</span>
+entries := []seo.SitemapEntry{
+    {Loc: <span class="c-string">"https://mysite.com/"</span>, ChangeFreq: <span class="c-string">"daily"</span>, Priority: <span class="c-num">1.0</span>},
+    {Loc: <span class="c-string">"https://mysite.com/about"</span>, ChangeFreq: <span class="c-string">"monthly"</span>, Priority: <span class="c-num">0.8</span>},
+}
+xml, _ := seo.<span class="c-func">RenderSitemap</span>(entries)
+
+<span class="c-comment">// JSON-LD</span>
+data := <span class="c-keyword">map</span>[<span class="c-type">string</span>]<span class="c-type">interface</span>{}{
+    <span class="c-string">"@context"</span>: <span class="c-string">"https://schema.org"</span>,
+    <span class="c-string">"@type"</span>:    <span class="c-string">"Organization"</span>,
+    <span class="c-string">"name"</span>:     <span class="c-string">"My Company"</span>,
+}
+jsonld := seo.<span class="c-func">JSONLD</span>(data)</pre></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ QUICK REFERENCE ═══════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="text-center mb-lg">
+      <div class="section-eyebrow">Quick Reference</div>
+      <h2 class="heading-xl">All <span class="gradient-violet">Packages</span> at a Glance</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Package</th>
+            <th>Feature</th>
+            <th>Key Functions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>pkg/api</code></td>
+            <td>State, HTMX, Cache, JSON</td>
+            <td><code>SetState()</code>, <code>IsHTMX()</code>, <code>HTMXHTML()</code>, <code>Cache()</code>, <code>JSON()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/seo</code></td>
+            <td>Meta, Sitemap, Robots</td>
+            <td><code>DefaultMeta()</code>, <code>RenderSitemap()</code>, <code>RobotsTxt()</code>, <code>JSONLD()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/stream</code></td>
+            <td>Streaming SSR, SSE</td>
+            <td><code>StreamHTML()</code>, <code>NewSSE()</code>, <code>Send()</code>, <code>WriteString()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/isr</code></td>
+            <td>Incremental Regeneration</td>
+            <td><code>New()</code>, <code>Serve()</code>, <code>Revalidate()</code>, <code>Purge()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/worker</code></td>
+            <td>Worker Pools</td>
+            <td><code>New()</code>, <code>Run()</code>, <code>Map()</code>, <code>MapErr()</code>, <code>ForEach()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/renderer</code></td>
+            <td>Template Caching</td>
+            <td><code>LoadAll()</code>, <code>LoadParallel()</code>, <code>CacheInfo()</code>, <code>NewParallelLoader()</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CTA ═══════════════════════════ -->
+<section style="background:var(--bg-2);border-top:1px solid var(--border-2);">
+  <div class="container">
+    <div style="text-align:center;padding:4rem 0;position:relative;overflow:hidden;">
+      <div class="glow-orb glow-orb-violet" style="width:500px;height:300px;top:-50px;left:50%;transform:translateX(-50%);opacity:0.5;position:absolute;"></div>
+      <div style="position:relative;z-index:1;" class="reveal">
+        <h2 class="heading-xl" style="margin-bottom:1rem;">Ready to upgrade to <span class="gradient-violet">v1.2.0</span>?</h2>
+        <p class="text-muted" style="max-width:480px;margin:0 auto 2.5rem;">
+          Drop-in upgrade — no breaking changes. Just install and start building.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="/docs#quick-start" class="btn btn-primary btn-lg">
+            Get Started →
+          </a>
+          <a href="https://github.com/salmanfaris22/nexgo" target="_blank" class="btn btn-secondary btn-lg">
+            Star on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.announcement-hero {
+  padding: 6rem 0 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.announcement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  background: var(--violet-dim);
+  border: 1px solid rgba(124,58,237,0.3);
+  color: var(--violet-light);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.announcement-badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.announcement-desc {
+  max-width: 600px;
+  margin: 1rem auto 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.announcement-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.announce-card {
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.announce-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124,58,237,0.3);
+}
+
+.announce-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.announce-tag {
+  font-size: 0.7rem;
+  font-family: var(--font-code);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.2);
+  color: var(--violet-light);
+}
+
+.ref-table td:first-child {
+  font-family: var(--font-code);
+  font-weight: 600;
+  color: var(--violet-light);
+}
+
+.ref-table td code {
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .announcement-hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .announcement-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .announcement-actions .btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+</style>

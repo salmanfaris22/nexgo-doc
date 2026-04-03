@@ -110,6 +110,182 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ── SPA Navigation (no full reload) ──
+  function isInternalLink(href) {
+    if (!href) return false;
+    if (href.startsWith('#')) return false;
+    if (href.startsWith('http')) return false;
+    if (href.startsWith('mailto:')) return false;
+    if (href.startsWith('javascript:')) return false;
+    if (href.startsWith('tel:')) return false;
+    return true;
+  }
+
+  function navigateTo(target) {
+    window.history.pushState({ path: target }, '', target);
+
+    fetch(target)
+      .then(res => {
+        if (!res.ok) throw new Error('Not found');
+        return res.text();
+      })
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        document.title = doc.title;
+
+        const newContent = doc.querySelector('#nexgo-root');
+        const oldContent = document.querySelector('#nexgo-root');
+        if (newContent && oldContent) {
+          oldContent.innerHTML = newContent.innerHTML;
+        }
+
+        const newMeta = doc.querySelector('meta[name="description"]');
+        if (newMeta) {
+          let oldMeta = document.querySelector('meta[name="description"]');
+          if (oldMeta) oldMeta.content = newMeta.content;
+        }
+
+        const newOGTitle = doc.querySelector('meta[property="og:title"]');
+        if (newOGTitle) {
+          let oldOGTitle = document.querySelector('meta[property="og:title"]');
+          if (oldOGTitle) oldOGTitle.content = newOGTitle.content;
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        initPageScripts();
+
+        document.querySelectorAll('.nav-links a, .mobile-menu-links a').forEach(a => a.classList.remove('active'));
+        document.querySelectorAll(`.nav-links a[href="${target}"], .mobile-menu-links a[href="${target}"]`).forEach(a => a.classList.add('active'));
+      })
+      .catch(() => {
+        window.location.href = target;
+      });
+  }
+
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!isInternalLink(href)) return;
+
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    const target = href;
+
+    if (mobileMenu && mobileMenu.classList.contains('open')) {
+      mobileMenu.classList.remove('open');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      if (iconMenu) iconMenu.style.display = 'block';
+      if (iconClose) iconClose.style.display = 'none';
+    }
+
+    navigateTo(target);
+  }, true);
+
+  window.addEventListener('popstate', () => {
+    fetch(window.location.pathname)
+      .then(res => res.text())
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        document.title = doc.title;
+        const newContent = doc.querySelector('#nexgo-root');
+        const oldContent = document.querySelector('#nexgo-root');
+        if (newContent && oldContent) {
+          oldContent.innerHTML = newContent.innerHTML;
+        }
+        window.scrollTo({ top: 0 });
+        initPageScripts();
+
+        document.querySelectorAll('.nav-links a, .mobile-menu-links a').forEach(a => a.classList.remove('active'));
+        document.querySelectorAll(`.nav-links a[href="${window.location.pathname}"], .mobile-menu-links a[href="${window.location.pathname}"]`).forEach(a => a.classList.add('active'));
+      })
+      .catch(() => {
+        window.location.reload();
+      });
+  });
+
+  function initPageScripts() {
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.replaceWith(btn.cloneNode(true));
+    });
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.copy || btn.closest('.install-box')?.querySelector('.cmd-text')?.textContent;
+        if (!target) return;
+        navigator.clipboard.writeText(target.trim()).then(() => {
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.stagger').forEach(container => {
+      const cards = container.querySelectorAll('.card, .blog-card, .feat-card, .stat-card');
+      const gridObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            cards.forEach((card, i) => {
+              setTimeout(() => card.classList.add('visible'), i * 80);
+            });
+            gridObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      cards.forEach(c => c.classList.add('reveal'));
+      gridObs.observe(container);
+    });
+
+    document.querySelectorAll('[data-count]').forEach(el => {
+      if (!el.dataset.animated) {
+        el.dataset.animated = 'true';
+        animateCounter(el);
+      }
+    });
+
+    document.querySelectorAll('.sidebar-nav a').forEach(a => {
+      a.addEventListener('click', function() {
+        document.querySelectorAll('.sidebar-nav a').forEach(x => x.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    const headings = document.querySelectorAll('.docs-content h2, .docs-content h3');
+    if (headings.length) {
+      const headingObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const id = e.target.id;
+            document.querySelectorAll('.sidebar-nav a').forEach(a => {
+              a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      headings.forEach(h => headingObs.observe(h));
+    }
+  }
+
   // ── Sidebar active state ──────────────
   document.querySelectorAll('.sidebar-nav a').forEach(a => {
     a.addEventListener('click', function() {

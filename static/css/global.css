@@ -239,6 +239,28 @@ section { padding: 5rem 0; }
   background: var(--surface-2);
 }
 
+.nav-announce {
+  background: var(--violet-dim) !important;
+  border: 1px solid rgba(124,58,237,0.3) !important;
+  color: var(--violet-light) !important;
+  font-weight: 600 !important;
+}
+
+.nav-announce .dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  margin-right: 4px;
+  animation: dotPulse 2s infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
@@ -709,7 +731,7 @@ tr:hover td { background: var(--surface-2); }
 
 .check  { color: #4ade80; font-size: 1rem; }
 .cross  { color: #f87171; font-size: 1rem; }
-.partial { color: #fbbf24; font-size: 1rem; }
+.partial { color: #ffc800; font-size: 1rem; }
 
 /* ── Footer ────────────────────────────── */
 .site-footer {

@@ -73,6 +73,10 @@ func main() {
 	srv.RegisterDataLoader("/versions", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
 		return versionData, nil
 	})
+
+	srv.RegisterDataLoader("/announcement", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+		return versionData, nil
+	})
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 
