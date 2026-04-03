@@ -287,10 +287,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── Sidebar active state ──────────────
+  const sidebar = document.querySelector('.docs-sidebar');
   document.querySelectorAll('.sidebar-nav a').forEach(a => {
-    a.addEventListener('click', function() {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        const headerOffset = 100;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
       document.querySelectorAll('.sidebar-nav a').forEach(x => x.classList.remove('active'));
       this.classList.add('active');
+      if (sidebar) {
+        this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     });
   });
 
@@ -302,7 +315,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.isIntersecting) {
           const id = e.target.id;
           document.querySelectorAll('.sidebar-nav a').forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+            const isActive = a.getAttribute('href') === '#' + id;
+            a.classList.toggle('active', isActive);
+            if (isActive && sidebar) {
+              a.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
           });
         }
       });
