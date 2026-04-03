@@ -1,0 +1,576 @@
+<!-- pages/versions.html — Version Comparison Page -->
+
+<section style="padding:5rem 0 2rem;">
+  <div class="container">
+    <div class="text-center mb-lg">
+      <div class="section-eyebrow">Changelog</div>
+      <h1 class="heading-xl">NexGo <span class="gradient-violet">Versions</span></h1>
+      <p class="text-muted" style="max-width:520px;margin:1rem auto 0;">
+        Track every release. See what changed between versions and what's coming next.
+      </p>
+      <div style="display:flex;gap:0.5rem;margin-top:1.25rem;justify-content:center;flex-wrap:wrap;">
+        <span class="badge badge-violet">v1.2.0 (Latest)</span>
+        <span class="badge badge-cyan">v1.1.0</span>
+        <span class="badge badge-green">v1.0.5</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ─── Version Timeline ─────────────────────────────── -->
+    <div class="version-timeline">
+
+      <!-- v1.2.0 -->
+      <div class="version-card version-card-latest">
+        <div class="version-header">
+          <div>
+            <span class="badge badge-violet">v1.2.0</span>
+            <span class="badge badge-green" style="margin-left:0.5rem;">Latest</span>
+          </div>
+          <span class="version-date">April 2026</span>
+        </div>
+        <h3 style="font-size:1.25rem;margin:1rem 0 0.5rem;">SEO, Streaming SSR, ISR, Worker Pools & Advanced Features</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1.5rem;">Production-ready features: SEO meta tags, sitemaps, streaming SSR, incremental static regeneration, worker pools, response caching, parallel data loading, and template caching.</p>
+
+        <div class="version-changes">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--violet-light);margin-bottom:0.75rem;">New Features</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>SEO Package</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Meta tags, OpenGraph, Twitter Cards, sitemap.xml, robots.txt, and JSON-LD structured data generation.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Streaming SSR</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Send HTML progressively as it's ready — show the shell immediately, stream content later. Includes SSE support.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Incremental Static Regeneration (ISR)</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Cache pages and rebuild them in the background after a configurable interval — like Next.js ISR.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Worker Pools</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Run tasks concurrently with controlled parallelism. Map, ForEach, and global pool support.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Response Caching</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Cache GET responses in memory with TTL. Automatic X-Cache: HIT/MISS headers.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Parallel Data Loading</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Load multiple data sources concurrently and merge results — like Promise.all() in JS.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Template Caching</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Templates compiled once and cached. Parallel template loading with worker pool.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- v1.1.0 -->
+      <div class="version-card">
+        <div class="version-header">
+          <div>
+            <span class="badge badge-cyan">v1.1.0</span>
+          </div>
+          <span class="version-date">April 2026</span>
+        </div>
+        <h3 style="font-size:1.25rem;margin:1rem 0 0.5rem;">HTMX Support, State Management & API Helpers</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1.5rem;">Built-in helpers for writing shorter, cleaner API handlers with HTMX support and easy state management.</p>
+
+        <div class="version-changes">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--cyan);margin-bottom:0.75rem;">Features</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>HTMX Helpers</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">IsHTMX, HTMXHTML, HTMXTrigger, HTMXHeader — send HTML fragments and fire client events.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>State Management</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Thread-safe global state with SetState, GetState, DeleteState, and NewState for isolated sessions.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>HTML Helpers</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Escape() for XSS-safe output and HTML() for raw HTML responses.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Todo App Example</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Complete HTMX-powered todo app in the docs with CRUD operations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- v1.0.5 -->
+      <div class="version-card">
+        <div class="version-header">
+          <div>
+            <span class="badge badge-green">v1.0.5</span>
+          </div>
+          <span class="version-date">December 2024</span>
+        </div>
+        <h3 style="font-size:1.25rem;margin:1rem 0 0.5rem;">Initial Public Release</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1.5rem;">The Go-powered web framework inspired by Next.js. File-based routing, SSR, and hot reload.</p>
+
+        <div class="version-changes">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--green);margin-bottom:0.75rem;">Features</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>File-Based Routing</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Automatic route discovery from pages/ directory with dynamic segments.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>Server-Side Rendering</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">SSR, SSG, and SPA modes with data loaders like getServerSideProps.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>Hot Reload (HMR)</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">SSE-based file watching with instant browser refresh.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>API Routes</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">REST endpoints with method routing, JSON helpers, and pagination.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>DevTools Panel</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Built-in debug panel with route inspector, request logs, and performance metrics.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>Middleware System</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Recover, Logger, SecurityHeaders, Gzip, CORS, and Cache middleware.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ─── Side-by-Side Comparison ─────────────────────────────── -->
+    <div class="text-center mb-lg">
+      <h2 class="heading-lg">v1.1.0 <span class="gradient-violet">vs</span> v1.2.0</h2>
+      <p class="text-muted" style="max-width:480px;margin:0.75rem auto 0;">What changed and why you should upgrade.</p>
+    </div>
+
+    <div class="comparison-grid">
+      <!-- v1.1.0 -->
+      <div class="comparison-col">
+        <div class="comparison-col-header">
+          <span class="badge badge-cyan">v1.1.0</span>
+          <span class="comparison-col-date">April 2026</span>
+        </div>
+        <div class="comparison-col-body">
+          <div class="comp-feature comp-yes">File-Based Routing</div>
+          <div class="comp-feature comp-yes">Server-Side Rendering</div>
+          <div class="comp-feature comp-yes">Hot Reload (HMR)</div>
+          <div class="comp-feature comp-yes">API Routes</div>
+          <div class="comp-feature comp-yes">Data Loaders</div>
+          <div class="comp-feature comp-yes">Middleware</div>
+          <div class="comp-feature comp-yes">DevTools Panel</div>
+          <div class="comp-feature comp-yes">HTMX Helpers</div>
+          <div class="comp-feature comp-yes">State Management</div>
+          <div class="comp-feature comp-no">SEO Package</div>
+          <div class="comp-feature comp-no">Streaming SSR</div>
+          <div class="comp-feature comp-no">ISR</div>
+          <div class="comp-feature comp-no">Worker Pools</div>
+          <div class="comp-feature comp-no">Response Caching</div>
+          <div class="comp-feature comp-no">Parallel Data Loading</div>
+          <div class="comp-feature comp-no">Template Caching</div>
+        </div>
+      </div>
+
+      <!-- v1.2.0 -->
+      <div class="comparison-col comparison-col-highlight">
+        <div class="comparison-col-header">
+          <span class="badge badge-violet">v1.2.0</span>
+          <span class="comparison-col-date">April 2026</span>
+        </div>
+        <div class="comparison-col-body">
+          <div class="comp-feature comp-yes">File-Based Routing</div>
+          <div class="comp-feature comp-yes">Server-Side Rendering</div>
+          <div class="comp-feature comp-yes">Hot Reload (HMR)</div>
+          <div class="comp-feature comp-yes">API Routes</div>
+          <div class="comp-feature comp-yes">Data Loaders</div>
+          <div class="comp-feature comp-yes">Middleware</div>
+          <div class="comp-feature comp-yes">DevTools Panel</div>
+          <div class="comp-feature comp-yes">HTMX Helpers</div>
+          <div class="comp-feature comp-yes">State Management</div>
+          <div class="comp-feature comp-yes">SEO Package</div>
+          <div class="comp-feature comp-yes">Streaming SSR</div>
+          <div class="comp-feature comp-yes">ISR</div>
+          <div class="comp-feature comp-yes">Worker Pools</div>
+          <div class="comp-feature comp-yes">Response Caching</div>
+          <div class="comp-feature comp-yes">Parallel Data Loading</div>
+          <div class="comp-feature comp-yes">Template Caching</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ─── Feature Detail Table ─────────────────────────────── -->
+    <h2 class="heading-lg text-center" style="margin-bottom:2rem;">Feature <span class="gradient-violet">Breakdown</span></h2>
+
+    <div class="table-wrap">
+      <table class="feature-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>v1.1.0</th>
+            <th>v1.2.0</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SEO Meta Tags</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">seo.DefaultMeta() — OpenGraph, Twitter Cards</td>
+          </tr>
+          <tr>
+            <td><strong>Sitemap Generation</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">seo.RenderSitemap(entries) — XML sitemap</td>
+          </tr>
+          <tr>
+            <td><strong>Robots.txt</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">seo.RobotsTxt(allow, disallow, sitemap)</td>
+          </tr>
+          <tr>
+            <td><strong>JSON-LD Structured Data</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">seo.JSONLD(data) — schema.org support</td>
+          </tr>
+          <tr>
+            <td><strong>Streaming SSR</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">stream.StreamHTML() — progressive rendering</td>
+          </tr>
+          <tr>
+            <td><strong>Server-Sent Events</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">stream.NewSSE() — real-time updates</td>
+          </tr>
+          <tr>
+            <td><strong>ISR (Incremental Regeneration)</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">isr.New(ttl) — cache with background rebuild</td>
+          </tr>
+          <tr>
+            <td><strong>Worker Pools</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">worker.New(n), Map(), ForEach()</td>
+          </tr>
+          <tr>
+            <td><strong>Response Caching</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">api.Cache(ttl) — middleware with X-Cache headers</td>
+          </tr>
+          <tr>
+            <td><strong>Parallel Data Loading</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">renderer.NewParallelLoader() — Promise.all style</td>
+          </tr>
+          <tr>
+            <td><strong>Template Caching</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">r.LoadAll(), r.LoadParallel() — compile once</td>
+          </tr>
+          <tr>
+            <td><strong>HTMX Helpers</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">IsHTMX, HTMXHTML, HTMXTrigger — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>State Management</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">SetState / GetState / DeleteState — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>File-Based Routing</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">Automatic route discovery — unchanged</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ─── Upgrade CTA ─────────────────────────────── -->
+    <div style="margin-top:3rem;padding:2.5rem;background:var(--violet-dim);border:1px solid rgba(124,58,237,0.25);border-radius:var(--radius-lg);text-align:center;">
+      <h3 class="heading-md" style="margin-bottom:0.5rem;">Upgrade to v1.2.0</h3>
+      <p class="text-muted" style="max-width:440px;margin:0 auto 1.5rem;">
+        Get SEO tools, streaming SSR, ISR, worker pools, and more. Drop-in upgrade — no breaking changes.
+      </p>
+      <div class="install-box" style="max-width:500px;margin:0 auto;">
+        <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.2.0</span></div>
+        <button class="copy-btn" data-copy="go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.2.0">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/docs#seo" class="btn btn-primary">SEO Docs →</a>
+        <a href="/docs#streaming-ssr" class="btn btn-ghost">Streaming SSR</a>
+        <a href="/docs#isr" class="btn btn-ghost">ISR</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.version-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.version-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: border-color 0.2s;
+}
+
+.version-card:hover {
+  border-color: var(--border-2);
+}
+
+.version-card-latest {
+  border-color: rgba(124, 58, 237, 0.3);
+  background: linear-gradient(135deg, var(--surface), var(--violet-dim));
+}
+
+.version-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.version-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.version-changes {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.change-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.change-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.change-new {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+}
+
+.change-orig {
+  background: rgba(34, 211, 238, 0.15);
+  color: #22d3ee;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.comparison-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.comparison-col-highlight {
+  border-color: rgba(124, 58, 237, 0.3);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
+}
+
+.comparison-col-header {
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.comparison-col-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.comparison-col-body {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.comp-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+}
+
+.comp-feature::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.comp-yes::before {
+  background: #4ade80;
+}
+
+.comp-no::before {
+  background: var(--text-muted);
+  opacity: 0.3;
+}
+
+.comp-no {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.feature-table td, .feature-table th {
+  text-align: center;
+}
+
+.feature-table td:first-child, .feature-table th:first-child {
+  text-align: left;
+}
+
+.check {
+  color: #4ade80;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.cross {
+  color: var(--text-muted);
+  opacity: 0.3;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>

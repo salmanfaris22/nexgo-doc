@@ -11,7 +11,7 @@
   <div class="container" style="position:relative;z-index:1;">
     <div class="hero-badge">
       <span class="dot"></span>
-      v1.0.5 is live — Star us on GitHub
+      {{ .Props.latestBadge }}
     </div>
 
     <h1 class="display">
@@ -43,9 +43,9 @@
       <div class="install-box" style="max-width:600px;width:100%;">
         <div class="install-cmd">
           <span class="cmd-prefix">$</span>
-          <span class="cmd-text">go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.5</span>
+          <span class="cmd-text">{{ .Props.installCmd }}</span>
         </div>
-        <button class="copy-btn" data-copy="go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.5" title="Copy to clipboard">
+        <button class="copy-btn" data-copy="{{ .Props.installCmd }}" title="Copy to clipboard">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <rect x="9" y="9" width="13" height="13" rx="2"/>
             <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
@@ -137,6 +137,24 @@
         <div class="feat-icon feat-icon-cyan">🛠</div>
         <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">DevTools Panel</h3>
         <p class="text-muted text-sm">Built-in debug panel at <code>/_nexgo/devtools</code>. Live request logs, route inspector, performance metrics, and config viewer.</p>
+      </div>
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-pink">🔍</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">SEO Tools</h3>
+        <p class="text-muted text-sm">Meta tags, OpenGraph, Twitter Cards, sitemap.xml, robots.txt, and JSON-LD structured data — all built in.</p>
+      </div>
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-violet">⚡</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Streaming SSR</h3>
+        <p class="text-muted text-sm">Send HTML progressively as it's ready. Show the shell immediately, stream content later. Includes SSE support.</p>
+      </div>
+
+      <div class="card feat-card">
+        <div class="feat-icon feat-icon-green">🔄</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">ISR</h3>
+        <p class="text-muted text-sm">Incremental Static Regeneration — cache pages and rebuild in the background after a configurable interval.</p>
       </div>
 
     </div>

@@ -35,6 +35,20 @@
       <li class="nav-section">Reference</li>
       <li><a href="#template-functions">Template Functions</a></li>
       <li><a href="#api-helpers">API Helpers</a></li>
+      <li><a href="#htmx-helpers">HTMX Helpers</a></li>
+      <li><a href="#state-management">State Management</a></li>
+      <li><a href="#html-helpers">HTML Helpers</a></li>
+
+      <li class="nav-section">Advanced</li>
+      <li><a href="#seo">SEO</a></li>
+      <li><a href="#template-caching">Template Caching</a></li>
+      <li><a href="#parallel-data-loading">Parallel Data Loading</a></li>
+      <li><a href="#streaming-ssr">Streaming SSR</a></li>
+      <li><a href="#response-caching">Response Caching</a></li>
+      <li><a href="#worker-pools">Worker Pools</a></li>
+      <li><a href="#isr">ISR</a></li>
+
+      <li class="nav-section">CLI</li>
       <li><a href="#cli">CLI Commands</a></li>
     </ul>
   </aside>
@@ -47,7 +61,7 @@
       <h1 class="heading-xl" style="margin-bottom:0.75rem;">NexGo <span class="gradient-violet">Reference</span></h1>
       <p>Complete documentation for the NexGo web framework — the Go-powered alternative to Next.js.</p>
       <div style="display:flex;gap:0.5rem;margin-top:1rem;flex-wrap:wrap;">
-        <span class="badge badge-violet">v1.0.5</span>
+        <span class="badge badge-violet">{{ .Props.versionBadge }}</span>
         <span class="badge badge-cyan">Go 1.22+</span>
         <span class="badge badge-green">Zero Dependencies</span>
       </div>
@@ -61,8 +75,8 @@
 
     <h3 id="installation">1. Install NexGo</h3>
     <div class="install-box" style="max-width:100%;margin:1rem 0;">
-      <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.5</span></div>
-      <button class="copy-btn" data-copy="go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.0.5">
+      <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text">{{ .Props.installCmd }}</span></div>
+      <button class="copy-btn" data-copy="{{ .Props.installCmd }}">
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         Copy
       </button>
@@ -141,8 +155,8 @@ nexgo dev</code></pre>
 └── [...catchall].html     → /any/path/here</code></pre>
 
     <p>Access parameters in templates:</p>
-    <pre><code>&lt;h1&gt;User {{ .Params.id }}&lt;/h1&gt;
-&lt;p&gt;Post: {{ .Params.slug }}&lt;/p&gt;</code></pre>
+    <pre><code>&lt;h1&gt;User {"{"}{ .Params.id }{"}"}&lt;/h1&gt;
+&lt;p&gt;Post: {"{"}{ .Params.slug }{"}"}&lt;/p&gt;</code></pre>
 
     <!-- LAYOUTS -->
     <h2 id="layouts">Layouts &amp; Components</h2>
@@ -151,7 +165,7 @@ nexgo dev</code></pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-  &lt;title&gt;{{ .Title }}&lt;/title&gt;
+  &lt;title&gt;{"{"}{ .Title }{"}"}&lt;/title&gt;
   &lt;link rel="stylesheet" href="/static/css/global.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -226,7 +240,7 @@ srv.RegisterDataLoader("/blog/[slug]", func(
 })</code></pre>
 
     <pre><code>&lt;!-- pages/blog/[slug].html --&gt;
-&lt;h1&gt;{{ .Props.post.Title }}&lt;/h1&gt;
+&lt;h1&gt;{"{"}{ .Props.post.Title }{"}"}&lt;/h1&gt;
 
 
     <!-- MIDDLEWARE -->
@@ -316,12 +330,12 @@ ssh server '/opt/myapp/myapp'</code></pre>
       <table>
         <thead><tr><th>Function</th><th>Usage</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td><code>upper</code></td><td><code>{{ upper "hello" }}</code></td><td>Uppercase</td></tr>
-          <tr><td><code>lower</code></td><td><code>{{ lower "HI" }}</code></td><td>Lowercase</td></tr>
-          <tr><td><code>title</code></td><td><code>{{ title "hello world" }}</code></td><td>Title case</td></tr>
-          <tr><td><code>trim</code></td><td><code>{{ trim "  hi  " }}</code></td><td>Trim whitespace</td></tr>
-          <tr><td><code>replace</code></td><td><code>{{ replace "hi" "i" "ey" }}</code></td><td>Replace substring</td></tr>
-          <tr><td><code>split</code></td><td><code>{{ split "a,b" "," }}</code></td><td>Split to slice</td></tr>
+          <tr><td><code>upper</code></td><td><code>{"{"}{ upper "hello" }{"}"}</code></td><td>Uppercase</td></tr>
+          <tr><td><code>lower</code></td><td><code>{"{"}{ lower "HI" }{"}"}</code></td><td>Lowercase</td></tr>
+          <tr><td><code>title</code></td><td><code>{"{"}{ title "hello world" }{"}"}</code></td><td>Title case</td></tr>
+          <tr><td><code>trim</code></td><td><code>{"{"}{ trim "  hi  " }{"}"}</code></td><td>Trim whitespace</td></tr>
+          <tr><td><code>replace</code></td><td><code>{"{"}{ replace "hi" "i" "ey" }{"}"}</code></td><td>Replace substring</td></tr>
+          <tr><td><code>split</code></td><td><code>{"{"}{ split "a,b" "," }{"}"}</code></td><td>Split to slice</td></tr>
 
         </tbody>
       </table>
@@ -369,6 +383,316 @@ api.Route(w, r, api.Methods{
 
 // Pagination
 page, limit := api.Paginate(r) // ?page=2&amp;limit=10</code></pre>
+
+    <!-- HTMX HELPERS -->
+    <h2 id="htmx-helpers">HTMX Helpers</h2>
+    <p>Send HTML fragments from Go and let HTMX update the DOM — no page reloads needed.</p>
+
+    <h3><code>api.IsHTMX(r)</code> — Check if request is from HTMX</h3>
+    <pre><code>if api.IsHTMX(r) {
+    // Return HTML fragment
+    api.HTMXHTML(w, "&lt;li&gt;New item&lt;/li&gt;")
+} else {
+    // Return JSON
+    api.JSON(w, data)
+}</code></pre>
+
+    <h3><code>api.HTMXHTML(w, html)</code> — Send HTML fragment response</h3>
+    <pre><code>api.HTMXHTML(w, "&lt;div&gt;Updated content&lt;/div&gt;")</code></pre>
+
+    <h3><code>api.HTMXTrigger(w, event)</code> — Fire client-side event after response</h3>
+    <pre><code>api.HTMXTrigger(w, "todo-added")</code></pre>
+
+    <h3><code>api.HTMXHeader(w, key, value)</code> — Set any HTMX header</h3>
+    <pre><code>api.HTMXHeader(w, "HX-Redirect", "/dashboard")</code></pre>
+
+    <!-- STATE MANAGEMENT -->
+    <h2 id="state-management">State Management</h2>
+    <p>Thread-safe global state shared across all handlers. No mutex boilerplate.</p>
+
+    <h3><code>api.SetState(key, value)</code> — Store a value</h3>
+    <pre><code>api.SetState("todos", []Todo{...})
+api.SetState("counter", 42)</code></pre>
+
+    <h3><code>api.GetState(key)</code> — Retrieve a value</h3>
+    <pre><code>todos := api.GetState("todos").([]Todo)</code></pre>
+
+    <h3><code>api.DeleteState(key)</code> — Remove a key</h3>
+    <pre><code>api.DeleteState("todos")</code></pre>
+
+    <h3><code>api.NewState()</code> — Create isolated state (optional)</h3>
+    <pre><code>sessionState := api.NewState()
+sessionState.Set("user", "alice")</code></pre>
+
+    <!-- HTML HELPERS -->
+    <h2 id="html-helpers">HTML Helpers</h2>
+
+    <h3><code>api.Escape(s)</code> — Sanitize HTML output</h3>
+    <pre><code>safe := api.Escape("&lt;script&gt;alert('xss')&lt;/script&gt;")
+// "&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;"</code></pre>
+
+    <h3><code>api.HTML(w, html)</code> — Send raw HTML response</h3>
+    <pre><code>api.HTML(w, "&lt;h1&gt;Hello&lt;/h1&gt;")</code></pre>
+
+    <!-- SEO -->
+    <h2 id="seo">SEO (Meta, Sitemap, OpenGraph)</h2>
+    <p>Meta tags, OpenGraph, Twitter Cards, sitemap.xml, robots.txt, and JSON-LD structured data.</p>
+
+    <h3>Meta Tags</h3>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/seo"
+
+meta := seo.DefaultMeta("My Site", "A great website", "https://mysite.com")
+meta.Keywords = []string{"go", "web", "framework"}
+meta.OGImage = "https://mysite.com/og.png"
+meta.TwitterCard = "summary_large_image"
+meta.TwitterSite = "@mysite"
+
+// Use in template: {"{"}{ .MetaTags }{"}"}</code></pre>
+
+    <h3>Article Meta</h3>
+    <pre><code>meta := seo.ArticleMeta(
+    "How to Build APIs in Go",
+    "A guide to building fast APIs",
+    "John Doe",
+    "https://mysite.com/images/cover.jpg",
+    "https://mysite.com/blog/go-apis",
+    time.Now(),
+)</code></pre>
+
+    <h3>Sitemap</h3>
+    <pre><code>entries := []seo.SitemapEntry{
+    {Loc: "https://mysite.com/", ChangeFreq: "daily", Priority: 1.0},
+    {Loc: "https://mysite.com/about", ChangeFreq: "monthly", Priority: 0.8},
+    {Loc: "https://mysite.com/blog", ChangeFreq: "weekly", Priority: 0.9},
+}
+xml, _ := seo.RenderSitemap(entries)
+// Write xml to /sitemap.xml response</code></pre>
+
+    <h3>Robots.txt</h3>
+    <pre><code>robots := seo.RobotsTxt(
+    []string{"/"},                    // allow
+    []string{"/admin", "/api"},       // disallow
+    "https://mysite.com/sitemap.xml", // sitemap URL
+)
+// Write robots to /robots.txt response</code></pre>
+
+    <h3>JSON-LD Structured Data</h3>
+    <pre><code>data := map[string]interface{}{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "My Company",
+    "url": "https://mysite.com",
+}
+jsonld := seo.JSONLD(data)
+// In template: {"{"}{ .JSONLD }{"}"}</code></pre>
+
+    <!-- TEMPLATE CACHING -->
+    <h2 id="template-caching">Template Caching</h2>
+    <p>Templates are compiled once and cached for fast subsequent renders.</p>
+
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/renderer"
+
+r := renderer.New(cfg)
+r.LoadAll()  // Compiles and caches all templates
+
+// Check cache stats
+info := r.CacheInfo()
+// map[templates:5 layouts:1 components:3 loaded_at:2026-04-03...]</code></pre>
+
+    <h3>Parallel Template Loading</h3>
+    <pre><code>r.LoadParallel()  // Uses worker pool to compile templates concurrently</code></pre>
+
+    <!-- PARALLEL DATA LOADING -->
+    <h2 id="parallel-data-loading">Parallel Data Loading</h2>
+    <p>Load multiple data sources concurrently and merge results — like <code>Promise.all()</code> in JS.</p>
+
+    <pre><code>import (
+    "github.com/salmanfaris22/nexgo/pkg/renderer"
+    "net/http"
+)
+
+// Create parallel loader
+loader := renderer.NewParallelLoader().
+    Add("users", fetchUsers).
+    Add("posts", fetchPosts).
+    Add("stats", fetchStats)
+
+// Execute all concurrently
+props, err := loader.Execute(req, params)
+// props = map[string]interface{}{
+//     "users": [...], "posts": [...], "stats": {...}
+// }
+
+func fetchUsers(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+    users := db.Query("SELECT * FROM users")
+    return map[string]interface{}{"users": users}, nil
+}
+
+func fetchPosts(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+    posts := db.Query("SELECT * FROM posts LIMIT 10")
+    return map[string]interface{}{"posts": posts}, nil
+}</code></pre>
+
+    <!-- STREAMING SSR -->
+    <h2 id="streaming-ssr">Streaming SSR</h2>
+    <p>Send HTML progressively as it's ready — show the shell immediately, stream content later.</p>
+
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/stream"
+
+func handlePage(w http.ResponseWriter, r *http.Request) {
+    sw := stream.StreamHTML(w)
+
+    // Send head + layout immediately
+    sw.WriteString(`&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;My Page&lt;/title&gt;&lt;/head&gt;&lt;body&gt;`)
+    sw.WriteString(`&lt;header&gt;Navigation&lt;/header&gt;&lt;main&gt;`)
+    sw.Flush()
+
+    // Do slow work (DB query, API call)
+    data := slowDatabaseQuery()
+
+    // Stream content
+    sw.WriteString(fmt.Sprintf("&lt;h1&gt;%s&lt;/h1&gt;", data.Title))
+    sw.WriteString(fmt.Sprintf("&lt;p&gt;%s&lt;/p&gt;", data.Body))
+
+    // Close HTML
+    sw.WriteString(`&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;`)
+}</code></pre>
+
+    <h3>Server-Sent Events (SSE)</h3>
+    <pre><code>func handleSSE(w http.ResponseWriter, r *http.Request) {
+    sse := stream.NewSSE(w)
+    defer sse.Flush()
+
+    for {
+        sse.Send("update", `{"count": 42}`)
+        sse.Ping()
+        time.Sleep(1 * time.Second)
+    }
+}</code></pre>
+
+    <!-- RESPONSE CACHING -->
+    <h2 id="response-caching">Response Caching</h2>
+    <p>Cache GET responses in memory with TTL. Automatic cache headers.</p>
+
+    <h3>Middleware</h3>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/api"
+
+// Cache a handler for 5 minutes
+mux.HandleFunc("/api/posts", api.Cache(5*time.Minute)(handlePosts))
+
+// Cache with custom TTL
+mux.HandleFunc("/api/slow", api.Cache(30*time.Second)(handleSlow))</code></pre>
+
+    <h3>Manual Cache</h3>
+    <pre><code>// Set cache
+api.CacheSet("/api/data", 200, headers, body)
+
+// Get cache
+code, headers, body, ok := api.CacheGet("/api/data")
+if ok {
+    w.WriteHeader(code)
+    w.Write(body)
+    return
+}
+
+// Delete specific key
+api.CacheDelete("/api/data")
+
+// Clear all
+api.CacheClear()</code></pre>
+
+    <p>Responses include <code>X-Cache: HIT</code> or <code>X-Cache: MISS</code> headers automatically.</p>
+
+    <!-- WORKER POOLS -->
+    <h2 id="worker-pools">Worker Pools</h2>
+    <p>Run tasks concurrently with controlled parallelism.</p>
+
+    <h3>Basic Pool</h3>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/worker"
+
+pool := worker.New(4)  // 4 workers
+pool.Start()
+
+pool.Submit(func() error {
+    return processFile("data1.csv")
+})
+pool.Submit(func() error {
+    return processFile("data2.csv")
+})
+
+errs := pool.Wait()  // blocks until all done</code></pre>
+
+    <h3>Map (concurrent transform)</h3>
+    <pre><code>results := worker.Map(4, items, func(item Item) Result {
+    return process(item)
+})
+// results are in original order</code></pre>
+
+    <h3>Map with Errors</h3>
+    <pre><code>results, err := worker.MapErr(4, urls, func(url string) (Page, error) {
+    return fetchPage(url)
+})</code></pre>
+
+    <h3>ForEach</h3>
+    <pre><code>worker.ForEach(8, emails, func(email string) {
+    sendEmail(email)
+})</code></pre>
+
+    <h3>Global Pool</h3>
+    <pre><code>worker.Start()  // starts global pool with 4 workers
+worker.Submit(func() error { return doWork() })
+errs := worker.Wait()</code></pre>
+
+    <!-- ISR -->
+    <h2 id="isr">Incremental Static Regeneration (ISR)</h2>
+    <p>Cache pages and rebuild them in the background after a configurable interval — like Next.js ISR.</p>
+
+    <h3>Basic ISR</h3>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/isr"
+
+// Create ISR with 60-second revalidation
+cache := isr.New(60 * time.Second)
+
+func handlePage(w http.ResponseWriter, r *http.Request) {
+    cache.Serve(w, r, func() (int, http.Header, []byte, error) {
+        // This runs only on first request or after 60s
+        html := renderExpensivePage()
+        return 200, nil, []byte(html), nil
+    })
+}</code></pre>
+
+    <h3>How ISR Works</h3>
+    <div class="table-wrap" style="margin:1rem 0;">
+      <table>
+        <thead><tr><th>Step</th><th>Behavior</th><th>Header</th></tr></thead>
+        <tbody>
+          <tr><td>First request</td><td>Generates page, caches it, returns</td><td><code>X-ISR: MISS</code></td></tr>
+          <tr><td>Subsequent (within TTL)</td><td>Serves cached page</td><td><code>X-ISR: STALE</code></td></tr>
+          <tr><td>After TTL expires</td><td>Serves stale, regenerates in background</td><td><code>X-ISR: REVALIDATING</code></td></tr>
+          <tr><td>Next request</td><td>Gets fresh cached content</td><td><code>X-ISR: HIT</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Manual Revalidation</h3>
+    <pre><code>// Trigger background rebuild of a specific path
+cache.Revalidate("/blog/post-1", func() (int, http.Header, []byte, error) {
+    return 200, nil, []byte(renderPost()), nil
+})
+
+// Purge from cache
+cache.Purge("/blog/post-1")
+cache.PurgeAll()</code></pre>
+
+    <h3>Global ISR</h3>
+    <pre><code>isr.SetRevalidate(120 * time.Second)
+
+isr.Serve(w, r, func() (int, http.Header, []byte, error) {
+    return 200, nil, []byte(html), nil
+})
+
+isr.Revalidate("/page", generateFunc)
+isr.Purge("/page")</code></pre>
 
     <!-- CLI -->
     <h2 id="cli">CLI Commands</h2>

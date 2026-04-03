@@ -10,6 +10,8 @@ import (
 
 	"github.com/salmanfaris22/nexgo/pkg/config"
 	"github.com/salmanfaris22/nexgo/pkg/server"
+
+	info "github.com/salmanfaris22/nexgo-website/config"
 )
 
 func main() {
@@ -40,12 +42,36 @@ func main() {
 		return map[string]interface{}{"post": nil}, nil
 	})
 
-	// Docs page metadata
+	// Global version data for all pages
+	versionData := map[string]interface{}{
+		"version":        info.Version,
+		"prevVersion":    info.PrevVersion,
+		"goVersion":      info.GoVersion,
+		"installCmd":     info.InstallCmd,
+		"prevInstallCmd": info.PrevInstallCmd,
+		"latestBadge":    info.LatestBadge,
+		"versionBadge":   info.VersionBadge,
+		"prevBadge":      info.PrevBadge,
+	}
+
+	srv.RegisterDataLoader("/index", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+		return versionData, nil
+	})
+
 	srv.RegisterDataLoader("/docs", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
-		return map[string]interface{}{
-			"version":   "1.0.5",
-			"goVersion": "1.22+",
-		}, nil
+		return versionData, nil
+	})
+
+	srv.RegisterDataLoader("/blog", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+		return versionData, nil
+	})
+
+	srv.RegisterDataLoader("/compare", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+		return versionData, nil
+	})
+
+	srv.RegisterDataLoader("/versions", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+		return versionData, nil
 	})
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
@@ -62,6 +88,22 @@ func main() {
 
 func getBlogPosts() []map[string]interface{} {
 	return []map[string]interface{}{
+		{
+			"slug":        "nexgo-v1-2-0",
+			"title":       "NexGo v1.2.0 — SEO, Streaming SSR, ISR & Advanced Features",
+			"description": "Production-ready features: SEO meta tags, sitemaps, streaming SSR, incremental static regeneration, worker pools, and more.",
+			"date":        "April 2026",
+			"readTime":    "8 min read",
+			"tag":         "Release",
+		},
+		{
+			"slug":        "nexgo-v1-1-0",
+			"title":       "NexGo v1.1.0 — HTMX Support, State Management & API Helpers",
+			"description": "Built-in HTMX helpers, thread-safe state management, and HTML sanitization utilities.",
+			"date":        "April 2026",
+			"readTime":    "6 min read",
+			"tag":         "Release",
+		},
 		{
 			"slug":        "introducing-nexgo",
 			"title":       "Introducing NexGo — The Go Web Framework Inspired by Next.js",

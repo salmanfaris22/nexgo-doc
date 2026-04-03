@@ -518,16 +518,24 @@ section { padding: 5rem 0; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0.875rem 1.25rem;
-  max-width: 520px;
 }
 
 .install-cmd {
   font-family: var(--font-code);
   font-size: 0.875rem;
   color: var(--text);
-  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cmd-text {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  user-select: all;
 }
 
 .install-cmd .cmd-prefix {
@@ -1175,6 +1183,17 @@ tr:hover td { background: var(--surface-2); }
   .hero-actions .btn { width: 100%; justify-content: center; }
 
   .hero-install .install-box { padding: 0.75rem 1rem; }
+
+  .install-cmd {
+    white-space: normal;
+    word-break: break-all;
+    font-size: 0.78rem;
+  }
+
+  .cmd-text {
+    white-space: normal;
+    word-break: break-all;
+  }
 
   .btn-lg {
     padding: 0.75rem 1.25rem;
