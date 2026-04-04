@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nexgo-website — NexGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta property="og:title" content="nexgo-website — NexGo">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#7c3aed">
+
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/global.css">
+
+  
+  <script>
+    (function(){
+      var t = localStorage.getItem('nexgo-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t || d);
+    })();
+  </script>
+
+  <style>
+     
+    body { visibility: visible; }
+    .page-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; }
+  </style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <nav class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-mark">N</div>
+      NexGo
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/compare">Compare</a></li>
+      <li><a href="/versions">Versions</a></li>
+      <li><a href="/announcement" class="nav-announce">📢 </a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="btn-github btn">
+        
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+        
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+
+      <button class="nav-mobile-toggle" id="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+        <svg class="icon-menu" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg class="icon-close" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-menu-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/compare">Compare</a></li>
+      <li><a href="/versions">Versions</a></li>
+      <li><a href="/announcement" class="nav-announce">📢 </a></li>
+    </ul>
+    <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="btn-github btn mobile-github-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+</header>
+
+
+<div class="page-wrapper">
+  <main id="nexgo-root">
+    
+
+<div class="docs-layout">
+
+  
+  <aside class="docs-sidebar">
+    <ul class="sidebar-nav">
+      <li class="nav-section">Getting Started</li>
+      <li><a href="#quick-start" class="active">Quick Start</a></li>
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#project-structure">Project Structure</a></li>
+
+      <li class="nav-section">Core Concepts</li>
+      <li><a href="#routing">File-Based Routing</a></li>
+      <li><a href="#dynamic-routes">Dynamic Routes</a></li>
+      <li><a href="#layouts">Layouts</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#templates">Template Engine</a></li>
+
+      <li class="nav-section">Server</li>
+      <li><a href="#api-routes">API Routes</a></li>
+      <li><a href="#data-loaders">Data Loaders</a></li>
+      <li><a href="#middleware">Middleware</a></li>
+      <li><a href="#static-files">Static Files</a></li>
+
+      <li class="nav-section">Development</li>
+      <li><a href="#hot-reload">Hot Reload</a></li>
+      <li><a href="#devtools">DevTools Panel</a></li>
+
+      <li class="nav-section">Production</li>
+      <li><a href="#building">Building</a></li>
+      <li><a href="#deploying">Deploying</a></li>
+      <li><a href="#config">Configuration</a></li>
+
+      <li class="nav-section">Reference</li>
+      <li><a href="#template-functions">Template Functions</a></li>
+      <li><a href="#api-helpers">API Helpers</a></li>
+      <li><a href="#htmx-helpers">HTMX Helpers</a></li>
+      <li><a href="#state-management">State Management</a></li>
+      <li><a href="#html-helpers">HTML Helpers</a></li>
+
+      <li class="nav-section">Advanced</li>
+      <li><a href="#seo">SEO</a></li>
+      <li><a href="#template-caching">Template Caching</a></li>
+      <li><a href="#parallel-data-loading">Parallel Data Loading</a></li>
+      <li><a href="#streaming-ssr">Streaming SSR</a></li>
+      <li><a href="#response-caching">Response Caching</a></li>
+      <li><a href="#worker-pools">Worker Pools</a></li>
+      <li><a href="#isr">ISR</a></li>
+
+      <li class="nav-section">v2.0.1 Features</li>
+      <li><a href="#env">Environment Variables</a></li>
+      <li><a href="#sessions">Sessions</a></li>
+      <li><a href="#auth">Authentication (JWT)</a></li>
+      <li><a href="#csrf">CSRF Protection</a></li>
+      <li><a href="#rate-limiting">Rate Limiting</a></li>
+      <li><a href="#i18n">i18n</a></li>
+      <li><a href="#image-optimization">Image Optimization</a></li>
+      <li><a href="#websocket">WebSocket</a></li>
+      <li><a href="#health-checks">Health Checks</a></li>
+      <li><a href="#logging">Structured Logging</a></li>
+      <li><a href="#metrics">Metrics</a></li>
+      <li><a href="#database">Database</a></li>
+      <li><a href="#migrations">Migrations</a></li>
+      <li><a href="#plugin-system">Plugin System</a></li>
+      <li><a href="#server-actions">Server Actions</a></li>
+      <li><a href="#error-pages">Error Pages</a></li>
+      <li><a href="#testing">Testing</a></li>
+      <li><a href="#per-route-middleware">Per-Route Middleware</a></li>
+      <li><a href="#deployment">Deployment Adapters</a></li>
+      <li><a href="#redis-cache">Redis Cache</a></li>
+      <li><a href="#asset-pipeline">Asset Pipeline</a></li>
+      <li><a href="#orm">ORM</a></li>
+      <li><a href="#cluster-mode">Cluster Mode</a></li>
+
+      <li class="nav-section">CLI</li>
+      <li><a href="#cli">CLI Commands</a></li>
+    </ul>
+  </aside>
+
+  
+  <article class="docs-content">
+
+    <div style="margin-bottom:2rem;">
+      <div class="section-eyebrow">Documentation</div>
+      <h1 class="heading-xl" style="margin-bottom:0.75rem;">NexGo <span class="gradient-violet">Reference</span></h1>
+      <p>Complete documentation for the NexGo web framework — the Go-powered alternative to Next.js.</p>
+      <div style="display:flex;gap:0.5rem;margin-top:1rem;flex-wrap:wrap;">
+        <span class="badge badge-violet"></span>
+        <span class="badge badge-cyan">Go 1.22+</span>
+        <span class="badge badge-green">Zero Dependencies</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    
+    <h2 id="quick-start">Quick Start</h2>
+    <p>Get a NexGo project running in under 2 minutes.</p>
+
+    <h3 id="installation">1. Install NexGo</h3>
+    <div class="install-box" style="max-width:100%;margin:1rem 0;">
+      <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text"></span></div>
+      <button class="copy-btn" data-copy="">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy
+      </button>
+    </div>
+
+    <div class="card" style="background:var(--violet-dim);border-color:rgba(124,58,237,0.25);margin:1rem 0;">
+      <p style="font-size:0.875rem;margin:0;"><strong style="color:var(--violet-light);">⚠️ PATH Setup (Important):</strong></p>
+      <pre style="margin-top:0.5rem;background:transparent;border:none;padding:0;font-size:0.8rem;">export PATH=$PATH:$(go env GOPATH)/bin
+echo 'export PATH=$PATH:$(go env GOPATH)/bin' >> ~/.bashrc &amp;&amp; source ~/.bashrc</pre>
+    </div>
+
+    <h3>2. Create a New Project</h3>
+    <pre><code>nexgo create my-app
+cd my-app
+go mod tidy
+nexgo dev</code></pre>
+
+    <p>Open <code>http://localhost:3000</code> — your app is live with hot reload enabled.</p>
+
+    
+    <h2 id="project-structure">Project Structure</h2>
+    <p>Running <code>nexgo create my-app</code> generates this structure:</p>
+
+    <pre><code>my-app/
+├── main.go                  # Application entry point
+├── nexgo.config.json        # Framework configuration
+├── go.mod
+│
+├── pages/                   # File-based routes
+│   ├── index.html           #   → /
+│   ├── about.html           #   → /about
+│   ├── blog/
+│   │   ├── index.html       #   → /blog
+│   │   └── [slug].html      #   → /blog/:slug (dynamic)
+│   └── api/
+│       └── hello.go         #   → /api/hello
+│
+├── layouts/
+│   └── default.html         # Default layout
+├── components/              # Reusable partials
+├── static/                  # Static assets → /static/
+│   ├── css/global.css
+│   └── js/
+└── .nexgo/out/              # Build output (generated)</code></pre>
+
+    
+    <h2 id="routing">File-Based Routing</h2>
+    <p>Drop HTML files in <code>pages/</code> and NexGo creates routes automatically — no manual registration needed.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>File Path</th>
+            <th>URL Pattern</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>pages/index.html</code></td><td><code>/</code></td><td><code>/</code></td></tr>
+          <tr><td><code>pages/about.html</code></td><td><code>/about</code></td><td><code>/about</code></td></tr>
+          <tr><td><code>pages/blog/index.html</code></td><td><code>/blog</code></td><td><code>/blog</code></td></tr>
+          <tr><td><code>pages/blog/[slug].html</code></td><td><code>/blog/:slug</code></td><td><code>/blog/my-post</code></td></tr>
+          <tr><td><code>pages/docs/[...path].html</code></td><td><code>/docs/*</code></td><td><code>/docs/api/auth</code></td></tr>
+          <tr><td><code>pages/api/users.go</code></td><td><code>/api/users</code></td><td><code>/api/users</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="dynamic-routes">Dynamic Routes</h3>
+    <p>Use <code>[param]</code> syntax for dynamic URL segments:</p>
+    <pre><code>pages/
+├── users/
+│   ├── [id].html          → /users/123
+│   └── [id]/posts.html    → /users/123/posts
+└── [...catchall].html     → /any/path/here</code></pre>
+
+    <p>Access parameters in templates:</p>
+    <pre><code>&lt;h1&gt;User {"{"}{ .Params.id }{"}"}&lt;/h1&gt;
+&lt;p&gt;Post: {"{"}{ .Params.slug }{"}"}&lt;/p&gt;</code></pre>
+
+    
+    <h2 id="layouts">Layouts &amp; Components</h2>
+    <p>Layouts wrap page content. NexGo walks up the directory tree to find the nearest layout:</p>
+    <pre><code>&lt;!-- layouts/default.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;{"{"}{ .Title }{"}"}&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/static/css/global.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+  
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+   
+    <p>Reusable template partials stored in <code>components/</code>:</p>
+    <pre><code>&lt;!-- components/card.html --&gt;
+&lt;div class="card"&gt;
+
+&lt;/div&gt;
+
+&lt;!-- Usage in pages --&gt;
+
+</code></pre>
+
+    
+    <h2 id="templates">Template Engine</h2>
+    <p>NexGo uses Go's <code>html/template</code> package. Every page receives a <code>PageData</code> struct:</p>
+    <pre><code>type PageData struct {
+    Title        string
+    Description  string
+    Path         string                 // Current URL path
+    Params       map[string]string      // Route params
+    Query        map[string]string      // Query string
+    Props        map[string]interface{} // From DataLoader
+    DevMode      bool
+    BuildID      string
+}</code></pre>
+
+    
+    <h2 id="api-routes">API Routes</h2>
+    <p>Create <code>.go</code> files in <code>pages/api/</code> to build REST endpoints:</p>
+    <pre><code>// pages/api/hello.go
+package api
+
+import (
+    "net/http"
+    "github.com/salmanfaris22/nexgo/pkg/api"
+    "github.com/salmanfaris22/nexgo/pkg/router"
+)
+
+func init() {
+    router.RegisterAPI("/api/hello", Hello)
+}
+
+func Hello(w http.ResponseWriter, r *http.Request) {
+    api.JSON(w, map[string]interface{}{
+        "message": "Hello from NexGo!",
+        "method":  r.Method,
+    })
+}</code></pre>
+
+    
+    <h2 id="data-loaders">Data Loaders</h2>
+    <p>Data loaders work like Next.js <code>getServerSideProps</code> — fetch data server-side before rendering:</p>
+    <pre><code>// main.go
+srv.RegisterDataLoader("/blog/[slug]", func(
+    req *http.Request,
+    params map[string]string,
+) (map[string]interface{}, error) {
+    slug := params["slug"]
+    post, err := db.GetPost(slug)
+    if err != nil {
+        return nil, err
+    }
+    return map[string]interface{}{"post": post}, nil
+})</code></pre>
+
+    <pre><code>&lt;!-- pages/blog/[slug].html --&gt;
+&lt;h1&gt;{"{"}{ .Props.post.Title }{"}"}&lt;/h1&gt;
+
+
+    
+    <h2 id="middleware">Middleware</h2>
+    <p>Built-in middleware is applied in this order:</p>
+    <pre><code>Request → Recover → Logger → SecurityHeaders → [Gzip] → Handler</code></pre>
+
+    <div class="table-wrap" style="margin:1rem 0;">
+      <table>
+        <thead><tr><th>Middleware</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>Recover</code></td><td>Catches panics, returns 500</td></tr>
+          <tr><td><code>Logger</code></td><td>Logs method, path, status, duration</td></tr>
+          <tr><td><code>SecurityHeaders</code></td><td>X-Content-Type-Options, X-Frame-Options, etc.</td></tr>
+          <tr><td><code>Gzip</code></td><td>Compresses responses (configurable)</td></tr>
+          <tr><td><code>CORS(origins...)</code></td><td>Configurable CORS headers</td></tr>
+          <tr><td><code>Cache(maxAge)</code></td><td>Sets Cache-Control headers</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <h2 id="hot-reload">Hot Reload (HMR)</h2>
+    <p>Run <code>nexgo dev</code> — file watcher polls every 500ms, broadcasts reload via SSE to all connected browsers.</p>
+    <pre><code>nexgo dev
+# [NexGo] Dev server → http://localhost:3000
+# [NexGo] Hot reload enabled. Press Ctrl+C to stop.</code></pre>
+
+    
+    <h2 id="devtools">DevTools Panel</h2>
+    <p>In dev mode, visit <code>http://localhost:3000/_nexgo/devtools</code>:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tab</th><th>Shows</th></tr></thead>
+        <tbody>
+          <tr><td>Routes</td><td>All routes with type badges (PAGE / API)</td></tr>
+          <tr><td>Requests</td><td>Live log with method, status, path, duration</td></tr>
+          <tr><td>Logs</td><td>Server logs, HMR events, errors</td></tr>
+          <tr><td>Performance</td><td>Total requests, avg response time, error rate</td></tr>
+          <tr><td>Config</td><td>Current server and build configuration</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <h2 id="building">Building for Production</h2>
+    <pre><code>nexgo build       # Static site generation → .nexgo/out/
+nexgo start       # Production server (no HMR, Gzip on)
+nexgo start --port 4000</code></pre>
+
+    
+    <h2 id="deploying">Deploying</h2>
+    <p>NexGo compiles to a single binary — deploy anywhere Go runs:</p>
+    <pre><code># Build the binary
+go build -o myapp ./main.go
+
+# Copy to server
+scp myapp server:/opt/myapp/
+scp -r pages/ layouts/ static/ nexgo.config.json server:/opt/myapp/
+
+# Run on server
+ssh server '/opt/myapp/myapp'</code></pre>
+
+    
+    <h2 id="config">Configuration</h2>
+    <pre><code>// nexgo.config.json
+{
+  "projectName": "my-app",
+  "port": 3000,
+  "host": "localhost",
+  "pagesDir": "pages",
+  "staticDir": "static",
+  "layoutsDir": "layouts",
+  "componentsDir": "components",
+  "outputDir": ".nexgo/out",
+  "hotReload": true,
+  "compression": true,
+  "minify": true,
+  "defaultRenderMode": "ssr"
+}</code></pre>
+
+    
+    <h2 id="template-functions">Template Functions Reference</h2>
+
+    <h3>String</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Usage</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>upper</code></td><td><code>{"{"}{ upper "hello" }{"}"}</code></td><td>Uppercase</td></tr>
+          <tr><td><code>lower</code></td><td><code>{"{"}{ lower "HI" }{"}"}</code></td><td>Lowercase</td></tr>
+          <tr><td><code>title</code></td><td><code>{"{"}{ title "hello world" }{"}"}</code></td><td>Title case</td></tr>
+          <tr><td><code>trim</code></td><td><code>{"{"}{ trim "  hi  " }{"}"}</code></td><td>Trim whitespace</td></tr>
+          <tr><td><code>replace</code></td><td><code>{"{"}{ replace "hi" "i" "ey" }{"}"}</code></td><td>Replace substring</td></tr>
+          <tr><td><code>split</code></td><td><code>{"{"}{ split "a,b" "," }{"}"}</code></td><td>Split to slice</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Utility</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>json .Data</code></td><td>JSON encode a value</td></tr>
+          <tr><td><code>safeHTML "&lt;b&gt;bold&lt;/b&gt;"</code></td><td>Render as raw HTML (trusted content only)</td></tr>
+          <tr><td><code>dict "key" "val"</code></td><td>Create a key-value map</td></tr>
+          <tr><td><code>asset "/static/css/app.css"</code></td><td>Cache-busted asset URL</td></tr>
+          <tr><td><code>default "fallback" .Value</code></td><td>Default if nil/empty</td></tr>
+          <tr><td><code>times 5</code></td><td>Iterate n times</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <h2 id="api-helpers">API Helpers Reference</h2>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/api"
+
+// Responses
+api.JSON(w, data)               // 200 + JSON
+api.JSONStatus(w, 201, data)    // Custom status
+api.Error(w, 400, "bad input")  // JSON error
+
+// Status shortcuts
+api.BadRequest(w, "invalid id") // 400
+api.NotFound(w, "not found")    // 404
+api.Unauthorized(w)             // 401
+api.InternalError(w, err)       // 500
+
+// Request parsing
+var input CreateUserInput
+if !api.Decode(w, r, &amp;input) { return }
+
+// Method routing
+api.Route(w, r, api.Methods{
+    "GET":  listUsers,
+    "POST": createUser,
+})
+
+// Pagination
+page, limit := api.Paginate(r) // ?page=2&amp;limit=10</code></pre>
+
+    
+    <h2 id="htmx-helpers">HTMX Helpers</h2>
+    <p>Send HTML fragments from Go and let HTMX update the DOM — no page reloads needed.</p>
+
+    <h3><code>api.IsHTMX(r)</code> — Check if request is from HTMX</h3>
+    <pre><code>if api.IsHTMX(r) {
+    // Return HTML fragment
+    api.HTMXHTML(w, "&lt;li&gt;New item&lt;/li&gt;")
+} else {
+    // Return JSON
+    api.JSON(w, data)
+}</code></pre>
+
+    <h3><code>api.HTMXHTML(w, html)</code> — Send HTML fragment response</h3>
+    <pre><code>api.HTMXHTML(w, "&lt;div&gt;Updated content&lt;/div&gt;")</code></pre>
+
+    <h3><code>api.HTMXTrigger(w, event)</code> — Fire client-side event after response</h3>
+    <pre><code>api.HTMXTrigger(w, "todo-added")</code></pre>
+
+    <h3><code>api.HTMXHeader(w, key, value)</code> — Set any HTMX header</h3>
+    <pre><code>api.HTMXHeader(w, "HX-Redirect", "/dashboard")</code></pre>
+
+    
+    <h2 id="state-management">State Management</h2>
+    <p>Thread-safe global state shared across all handlers. No mutex boilerplate.</p>
+
+    <h3><code>api.SetState(key, value)</code> — Store a value</h3>
+    <pre><code>api.SetState("todos", []Todo{...})
+api.SetState("counter", 42)</code></pre>
+
+    <h3><code>api.GetState(key)</code> — Retrieve a value</h3>
+    <pre><code>todos := api.GetState("todos").([]Todo)</code></pre>
+
+    <h3><code>api.DeleteState(key)</code> — Remove a key</h3>
+    <pre><code>api.DeleteState("todos")</code></pre>
+
+    <h3><code>api.NewState()</code> — Create isolated state (optional)</h3>
+    <pre><code>sessionState := api.NewState()
+sessionState.Set("user", "alice")</code></pre>
+
+    
+    <h2 id="html-helpers">HTML Helpers</h2>
+
+    <h3><code>api.Escape(s)</code> — Sanitize HTML output</h3>
+    <pre><code>safe := api.Escape("&lt;script&gt;alert('xss')&lt;/script&gt;")
+// "&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;"</code></pre>
+
+    <h3><code>api.HTML(w, html)</code> — Send raw HTML response</h3>
+    <pre><code>api.HTML(w, "&lt;h1&gt;Hello&lt;/h1&gt;")</code></pre>
+
+    
+    <h2 id="seo">SEO (Meta, Sitemap, OpenGraph)</h2>
+    <p>Meta tags, OpenGraph, Twitter Cards, sitemap.xml, robots.txt, and JSON-LD structured data.</p>
+
+    <h3>Meta Tags</h3>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/seo"
+
+meta := seo.DefaultMeta("My Site", "A great website", "https://mysite.com")
+meta.Keywords = []string{"go", "web", "framework"}
+meta.OGImage = "https://mysite.com/og.png"
+meta.TwitterCard = "summary_large_image"
+meta.TwitterSite = "@mysite"
+
+// Use in template: {"{"}{ .MetaTags }{"}"}</code></pre>
+
+    <h3>Article Meta</h3>
+    <pre><code>meta := seo.ArticleMeta(
+    "How to Build APIs in Go",
+    "A guide to building fast APIs",
+    "John Doe",
+    "https://mysite.com/images/cover.jpg",
+    "https://mysite.com/blog/go-apis",
+    time.Now(),
+)</code></pre>
+
+    <h3>Sitemap</h3>
+    <pre><code>entries := []seo.SitemapEntry{
+    {Loc: "https://mysite.com/", ChangeFreq: "daily", Priority: 1.0},
+    {Loc: "https://mysite.com/about", ChangeFreq: "monthly", Priority: 0.8},
+    {Loc: "https://mysite.com/blog", ChangeFreq: "weekly", Priority: 0.9},
+}
+xml, _ := seo.RenderSitemap(entries)
+// Write xml to /sitemap.xml response</code></pre>
+
+    <h3>Robots.txt</h3>
+    <pre><code>robots := seo.RobotsTxt(
+    []string{"/"},                    // allow
+    []string{"/admin", "/api"},       // disallow
+    "https://mysite.com/sitemap.xml", // sitemap URL
+)
+// Write robots to /robots.txt response</code></pre>
+
+    <h3>JSON-LD Structured Data</h3>
+    <pre><code>data := map[string]interface{}{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "My Company",
+    "url": "https://mysite.com",
+}
+jsonld := seo.JSONLD(data)
+// In template: {"{"}{ .JSONLD }{"}"}</code></pre>
+
+    
+    <h2 id="template-caching">Template Caching</h2>
+    <p>Templates are compiled once and cached for fast subsequent renders.</p>
+
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/renderer"
+
+r := renderer.New(cfg)
+r.LoadAll()  // Compiles and caches all templates
+
+// Check cache stats
+info := r.CacheInfo()
+// map[templates:5 layouts:1 components:3 loaded_at:2026-04-03...]</code></pre>
+
+    <h3>Parallel Template Loading</h3>
+    <pre><code>r.LoadParallel()  // Uses worker pool to compile templates concurrently</code></pre>
+
+    
+    <h2 id="parallel-data-loading">Parallel Data Loading</h2>
+    <p>Load multiple data sources concurrently and merge results — like <code>Promise.all()</code> in JS.</p>
+
+    <pre><code>import (
+    "github.com/salmanfaris22/nexgo/pkg/renderer"
+    "net/http"
+)
+
+// Create parallel loader
+loader := renderer.NewParallelLoader().
+    Add("users", fetchUsers).
+    Add("posts", fetchPosts).
+    Add("stats", fetchStats)
+
+// Execute all concurrently
+props, err := loader.Execute(req, params)
+// props = map[string]interface{}{
+//     "users": [...], "posts": [...], "stats": {...}
+// }
+
+func fetchUsers(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+    users := db.Query("SELECT * FROM users")
+    return map[string]interface{}{"users": users}, nil
+}
+
+func fetchPosts(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+    posts := db.Query("SELECT * FROM posts LIMIT 10")
+    return map[string]interface{}{"posts": posts}, nil
+}</code></pre>
+
+    
+    <h2 id="streaming-ssr">Streaming SSR</h2>
+    <p>Send HTML progressively as it's ready — show the shell immediately, stream content later.</p>
+
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/stream"
+
+func handlePage(w http.ResponseWriter, r *http.Request) {
+    sw := stream.StreamHTML(w)
+
+    // Send head + layout immediately
+    sw.WriteString(`&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;My Page&lt;/title&gt;&lt;/head&gt;&lt;body&gt;`)
+    sw.WriteString(`&lt;header&gt;Navigation&lt;/header&gt;&lt;main&gt;`)
+    sw.Flush()
+
+    // Do slow work (DB query, API call)
+    data := slowDatabaseQuery()
+
+    // Stream content
+    sw.WriteString(fmt.Sprintf("&lt;h1&gt;%s&lt;/h1&gt;", data.Title))
+    sw.WriteString(fmt.Sprintf("&lt;p&gt;%s&lt;/p&gt;", data.Body))
+
+    // Close HTML
+    sw.WriteString(`&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;`)
+}</code></pre>
+
+    <h3>Server-Sent Events (SSE)</h3>
+    <pre><code>func handleSSE(w http.ResponseWriter, r *http.Request) {
+    sse := stream.NewSSE(w)
+    defer sse.Flush()
+
+    for {
+        sse.Send("update", `{"count": 42}`)
+        sse.Ping()
+        time.Sleep(1 * time.Second)
+    }
+}</code></pre>
+
+    
+    <h2 id="response-caching">Response Caching</h2>
+    <p>Cache GET responses in memory with TTL. Automatic cache headers.</p>
+
+    <h3>Middleware</h3>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/api"
+
+// Cache a handler for 5 minutes
+mux.HandleFunc("/api/posts", api.Cache(5*time.Minute)(handlePosts))
+
+// Cache with custom TTL
+mux.HandleFunc("/api/slow", api.Cache(30*time.Second)(handleSlow))</code></pre>
+
+    <h3>Manual Cache</h3>
+    <pre><code>// Set cache
+api.CacheSet("/api/data", 200, headers, body)
+
+// Get cache
+code, headers, body, ok := api.CacheGet("/api/data")
+if ok {
+    w.WriteHeader(code)
+    w.Write(body)
+    return
+}
+
+// Delete specific key
+api.CacheDelete("/api/data")
+
+// Clear all
+api.CacheClear()</code></pre>
+
+    <p>Responses include <code>X-Cache: HIT</code> or <code>X-Cache: MISS</code> headers automatically.</p>
+
+    
+    <h2 id="worker-pools">Worker Pools</h2>
+    <p>Run tasks concurrently with controlled parallelism.</p>
+
+    <h3>Basic Pool</h3>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/worker"
+
+pool := worker.New(4)  // 4 workers
+pool.Start()
+
+pool.Submit(func() error {
+    return processFile("data1.csv")
+})
+pool.Submit(func() error {
+    return processFile("data2.csv")
+})
+
+errs := pool.Wait()  // blocks until all done</code></pre>
+
+    <h3>Map (concurrent transform)</h3>
+    <pre><code>results := worker.Map(4, items, func(item Item) Result {
+    return process(item)
+})
+// results are in original order</code></pre>
+
+    <h3>Map with Errors</h3>
+    <pre><code>results, err := worker.MapErr(4, urls, func(url string) (Page, error) {
+    return fetchPage(url)
+})</code></pre>
+
+    <h3>ForEach</h3>
+    <pre><code>worker.ForEach(8, emails, func(email string) {
+    sendEmail(email)
+})</code></pre>
+
+    <h3>Global Pool</h3>
+    <pre><code>worker.Start()  // starts global pool with 4 workers
+worker.Submit(func() error { return doWork() })
+errs := worker.Wait()</code></pre>
+
+    
+    <h2 id="isr">Incremental Static Regeneration (ISR)</h2>
+    <p>Cache pages and rebuild them in the background after a configurable interval — like Next.js ISR.</p>
+
+    <h3>Basic ISR</h3>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/isr"
+
+// Create ISR with 60-second revalidation
+cache := isr.New(60 * time.Second)
+
+func handlePage(w http.ResponseWriter, r *http.Request) {
+    cache.Serve(w, r, func() (int, http.Header, []byte, error) {
+        // This runs only on first request or after 60s
+        html := renderExpensivePage()
+        return 200, nil, []byte(html), nil
+    })
+}</code></pre>
+
+    <h3>How ISR Works</h3>
+    <div class="table-wrap" style="margin:1rem 0;">
+      <table>
+        <thead><tr><th>Step</th><th>Behavior</th><th>Header</th></tr></thead>
+        <tbody>
+          <tr><td>First request</td><td>Generates page, caches it, returns</td><td><code>X-ISR: MISS</code></td></tr>
+          <tr><td>Subsequent (within TTL)</td><td>Serves cached page</td><td><code>X-ISR: STALE</code></td></tr>
+          <tr><td>After TTL expires</td><td>Serves stale, regenerates in background</td><td><code>X-ISR: REVALIDATING</code></td></tr>
+          <tr><td>Next request</td><td>Gets fresh cached content</td><td><code>X-ISR: HIT</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Manual Revalidation</h3>
+    <pre><code>// Trigger background rebuild of a specific path
+cache.Revalidate("/blog/post-1", func() (int, http.Header, []byte, error) {
+    return 200, nil, []byte(renderPost()), nil
+})
+
+// Purge from cache
+cache.Purge("/blog/post-1")
+cache.PurgeAll()</code></pre>
+
+    <h3>Global ISR</h3>
+    <pre><code>isr.SetRevalidate(120 * time.Second)
+
+isr.Serve(w, r, func() (int, http.Header, []byte, error) {
+    return 200, nil, []byte(html), nil
+})
+
+isr.Revalidate("/page", generateFunc)
+isr.Purge("/page")</code></pre>
+
+    
+    <h2 id="env">Environment Variables</h2>
+    <p>The <code>pkg/env</code> package loads <code>.env</code> files with priority-based overrides and provides type-safe access to environment variables. Files are loaded in order: <code>.env</code>, <code>.env.local</code>, <code>.env.{mode}</code>, with later files taking precedence.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/env"
+
+// Load .env files (call once at startup)
+env.LoadGlobal()              // loads .env, .env.local, .env.development
+env.LoadGlobal("production")  // loads .env, .env.local, .env.production
+
+// Create a store for typed access
+store := env.NewStore()
+store.Get("DATABASE_URL")              // returns value or ""
+store.MustGet("SECRET_KEY")            // panics if missing
+store.GetInt("PORT", 3000)             // with default
+store.GetBool("DEBUG", false)</code></pre>
+
+    
+    <h2 id="sessions">Sessions</h2>
+    <p>Cookie-based session management with pluggable backends. Ships with <code>MemoryStore</code> (development) and <code>FileStore</code> (production). Supports flash messages for one-time notifications.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/session"
+
+mgr := session.NewManager(session.Options{
+    Store:    session.NewMemoryStore(),  // or session.NewFileStore("./sessions")
+    MaxAge:   3600,
+    HTTPOnly: true,
+    Secure:   true,
+})
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    sess := mgr.Start(w, r)
+    sess.Set("user", "alice")
+    name := sess.Get("user")  // "alice"
+
+    // Flash messages (auto-cleared after read)
+    sess.Flash("success", "Item created!")
+    msgs := sess.Flashes("success")  // ["Item created!"]
+}</code></pre>
+
+    
+    <h2 id="auth">Authentication (JWT)</h2>
+    <p>JWT token generation, verification, middleware, role-based access control, and password hashing via <code>pkg/auth</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/auth"
+
+// Generate a JWT
+token, err := auth.GenerateToken(auth.Claims{
+    UserID: "123",
+    Role:   "admin",
+}, "my-secret-key", 24*time.Hour)
+
+// Verify a JWT
+claims, err := auth.VerifyToken(token, "my-secret-key")
+
+// Middleware: protect routes
+mux.Handle("/dashboard", auth.RequireAuth("my-secret-key")(dashboardHandler))
+mux.Handle("/admin", auth.RequireRole("admin", "my-secret-key")(adminHandler))
+
+// Password hashing
+hash, _ := auth.HashPassword("s3cret")
+ok := auth.CheckPassword("s3cret", hash)  // true</code></pre>
+
+    
+    <h2 id="csrf">CSRF Protection</h2>
+    <p>Token-based CSRF protection via <code>pkg/csrf</code>. Generates a per-session token, validates it on POST/PUT/DELETE requests, and provides a template helper for forms.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/csrf"
+
+// Apply middleware
+handler := csrf.Protect("my-csrf-secret")(myHandler)
+
+// In templates, use the helper to embed the token in forms:
+// &lt;form method="POST"&gt;
+//   {"{"}{ csrfField }{"}"} &lt;!-- renders hidden input --&gt;
+//   &lt;button type="submit"&gt;Submit&lt;/button&gt;
+// &lt;/form&gt;
+
+// For AJAX, read the token from the meta tag or cookie:
+// X-CSRF-Token: &lt;token&gt;</code></pre>
+
+    
+    <h2 id="rate-limiting">Rate Limiting</h2>
+    <p>Protect endpoints from abuse with token bucket and sliding window algorithms via <code>pkg/ratelimit</code>. Apply as global middleware or per-route.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/ratelimit"
+
+// Token bucket: 100 requests per minute per IP
+limiter := ratelimit.PerMinute(100)
+mux.Handle("/api/", limiter.Middleware()(apiHandler))
+
+// Sliding window: 10 requests per second
+strict := ratelimit.PerSecond(10)
+mux.Handle("/api/login", strict.Middleware()(loginHandler))
+
+// Custom configuration
+limiter := ratelimit.New(ratelimit.Config{
+    Rate:     50,
+    Window:   time.Minute,
+    Strategy: ratelimit.SlidingWindow,
+    KeyFunc:  func(r *http.Request) string { return r.RemoteAddr },
+})</code></pre>
+
+    
+    <h2 id="i18n">Internationalization (i18n)</h2>
+    <p>Locale routing, JSON translation files, RTL support, and automatic locale detection via <code>pkg/i18n</code>. Place translation files in <code>locales/</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/i18n"
+
+// locales/en.json: {"greeting": "Hello, {"{"}name{"}"}!", "nav.home": "Home"}
+// locales/ar.json: {"greeting": "!{"{"}name{"}"} ,مرحبا", "nav.home": "الرئيسية"}
+
+bundle := i18n.New(i18n.Config{
+    DefaultLocale: "en",
+    Locales:       []string{"en", "fr", "ar"},
+    Directory:     "locales",
+    RTLLocales:    []string{"ar", "he"},
+})
+
+// In handlers
+t := bundle.T("en")
+t.Get("greeting", map[string]string{"name": "World"}) // "Hello, World!"
+
+// Locale detection middleware (Accept-Language, cookie, URL prefix)
+mux.Handle("/", bundle.Middleware()(handler))</code></pre>
+
+    
+    <h2 id="image-optimization">Image Optimization</h2>
+    <p>Automatic responsive images, lazy loading, srcset generation, and blur placeholders via <code>pkg/image</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/image"
+
+opt := image.NewOptimizer(image.Config{
+    Widths:      []int{320, 640, 1024, 1920},
+    Quality:     80,
+    LazyLoad:    true,
+    Placeholder: image.BlurPlaceholder,
+})
+
+// In templates, generates &lt;img&gt; with srcset, sizes, loading="lazy"
+// {"{"}{ optimizeImage "/static/hero.jpg" "Hero image" }{"}"}</code></pre>
+    <pre><code>&lt;!-- Output --&gt;
+&lt;img src="/static/hero.jpg"
+     srcset="/static/hero-320w.jpg 320w, /static/hero-640w.jpg 640w, /static/hero-1024w.jpg 1024w"
+     sizes="(max-width: 640px) 100vw, 50vw"
+     loading="lazy"
+     alt="Hero image"&gt;</code></pre>
+
+    
+    <h2 id="websocket">WebSocket</h2>
+    <p>Native WebSocket support using HTTP hijacking via <code>pkg/websocket</code>. Includes a Hub for managing rooms and broadcasting messages.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/websocket"
+
+hub := websocket.NewHub()
+go hub.Run()
+
+mux.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+    conn, err := websocket.Upgrade(w, r)
+    if err != nil { return }
+    client := hub.Register(conn)
+    defer hub.Unregister(client)
+
+    // Join a room
+    hub.Join(client, "chat-room-1")
+
+    // Broadcast to all clients
+    hub.Broadcast([]byte("Hello everyone!"))
+
+    // Broadcast to a specific room
+    hub.BroadcastTo("chat-room-1", []byte("Room message"))
+})</code></pre>
+
+    
+    <h2 id="health-checks">Health Checks</h2>
+    <p>Kubernetes-compatible health check endpoints via <code>pkg/health</code>. Exposes <code>/health</code>, <code>/ready</code>, and <code>/live</code> with dependency checks.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/health"
+
+checker := health.New()
+
+// Register dependency checks
+checker.AddCheck("database", func() error {
+    return db.Ping()
+})
+checker.AddCheck("redis", func() error {
+    return redis.Ping()
+})
+
+// Mount endpoints
+mux.Handle("/health", checker.Handler())    // overall status
+mux.Handle("/ready", checker.ReadyHandler()) // readiness probe
+mux.Handle("/live", checker.LiveHandler())   // liveness probe
+
+// GET /health → {"status":"healthy","checks":{"database":"ok","redis":"ok"}}</code></pre>
+
+    
+    <h2 id="logging">Structured Logging</h2>
+    <p>Leveled, structured logging with JSON output, colored console mode, and file rotation via <code>pkg/logger</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/logger"
+
+log := logger.New(logger.Config{
+    Level:    logger.Info,
+    Format:   logger.JSON,       // or logger.Console (colored)
+    Output:   "logs/app.log",    // file path or "stdout"
+    Rotation: logger.Daily,      // Daily, Hourly, or by Size
+})
+
+log.Info("server started", "port", 3000)
+log.Error("query failed", "err", err, "query", sql)
+log.Debug("request", "method", r.Method, "path", r.URL.Path)
+
+// Request logger middleware
+mux.Handle("/", logger.RequestMiddleware(log)(handler))
+// → {"level":"info","method":"GET","path":"/","status":200,"duration":"1.2ms"}</code></pre>
+
+    
+    <h2 id="metrics">Metrics</h2>
+    <p>Prometheus-compatible metrics with counters, gauges, and histograms via <code>pkg/metrics</code>. Includes built-in HTTP middleware and a <code>/metrics</code> endpoint.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/metrics"
+
+m := metrics.New()
+
+// Define metrics
+requestCount := m.Counter("http_requests_total", "Total HTTP requests")
+activeConns := m.Gauge("http_active_connections", "Active connections")
+latency := m.Histogram("http_request_duration_seconds", "Request latency")
+
+// Use in handlers
+requestCount.Inc()
+activeConns.Set(42)
+latency.Observe(0.023)
+
+// Expose /metrics endpoint (Prometheus scrape target)
+mux.Handle("/metrics", m.Handler())
+
+// Auto-instrument all HTTP traffic
+mux.Handle("/", m.Middleware()(handler))</code></pre>
+
+    
+    <h2 id="database">Database</h2>
+    <p>Lightweight data layer via <code>pkg/db</code> with a JSON file database for prototyping and a SQL query builder for production.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/db"
+
+// JSON file database (zero setup)
+store := db.NewJSONStore("data/")
+store.Insert("users", map[string]interface{}{"name": "Alice", "age": 30})
+users := store.FindAll("users")
+store.Update("users", "id-123", map[string]interface{}{"age": 31})
+store.Delete("users", "id-123")
+
+// SQL query builder
+q := db.Table("users").
+    Where("age > ?", 18).
+    OrderBy("name ASC").
+    Limit(10).
+    SelectSQL()
+// → "SELECT * FROM users WHERE age > ? ORDER BY name ASC LIMIT 10"</code></pre>
+
+    
+    <h2 id="migrations">Migrations</h2>
+    <p>Version-tracked database migrations with up/down support via <code>pkg/migrate</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/migrate"
+
+mgr := migrate.New(db)
+
+mgr.RegisterSQL("001_create_users",
+    "CREATE TABLE users (id SERIAL PRIMARY KEY, name TEXT, email TEXT)",
+    "DROP TABLE users",
+)
+mgr.RegisterSQL("002_add_role",
+    "ALTER TABLE users ADD COLUMN role TEXT DEFAULT 'user'",
+    "ALTER TABLE users DROP COLUMN role",
+)
+
+mgr.Up()       // run all pending migrations
+mgr.Down()     // rollback last migration
+mgr.Status()   // list applied and pending
+mgr.Pending()  // list unapplied migrations</code></pre>
+
+    
+    <h2 id="plugin-system">Plugin System</h2>
+    <p>Hook-based plugin architecture via <code>pkg/plugin</code>. Plugins can add middleware, routes, template functions, and respond to lifecycle events.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/plugin"
+
+// Define a plugin
+myPlugin := plugin.New("analytics", func(p *plugin.Plugin) {
+    // Add middleware to all routes
+    p.AddMiddleware(trackingMiddleware)
+
+    // Add a new route
+    p.AddRoute("GET", "/analytics", analyticsHandler)
+
+    // Add template functions
+    p.AddTemplateFunc("trackEvent", func(name string) string {
+        return fmt.Sprintf(`&lt;script&gt;track("%s")&lt;/script&gt;`, name)
+    })
+
+    // Lifecycle hooks
+    p.OnStart(func() { log.Println("Analytics plugin started") })
+    p.OnShutdown(func() { flushEvents() })
+})
+
+// Register with the app
+app.Use(myPlugin)</code></pre>
+
+    
+    <h2 id="server-actions">Server Actions</h2>
+    <p>Form-based server mutations with built-in validation via <code>pkg/actions</code>. Similar to Next.js Server Actions but using standard HTML forms.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/actions"
+
+actions.Register("createPost", func(ctx *actions.Context) error {
+    title := ctx.FormValue("title")
+    body := ctx.FormValue("body")
+
+    // Validation
+    ctx.Validate("title", title != "", "Title is required")
+    ctx.Validate("body", len(body) > 10, "Body must be at least 10 chars")
+    if ctx.HasErrors() { return ctx.ValidationError() }
+
+    db.Insert("posts", map[string]interface{}{"title": title, "body": body})
+    return ctx.RedirectTo("/blog")
+})</code></pre>
+    <pre><code>&lt;!-- In templates --&gt;
+&lt;form method="POST" action="/actions/createPost"&gt;
+  {"{"}{ actionField "createPost" }{"}"} &lt;!-- hidden input with action name --&gt;
+  &lt;input name="title" type="text"&gt;
+  &lt;textarea name="body"&gt;&lt;/textarea&gt;
+  &lt;button type="submit"&gt;Create Post&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+    
+    <h2 id="error-pages">Error Pages</h2>
+    <p>Convention-based error pages via <code>pkg/errorpage</code>. Place <code>404.html</code> or <code>500.html</code> in <code>pages/</code> or any subdirectory for per-section error boundaries.</p>
+    <pre><code>pages/
+├── 404.html              # Global 404
+├── 500.html              # Global 500
+└── admin/
+    └── 404.html          # Admin-specific 404</code></pre>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/errorpage"
+
+// Apply middleware (auto-discovers error pages)
+handler := errorpage.Middleware("pages")(mux)
+
+// Error pages receive:
+// {"{"}{ .StatusCode }{"}"} — 404, 500, etc.
+// {"{"}{ .Message }{"}"} — human-readable error message
+// {"{"}{ .Path }{"}"} — the requested URL path</code></pre>
+
+    
+    <h2 id="testing">Testing</h2>
+    <p>Test client with HTTP method helpers and assertions via <code>pkg/testing</code>. Spin up your app in-process and make real HTTP requests.</p>
+    <pre><code>import nextest "github.com/salmanfaris22/nexgo/pkg/testing"
+
+func TestHomePage(t *testing.T) {
+    app := nextest.NewClient(myHandler)
+
+    // GET request
+    resp := app.GET("/")
+    resp.AssertStatus(200)
+    resp.AssertContains("Welcome")
+
+    // POST with form data
+    resp = app.POST("/api/users", nextest.Form{"name": "Alice", "email": "a@b.com"})
+    resp.AssertStatus(201)
+    resp.AssertJSON("name", "Alice")
+
+    // PUT / DELETE
+    app.PUT("/api/users/1", nextest.JSON{"name": "Bob"}).AssertStatus(200)
+    app.DELETE("/api/users/1").AssertStatus(204)
+}
+
+// Benchmarking
+func BenchmarkAPI(b *testing.B) {
+    app := nextest.NewClient(myHandler)
+    nextest.Bench(b, func() { app.GET("/api/data") })
+}</code></pre>
+
+    
+    <h2 id="per-route-middleware">Per-Route Middleware</h2>
+    <p>Apply middleware to individual routes or groups via <code>pkg/middleware</code>. Includes built-in timeout, request ID, and CSP middleware with nonce support.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/middleware"
+
+// Per-route middleware
+mux.Handle("/api/slow", middleware.RouteMiddleware(
+    middleware.Timeout(5*time.Second),
+    middleware.RequestID(),
+)(slowHandler))
+
+// Route groups
+api := middleware.RouteGroup("/api",
+    middleware.Timeout(10*time.Second),
+    middleware.RequestID(),
+)
+api.Handle("/users", usersHandler)
+api.Handle("/posts", postsHandler)
+
+// CSP with nonce (auto-injected into templates as .CSPNonce)
+mux.Handle("/", middleware.CSP(middleware.CSPConfig{
+    ScriptSrc: "'nonce-{"{"}nonce{"}"}'",
+    StyleSrc:  "'self'",
+})(handler))</code></pre>
+
+    
+    <h2 id="deployment">Deployment Adapters</h2>
+    <p>One-command deployment to 8 platforms via <code>pkg/deploy</code>. Each adapter generates the necessary config files (Dockerfile, serverless handler, etc.).</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/deploy"
+
+// Generate deployment config
+deploy.Generate("docker")       // Dockerfile + docker-compose.yml
+deploy.Generate("vercel")       // vercel.json
+deploy.Generate("cloudflare")   // wrangler.toml
+deploy.Generate("lambda")       // serverless.yml + handler wrapper
+deploy.Generate("netlify")      // netlify.toml
+deploy.Generate("fly")          // fly.toml
+deploy.Generate("railway")      // railway.json
+deploy.Generate("k8s")          // deployment.yaml + service.yaml</code></pre>
+    <pre><code># CLI shortcut
+nexgo deploy docker      # generates Dockerfile and builds image
+nexgo deploy vercel      # generates vercel.json and deploys
+nexgo deploy k8s         # generates K8s manifests</code></pre>
+
+    
+    <h2 id="redis-cache">Redis Cache</h2>
+    <p>Zero-dependency Redis client using raw RESP protocol via <code>pkg/cache</code>. Includes connection pooling, key prefixing, and a <code>CacheAdapter</code> interface for swappable backends.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/cache"
+
+rc := cache.NewRedis(cache.RedisConfig{
+    Addr:      "localhost:6379",
+    Password:  "",
+    DB:        0,
+    PoolSize:  10,
+    KeyPrefix: "myapp:",
+})
+
+rc.Set("user:123", userData, 5*time.Minute)
+val, err := rc.Get("user:123")
+rc.Delete("user:123")
+
+// Use as CacheAdapter (swap in-memory / Redis without code changes)
+var store cache.CacheAdapter = rc
+store.Set("key", value, ttl)
+store.Get("key")</code></pre>
+
+    
+    <h2 id="asset-pipeline">Asset Pipeline</h2>
+    <p>CSS and JS minification, bundling, fingerprinting, and critical CSS extraction via <code>pkg/asset</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/asset"
+
+pipeline := asset.New(asset.Config{
+    SourceDir:  "static",
+    OutputDir:  ".nexgo/assets",
+    Minify:     true,
+    Bundle:     true,
+    Fingerprint: true,
+})
+
+// Process all assets
+pipeline.Build()
+
+// In templates, reference fingerprinted URLs:
+// &lt;link rel="stylesheet" href="{"{"}{ asset "/css/app.css" }{"}"}"&gt;
+// → &lt;link rel="stylesheet" href="/static/css/app.a1b2c3d4.css"&gt;
+
+// Critical CSS (inline above-the-fold styles)
+critical := pipeline.ExtractCritical("pages/index.html")
+// Inject into &lt;head&gt; as &lt;style&gt;...&lt;/style&gt;</code></pre>
+
+    
+    <h2 id="orm">ORM</h2>
+    <p>Lightweight ORM with model definitions, auto-migration SQL generation, CRUD operations (JSON backend), and a fluent query DSL via <code>pkg/orm</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/orm"
+
+// Define a model
+type User struct {
+    orm.Model
+    Name  string `json:"name"`
+    Email string `json:"email"`
+    Age   int    `json:"age"`
+}
+
+db := orm.New("data/")
+db.AutoMigrate(&amp;User{})  // generates CREATE TABLE SQL
+
+// CRUD
+db.Create(&amp;User{Name: "Alice", Email: "alice@example.com", Age: 30})
+
+var user User
+db.Find(&amp;user, "id = ?", 1)
+
+db.Where("age > ?", 18).Order("name").Limit(10).FindAll(&amp;users)
+
+// Fluent query with joins
+db.Table("users").
+    Join("posts", "users.id = posts.user_id").
+    Where("posts.published = ?", true).
+    Select("users.name", "COUNT(posts.id) as post_count").
+    GroupBy("users.name").
+    QuerySQL()</code></pre>
+
+    
+    <h2 id="cluster-mode">Cluster Mode</h2>
+    <p>Run your app across multiple worker goroutines with graceful shutdown and zero-downtime restart via <code>pkg/cluster</code>. The built-in load balancer distributes requests across workers.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/cluster"
+
+c := cluster.New(cluster.Config{
+    Workers:         4,                  // number of worker goroutines
+    GracefulTimeout: 30 * time.Second,   // max shutdown wait
+    Handler:         mux,
+    Addr:            ":3000",
+})
+
+// Start with automatic load balancing
+c.Start()
+
+// Zero-downtime restart (new workers start before old ones stop)
+// Send SIGUSR2 to trigger:
+// kill -USR2 &lt;pid&gt;
+
+// Graceful shutdown on SIGINT/SIGTERM
+// Workers finish in-flight requests before exiting</code></pre>
+
+    
+    <h2 id="cli">CLI Commands</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Command</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>nexgo create &lt;name&gt;</code></td><td>Scaffold a new NexGo project</td></tr>
+          <tr><td><code>nexgo dev</code></td><td>Start dev server with hot reload</td></tr>
+          <tr><td><code>nexgo build</code></td><td>Static site generation (SSG)</td></tr>
+          <tr><td><code>nexgo start</code></td><td>Start production server</td></tr>
+          <tr><td><code>nexgo version</code></td><td>Print version</td></tr>
+          <tr><td><code>nexgo help</code></td><td>Show help</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:3rem;padding:1.5rem;background:var(--violet-dim);border:1px solid rgba(124,58,237,0.25);border-radius:var(--radius-lg);">
+      <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
+        <strong style="color:var(--violet-light);">💬 Need help?</strong>
+        Open an issue on <a href="https://github.com/salmanfaris22/nexgo/issues" target="_blank">GitHub</a>,
+        or reach out to <a href="mailto:salmanfariskalm@gmail.com">salmanfariskalm@gmail.com</a>.
+      </p>
+    </div>
+
+  </article>
+</div>
+
+<style>
+.docs-content pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.docs-content code {
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+</style>
+
+  </main>
+
+  
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-mark">N</div>
+          NexGo
+        </a>
+        <p>The Go-powered web framework inspired by Next.js. Build full-stack apps with zero dependencies.</p>
+        <div class="social-links">
+          
+          <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          
+          <a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          
+          <a href="https://instagram.com/salmanfaris" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          
+          <a href="https://wa.me/919961821977" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.63.07-1.74-.87-2.88-1.55-4.03-3.52-.3-.53.3-.49.87-1.63.1-.2.05-.37-.03-.52-.07-.15-.66-1.6-.91-2.19-.24-.57-.48-.49-.66-.5-.17-.01-.37-.01-.56-.01-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.06 2.85 1.2 3.05c.15.2 2.08 3.18 5.05 4.46.7.3 1.25.48 1.68.62.7.22 1.34.19 1.84.11.56-.08 1.74-.71 1.98-1.4.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.57-.34zM12.05 21.8h-.04a9.75 9.75 0 01-4.97-1.36l-.36-.21-3.7.97 1-3.6-.23-.37a9.75 9.75 0 01-1.5-5.2C2.25 7.05 6.74 2.56 12.09 2.56a9.75 9.75 0 019.75 9.74c0 5.35-4.49 9.5-9.79 9.5zm8.3-17.93A11.56 11.56 0 0012.05.7C5.56.7.27 5.99.27 12.48c0 2.18.57 4.31 1.65 6.18L.2 23.3l4.77-1.25a11.6 11.6 0 005.56 1.42h.01c6.5 0 11.78-5.29 11.78-11.78 0-3.15-1.22-6.1-3.45-8.32l.48.43z"/>
+            </svg>
+          </a>
+          
+          <a href="mailto:salmanfariskalm@gmail.com" class="social-btn" title="Email">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Framework</h4>
+        <ul>
+          <li><a href="/docs#quick-start">Quick Start</a></li>
+          <li><a href="/docs#routing">File-Based Routing</a></li>
+          <li><a href="/docs#api-routes">API Routes</a></li>
+          <li><a href="/docs#data-loaders">Data Loaders</a></li>
+          <li><a href="/docs#middleware">Middleware</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/compare">Compare</a></li>
+          <li><a href="/versions">Versions</a></li>
+          <li><a href="https://github.com/salmanfaris22/nexgo/releases" target="_blank">Changelog</a></li>
+          <li><a href="https://github.com/salmanfaris22/nexgo/issues" target="_blank">Issues</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Creator</h4>
+        <ul>
+<li>
+  <a href="https://instagram.com/salmanfaris.dev" target="_blank">
+    @salmanfaris.dev
+  </a>
+</li>
+          <li><a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/salmanfaris22" target="_blank">GitHub</a></li>
+          <li><a href="mailto:salmanfariskalm@gmail.com">Email</a></li>
+          <li><a href="https://wa.me/919961821977" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 NexGo · Built with Go · Inspired by Next.js · Made with ♥ by <a href="https://instagram.com/salmanfaris.dev" target="_blank" style="color:var(--violet-light)">Salman Faris</a></p>
+      <div class="flex gap-sm">
+        <span class="badge badge-violet"></span>
+        <span class="badge badge-green">MIT License</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../static/js/app.js"></script>
+
+</body>
+</html>

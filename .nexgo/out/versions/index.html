@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nexgo-website — NexGo</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta property="og:title" content="nexgo-website — NexGo">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#7c3aed">
+
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/global.css">
+
+  
+  <script>
+    (function(){
+      var t = localStorage.getItem('nexgo-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t || d);
+    })();
+  </script>
+
+  <style>
+     
+    body { visibility: visible; }
+    .page-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
+    main { flex: 1; }
+  </style>
+</head>
+<body>
+
+
+<header class="site-header">
+  <nav class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-mark">N</div>
+      NexGo
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/compare">Compare</a></li>
+      <li><a href="/versions">Versions</a></li>
+      <li><a href="/announcement" class="nav-announce">📢 </a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="btn-github btn">
+        
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub</span>
+      </a>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+        
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+
+      <button class="nav-mobile-toggle" id="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+        <svg class="icon-menu" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg class="icon-close" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  
+  <div class="mobile-menu" id="mobile-menu">
+    <ul class="mobile-menu-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs">Docs</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/compare">Compare</a></li>
+      <li><a href="/versions">Versions</a></li>
+      <li><a href="/announcement" class="nav-announce">📢 </a></li>
+    </ul>
+    <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="btn-github btn mobile-github-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      <span>GitHub</span>
+    </a>
+  </div>
+</header>
+
+
+<div class="page-wrapper">
+  <main id="nexgo-root">
+    
+
+<section style="padding:5rem 0 2rem;position:relative;overflow:hidden;">
+  
+  <div class="hero-grid" style="opacity:0.4;"></div>
+  <div class="hero-beams">
+    <div class="beam beam-1"></div>
+    <div class="beam beam-2"></div>
+    <div class="beam beam-3"></div>
+    <div class="beam beam-4"></div>
+  </div>
+  <div class="hero-scanline"></div>
+  <div class="hero-particles">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+  </div>
+  <div class="glow-orb glow-orb-violet" style="width:500px;height:500px;top:-180px;left:50%;transform:translateX(-50%);opacity:0.4;"></div>
+  <div class="glow-orb glow-orb-cyan" style="width:250px;height:250px;top:30%;right:10%;opacity:0.2;animation:floatOrb 10s ease-in-out infinite;"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="text-center mb-lg">
+      <div class="section-eyebrow">Changelog</div>
+      <h1 class="heading-xl">NexGo <span class="gradient-violet">Versions</span></h1>
+      <p class="text-muted" style="max-width:520px;margin:1rem auto 0;">
+        Track every release. See what changed between versions and what's coming next.
+      </p>
+      <div style="display:flex;gap:0.5rem;margin-top:1.25rem;justify-content:center;flex-wrap:wrap;">
+        <span class="badge badge-violet">v2.0.2 (Latest)</span>
+        <span class="badge badge-cyan">v1.2.0</span>
+        <span class="badge badge-green">v1.1.0</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    
+    <div class="version-timeline">
+
+      
+      <div class="version-card version-card-latest">
+        <div class="version-header">
+          <div>
+            <span class="badge badge-violet">v2.0.2</span>
+            <span class="badge badge-green" style="margin-left:0.5rem;">Latest</span>
+          </div>
+          <span class="version-date">April 2026</span>
+        </div>
+        <h3 style="font-size:1.25rem;margin:1rem 0 0.5rem;">Auth, Database, WebSockets, Cluster Mode & Full-Stack DX</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1.5rem;">Major release: JWT auth, sessions, CSRF protection, database with ORM, WebSockets, cluster mode, plugin system, server actions, i18n, image optimization, deployment adapters for 8 platforms, and much more.</p>
+
+        <div class="version-changes">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--violet-light);margin-bottom:0.75rem;">Security</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>JWT Auth</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Built-in JWT authentication with sign, verify, and refresh token support.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Sessions</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Cookie-based and store-backed session management with configurable expiry.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>CSRF Protection</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Automatic CSRF token generation and validation middleware.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Rate Limiting</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Per-route and global rate limiting with sliding window algorithm.</p>
+            </div>
+          </div>
+
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--violet-light);margin-bottom:0.75rem;margin-top:1.5rem;">Data</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Database (JSON + SQL)</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Unified database layer supporting both JSON file storage and SQL databases.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>ORM</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Lightweight ORM with model definitions, relations, queries, and migrations.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Migrations</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Schema migrations with up/down support and automatic version tracking.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Redis Cache</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Redis-backed caching with TTL, invalidation, and pub/sub support.</p>
+            </div>
+          </div>
+
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--violet-light);margin-bottom:0.75rem;margin-top:1.5rem;">Infrastructure</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>WebSockets</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Native WebSocket support with rooms, broadcasting, and auto-reconnect.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Cluster Mode</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Multi-process clustering with shared state and automatic load balancing.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Deployment Adapters (8 platforms)</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">One-command deploy to Vercel, Fly.io, Railway, Render, AWS, GCP, Azure, and Docker.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Health Checks</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Built-in /healthz and /readyz endpoints with custom check registration.</p>
+            </div>
+          </div>
+
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--violet-light);margin-bottom:0.75rem;margin-top:1.5rem;">DX</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Plugin System</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Extensible plugin architecture with lifecycle hooks and dependency injection.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Server Actions</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Define server-side mutations directly from templates with automatic form handling.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Testing Utilities</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Test helpers for routes, middleware, and handlers with request mocking.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Structured Logging</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">JSON-structured logging with levels, context fields, and log rotation.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Metrics</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Prometheus-compatible metrics endpoint with request duration, error rates, and custom counters.</p>
+            </div>
+          </div>
+
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--violet-light);margin-bottom:0.75rem;margin-top:1.5rem;">Frontend</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>i18n/RTL</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Internationalization with locale detection, translation files, plurals, and RTL layout support.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Image Optimization</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Automatic image resizing, format conversion (WebP/AVIF), and lazy loading.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Asset Pipeline</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">CSS/JS bundling, minification, fingerprinting, and cache-busting.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Error Pages/Boundaries</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Custom error pages (404, 500) and error boundaries that catch panics gracefully.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Per-Route Middleware</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Attach middleware to individual routes or route groups with chaining support.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>CSP</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Content Security Policy header generation with nonce support for inline scripts.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Env Variables</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Typed environment variable loading from .env files with validation and defaults.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="version-card">
+        <div class="version-header">
+          <div>
+            <span class="badge badge-cyan">v1.2.0</span>
+          </div>
+          <span class="version-date">April 2026</span>
+        </div>
+        <h3 style="font-size:1.25rem;margin:1rem 0 0.5rem;">SEO, Streaming SSR, ISR, Worker Pools & Advanced Features</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1.5rem;">Production-ready features: SEO meta tags, sitemaps, streaming SSR, incremental static regeneration, worker pools, response caching, parallel data loading, and template caching.</p>
+
+        <div class="version-changes">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--violet-light);margin-bottom:0.75rem;">New Features</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>SEO Package</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Meta tags, OpenGraph, Twitter Cards, sitemap.xml, robots.txt, and JSON-LD structured data generation.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Streaming SSR</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Send HTML progressively as it's ready — show the shell immediately, stream content later. Includes SSE support.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Incremental Static Regeneration (ISR)</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Cache pages and rebuild them in the background after a configurable interval — like Next.js ISR.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Worker Pools</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Run tasks concurrently with controlled parallelism. Map, ForEach, and global pool support.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Response Caching</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Cache GET responses in memory with TTL. Automatic X-Cache: HIT/MISS headers.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Parallel Data Loading</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Load multiple data sources concurrently and merge results — like Promise.all() in JS.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Template Caching</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Templates compiled once and cached. Parallel template loading with worker pool.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="version-card">
+        <div class="version-header">
+          <div>
+            <span class="badge badge-cyan">v1.1.0</span>
+          </div>
+          <span class="version-date">April 2026</span>
+        </div>
+        <h3 style="font-size:1.25rem;margin:1rem 0 0.5rem;">HTMX Support, State Management & API Helpers</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1.5rem;">Built-in helpers for writing shorter, cleaner API handlers with HTMX support and easy state management.</p>
+
+        <div class="version-changes">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--cyan);margin-bottom:0.75rem;">Features</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>HTMX Helpers</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">IsHTMX, HTMXHTML, HTMXTrigger, HTMXHeader — send HTML fragments and fire client events.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>State Management</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Thread-safe global state with SetState, GetState, DeleteState, and NewState for isolated sessions.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>HTML Helpers</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Escape() for XSS-safe output and HTML() for raw HTML responses.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Todo App Example</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Complete HTMX-powered todo app in the docs with CRUD operations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="version-card">
+        <div class="version-header">
+          <div>
+            <span class="badge badge-green">v1.0.5</span>
+          </div>
+          <span class="version-date">December 2024</span>
+        </div>
+        <h3 style="font-size:1.25rem;margin:1rem 0 0.5rem;">Initial Public Release</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1.5rem;">The Go-powered web framework inspired by Next.js. File-based routing, SSR, and hot reload.</p>
+
+        <div class="version-changes">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--green);margin-bottom:0.75rem;">Features</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>File-Based Routing</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Automatic route discovery from pages/ directory with dynamic segments.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>Server-Side Rendering</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">SSR, SSG, and SPA modes with data loaders like getServerSideProps.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>Hot Reload (HMR)</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">SSE-based file watching with instant browser refresh.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>API Routes</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">REST endpoints with method routing, JSON helpers, and pagination.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>DevTools Panel</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Built-in debug panel with route inspector, request logs, and performance metrics.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-orig">Orig</span>
+            <div>
+              <strong>Middleware System</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Recover, Logger, SecurityHeaders, Gzip, CORS, and Cache middleware.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    
+    <div class="text-center mb-lg">
+      <h2 class="heading-lg">v1.2.0 <span class="gradient-violet">vs</span> v2.0.2</h2>
+      <p class="text-muted" style="max-width:480px;margin:0.75rem auto 0;">What changed and why you should upgrade.</p>
+    </div>
+
+    <div class="comparison-grid">
+      
+      <div class="comparison-col">
+        <div class="comparison-col-header">
+          <span class="badge badge-cyan">v1.2.0</span>
+          <span class="comparison-col-date">April 2026</span>
+        </div>
+        <div class="comparison-col-body">
+          <div class="comp-feature comp-yes">File-Based Routing</div>
+          <div class="comp-feature comp-yes">Server-Side Rendering</div>
+          <div class="comp-feature comp-yes">Hot Reload (HMR)</div>
+          <div class="comp-feature comp-yes">API Routes</div>
+          <div class="comp-feature comp-yes">Data Loaders</div>
+          <div class="comp-feature comp-yes">Middleware</div>
+          <div class="comp-feature comp-yes">DevTools Panel</div>
+          <div class="comp-feature comp-yes">HTMX Helpers</div>
+          <div class="comp-feature comp-yes">State Management</div>
+          <div class="comp-feature comp-yes">SEO Package</div>
+          <div class="comp-feature comp-yes">Streaming SSR</div>
+          <div class="comp-feature comp-yes">ISR</div>
+          <div class="comp-feature comp-yes">Worker Pools</div>
+          <div class="comp-feature comp-yes">Response Caching</div>
+          <div class="comp-feature comp-yes">Parallel Data Loading</div>
+          <div class="comp-feature comp-yes">Template Caching</div>
+          <div class="comp-feature comp-no">JWT Auth</div>
+          <div class="comp-feature comp-no">Sessions</div>
+          <div class="comp-feature comp-no">CSRF Protection</div>
+          <div class="comp-feature comp-no">Rate Limiting</div>
+          <div class="comp-feature comp-no">Database (JSON + SQL)</div>
+          <div class="comp-feature comp-no">ORM</div>
+          <div class="comp-feature comp-no">Migrations</div>
+          <div class="comp-feature comp-no">Redis Cache</div>
+          <div class="comp-feature comp-no">WebSockets</div>
+          <div class="comp-feature comp-no">Cluster Mode</div>
+          <div class="comp-feature comp-no">Deployment Adapters</div>
+          <div class="comp-feature comp-no">Health Checks</div>
+          <div class="comp-feature comp-no">Plugin System</div>
+          <div class="comp-feature comp-no">Server Actions</div>
+          <div class="comp-feature comp-no">Testing Utilities</div>
+          <div class="comp-feature comp-no">Structured Logging</div>
+          <div class="comp-feature comp-no">Metrics</div>
+          <div class="comp-feature comp-no">i18n/RTL</div>
+          <div class="comp-feature comp-no">Image Optimization</div>
+          <div class="comp-feature comp-no">Asset Pipeline</div>
+          <div class="comp-feature comp-no">Error Pages/Boundaries</div>
+          <div class="comp-feature comp-no">Per-Route Middleware</div>
+          <div class="comp-feature comp-no">CSP</div>
+          <div class="comp-feature comp-no">Env Variables</div>
+        </div>
+      </div>
+
+      
+      <div class="comparison-col comparison-col-highlight">
+        <div class="comparison-col-header">
+          <span class="badge badge-violet">v2.0.2</span>
+          <span class="comparison-col-date">April 2026</span>
+        </div>
+        <div class="comparison-col-body">
+          <div class="comp-feature comp-yes">File-Based Routing</div>
+          <div class="comp-feature comp-yes">Server-Side Rendering</div>
+          <div class="comp-feature comp-yes">Hot Reload (HMR)</div>
+          <div class="comp-feature comp-yes">API Routes</div>
+          <div class="comp-feature comp-yes">Data Loaders</div>
+          <div class="comp-feature comp-yes">Middleware</div>
+          <div class="comp-feature comp-yes">DevTools Panel</div>
+          <div class="comp-feature comp-yes">HTMX Helpers</div>
+          <div class="comp-feature comp-yes">State Management</div>
+          <div class="comp-feature comp-yes">SEO Package</div>
+          <div class="comp-feature comp-yes">Streaming SSR</div>
+          <div class="comp-feature comp-yes">ISR</div>
+          <div class="comp-feature comp-yes">Worker Pools</div>
+          <div class="comp-feature comp-yes">Response Caching</div>
+          <div class="comp-feature comp-yes">Parallel Data Loading</div>
+          <div class="comp-feature comp-yes">Template Caching</div>
+          <div class="comp-feature comp-yes">JWT Auth</div>
+          <div class="comp-feature comp-yes">Sessions</div>
+          <div class="comp-feature comp-yes">CSRF Protection</div>
+          <div class="comp-feature comp-yes">Rate Limiting</div>
+          <div class="comp-feature comp-yes">Database (JSON + SQL)</div>
+          <div class="comp-feature comp-yes">ORM</div>
+          <div class="comp-feature comp-yes">Migrations</div>
+          <div class="comp-feature comp-yes">Redis Cache</div>
+          <div class="comp-feature comp-yes">WebSockets</div>
+          <div class="comp-feature comp-yes">Cluster Mode</div>
+          <div class="comp-feature comp-yes">Deployment Adapters</div>
+          <div class="comp-feature comp-yes">Health Checks</div>
+          <div class="comp-feature comp-yes">Plugin System</div>
+          <div class="comp-feature comp-yes">Server Actions</div>
+          <div class="comp-feature comp-yes">Testing Utilities</div>
+          <div class="comp-feature comp-yes">Structured Logging</div>
+          <div class="comp-feature comp-yes">Metrics</div>
+          <div class="comp-feature comp-yes">i18n/RTL</div>
+          <div class="comp-feature comp-yes">Image Optimization</div>
+          <div class="comp-feature comp-yes">Asset Pipeline</div>
+          <div class="comp-feature comp-yes">Error Pages/Boundaries</div>
+          <div class="comp-feature comp-yes">Per-Route Middleware</div>
+          <div class="comp-feature comp-yes">CSP</div>
+          <div class="comp-feature comp-yes">Env Variables</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    
+    <h2 class="heading-lg text-center" style="margin-bottom:2rem;">Feature <span class="gradient-violet">Breakdown</span></h2>
+
+    <div class="table-wrap">
+      <table class="feature-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>v1.2.0</th>
+            <th>v2.0.2</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>File-Based Routing</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">Automatic route discovery — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Server-Side Rendering</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">SSR, SSG, and SPA modes — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Hot Reload (HMR)</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">SSE-based file watching — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>API Routes</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">REST endpoints with method routing — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Data Loaders</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">getServerSideProps-style loaders — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Middleware</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">Recover, Logger, SecurityHeaders, Gzip, CORS — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>DevTools Panel</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">Route inspector, request logs — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>HTMX Helpers</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">IsHTMX, HTMXHTML, HTMXTrigger — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>State Management</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">SetState / GetState / DeleteState — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>SEO Meta Tags</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">seo.DefaultMeta() — OpenGraph, Twitter Cards — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Streaming SSR</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">stream.StreamHTML() — progressive rendering — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>ISR (Incremental Regeneration)</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">isr.New(ttl) — cache with background rebuild — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Worker Pools</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">worker.New(n), Map(), ForEach() — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Response Caching</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">api.Cache(ttl) — middleware with X-Cache headers — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Parallel Data Loading</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">renderer.NewParallelLoader() — Promise.all style — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>Template Caching</strong></td>
+            <td><span class="check">&check;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">r.LoadAll(), r.LoadParallel() — compile once — unchanged</td>
+          </tr>
+          <tr>
+            <td><strong>JWT Auth</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">auth.JWT() — sign, verify, refresh tokens</td>
+          </tr>
+          <tr>
+            <td><strong>Sessions</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">session.New() — cookie and store-backed sessions</td>
+          </tr>
+          <tr>
+            <td><strong>CSRF Protection</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">csrf.Protect() — automatic token validation</td>
+          </tr>
+          <tr>
+            <td><strong>Rate Limiting</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">ratelimit.New() — sliding window algorithm</td>
+          </tr>
+          <tr>
+            <td><strong>i18n/RTL</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">i18n.New() — locale detection, translations, RTL</td>
+          </tr>
+          <tr>
+            <td><strong>WebSockets</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">ws.Upgrade() — rooms, broadcasting, auto-reconnect</td>
+          </tr>
+          <tr>
+            <td><strong>Database (JSON + SQL)</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">db.Open() — unified JSON file and SQL support</td>
+          </tr>
+          <tr>
+            <td><strong>ORM</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">orm.Model() — relations, queries, migrations</td>
+          </tr>
+          <tr>
+            <td><strong>Migrations</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">migrate.Up(), migrate.Down() — version tracking</td>
+          </tr>
+          <tr>
+            <td><strong>Redis Cache</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">redis.New() — TTL, invalidation, pub/sub</td>
+          </tr>
+          <tr>
+            <td><strong>Health Checks</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">/healthz, /readyz — custom check registration</td>
+          </tr>
+          <tr>
+            <td><strong>Structured Logging</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">log.New() — JSON structured, levels, rotation</td>
+          </tr>
+          <tr>
+            <td><strong>Metrics</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">metrics.Handler() — Prometheus-compatible endpoint</td>
+          </tr>
+          <tr>
+            <td><strong>Deployment Adapters</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">deploy.To() — Vercel, Fly.io, Railway, Render, AWS, GCP, Azure, Docker</td>
+          </tr>
+          <tr>
+            <td><strong>Cluster Mode</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">cluster.Start() — multi-process with shared state</td>
+          </tr>
+          <tr>
+            <td><strong>Plugin System</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">plugin.Register() — lifecycle hooks, DI</td>
+          </tr>
+          <tr>
+            <td><strong>Server Actions</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">action.Handle() — server mutations from templates</td>
+          </tr>
+          <tr>
+            <td><strong>Testing Utilities</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">testing.NewApp() — route, middleware, handler testing</td>
+          </tr>
+          <tr>
+            <td><strong>Image Optimization</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">image.Optimize() — resize, WebP/AVIF, lazy loading</td>
+          </tr>
+          <tr>
+            <td><strong>Asset Pipeline</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">assets.Bundle() — CSS/JS minification, fingerprinting</td>
+          </tr>
+          <tr>
+            <td><strong>Error Pages/Boundaries</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">Custom 404/500 pages, panic recovery boundaries</td>
+          </tr>
+          <tr>
+            <td><strong>Per-Route Middleware</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">route.Use() — individual and group middleware chaining</td>
+          </tr>
+          <tr>
+            <td><strong>CSP</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">csp.New() — Content Security Policy with nonce support</td>
+          </tr>
+          <tr>
+            <td><strong>Env Variables</strong></td>
+            <td><span class="cross">&times;</span></td>
+            <td><span class="check">&check;</span></td>
+            <td class="text-muted text-sm">env.Load() — typed .env loading with validation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div style="margin-top:3rem;padding:2.5rem;background:var(--violet-dim);border:1px solid rgba(124,58,237,0.25);border-radius:var(--radius-lg);text-align:center;">
+      <h3 class="heading-md" style="margin-bottom:0.5rem;">Upgrade to v2.0.2</h3>
+      <p class="text-muted" style="max-width:440px;margin:0 auto 1.5rem;">
+        Get JWT auth, WebSockets, database with ORM, cluster mode, plugin system, and much more. Major upgrade with new full-stack capabilities.
+      </p>
+      <div class="install-box" style="max-width:500px;margin:0 auto;">
+        <div class="install-cmd"><span class="cmd-prefix">$</span><span class="cmd-text"></span></div>
+        <button class="copy-btn" data-copy="">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="/docs#auth" class="btn btn-primary">Auth Docs →</a>
+        <a href="/docs#websocket" class="btn btn-ghost">WebSockets</a>
+        <a href="/docs#orm" class="btn btn-ghost">ORM</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.version-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.version-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: border-color 0.2s;
+}
+
+.version-card:hover {
+  border-color: var(--border-2);
+}
+
+.version-card-latest {
+  border-color: rgba(124, 58, 237, 0.3);
+  background: linear-gradient(135deg, var(--surface), var(--violet-dim));
+}
+
+.version-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.version-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.version-changes {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.change-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.change-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.change-new {
+  background: rgba(74, 222, 128, 0.15);
+  color: #4ade80;
+}
+
+.change-orig {
+  background: rgba(34, 211, 238, 0.15);
+  color: #22d3ee;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.comparison-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.comparison-col-highlight {
+  border-color: rgba(124, 58, 237, 0.3);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
+}
+
+.comparison-col-header {
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.comparison-col-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.comparison-col-body {
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.comp-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+}
+
+.comp-feature::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.comp-yes::before {
+  background: #4ade80;
+}
+
+.comp-no::before {
+  background: var(--text-muted);
+  opacity: 0.3;
+}
+
+.comp-no {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.feature-table td, .feature-table th {
+  text-align: center;
+}
+
+.feature-table td:first-child, .feature-table th:first-child {
+  text-align: left;
+}
+
+.check {
+  color: #4ade80;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.cross {
+  color: var(--text-muted);
+  opacity: 0.3;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
+
+  </main>
+
+  
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-mark">N</div>
+          NexGo
+        </a>
+        <p>The Go-powered web framework inspired by Next.js. Build full-stack apps with zero dependencies.</p>
+        <div class="social-links">
+          
+          <a href="https://github.com/salmanfaris22/nexgo" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.01-2C6 21.14 5.27 19 5.27 19c-.54-1.37-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.79 1.29 3.47.99.11-.77.42-1.3.76-1.6-2.65-.3-5.43-1.32-5.43-5.9 0-1.3.46-2.36 1.23-3.2-.12-.3-.53-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 013-.41c1.02.01 2.04.14 3 .41 2.28-1.55 3.28-1.23 3.28-1.23.66 1.64.24 2.86.12 3.16.77.84 1.23 1.9 1.23 3.2 0 4.58-2.79 5.59-5.45 5.88.43.37.81 1.1.81 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.21.7.82.58C20.56 21.79 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </a>
+          
+          <a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+          
+          <a href="https://instagram.com/salmanfaris" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          
+          <a href="https://wa.me/919961821977" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.66.15-.2.3-.76.96-.93 1.16-.17.2-.34.22-.63.07-1.74-.87-2.88-1.55-4.03-3.52-.3-.53.3-.49.87-1.63.1-.2.05-.37-.03-.52-.07-.15-.66-1.6-.91-2.19-.24-.57-.48-.49-.66-.5-.17-.01-.37-.01-.56-.01-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.06 2.85 1.2 3.05c.15.2 2.08 3.18 5.05 4.46.7.3 1.25.48 1.68.62.7.22 1.34.19 1.84.11.56-.08 1.74-.71 1.98-1.4.25-.69.25-1.28.17-1.4-.07-.12-.27-.2-.57-.34zM12.05 21.8h-.04a9.75 9.75 0 01-4.97-1.36l-.36-.21-3.7.97 1-3.6-.23-.37a9.75 9.75 0 01-1.5-5.2C2.25 7.05 6.74 2.56 12.09 2.56a9.75 9.75 0 019.75 9.74c0 5.35-4.49 9.5-9.79 9.5zm8.3-17.93A11.56 11.56 0 0012.05.7C5.56.7.27 5.99.27 12.48c0 2.18.57 4.31 1.65 6.18L.2 23.3l4.77-1.25a11.6 11.6 0 005.56 1.42h.01c6.5 0 11.78-5.29 11.78-11.78 0-3.15-1.22-6.1-3.45-8.32l.48.43z"/>
+            </svg>
+          </a>
+          
+          <a href="mailto:salmanfariskalm@gmail.com" class="social-btn" title="Email">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="2,4 12,13 22,4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Framework</h4>
+        <ul>
+          <li><a href="/docs#quick-start">Quick Start</a></li>
+          <li><a href="/docs#routing">File-Based Routing</a></li>
+          <li><a href="/docs#api-routes">API Routes</a></li>
+          <li><a href="/docs#data-loaders">Data Loaders</a></li>
+          <li><a href="/docs#middleware">Middleware</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/compare">Compare</a></li>
+          <li><a href="/versions">Versions</a></li>
+          <li><a href="https://github.com/salmanfaris22/nexgo/releases" target="_blank">Changelog</a></li>
+          <li><a href="https://github.com/salmanfaris22/nexgo/issues" target="_blank">Issues</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h4>Creator</h4>
+        <ul>
+<li>
+  <a href="https://instagram.com/salmanfaris.dev" target="_blank">
+    @salmanfaris.dev
+  </a>
+</li>
+          <li><a href="https://www.linkedin.com/in/salman-faris-50b664272/" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/salmanfaris22" target="_blank">GitHub</a></li>
+          <li><a href="mailto:salmanfariskalm@gmail.com">Email</a></li>
+          <li><a href="https://wa.me/919961821977" target="_blank">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 NexGo · Built with Go · Inspired by Next.js · Made with ♥ by <a href="https://instagram.com/salmanfaris.dev" target="_blank" style="color:var(--violet-light)">Salman Faris</a></p>
+      <div class="flex gap-sm">
+        <span class="badge badge-violet"></span>
+        <span class="badge badge-green">MIT License</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="../static/js/app.js"></script>
+
+</body>
+</html>
