@@ -77,10 +77,7 @@ func main() {
 	srv.RegisterDataLoader("/announcement", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
 		return versionData, nil
 	})
-	quit := make(chan os.Signal, 1)
-	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-
-	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
 
 	if err := srv.Start(ctx); err != nil {
@@ -92,6 +89,14 @@ func main() {
 
 func getBlogPosts() []map[string]interface{} {
 	return []map[string]interface{}{
+		{
+			"slug":        "nexgo-v2-0-2",
+			"title":       "NexGo v1.2.5 — Auth, WebSockets, ORM, Cluster Mode & 24 New Features",
+			"description": "Production-ready: JWT auth, sessions, CSRF, rate limiting, i18n, WebSockets, database, ORM, plugin system, deployment adapters, and more.",
+			"date":        "April 2026",
+			"readTime":    "12 min read",
+			"tag":         "Release",
+		},
 		{
 			"slug":        "nexgo-v1-2-0",
 			"title":       "NexGo v1.2.0 — SEO, Streaming SSR, ISR & Advanced Features",

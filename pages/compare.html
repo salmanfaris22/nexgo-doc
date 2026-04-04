@@ -1,8 +1,32 @@
 
 <!-- pages/compare.html — Compare Page -->
 
-<section style="padding:5rem 0 2rem;">
-  <div class="container">
+<section style="padding:5rem 0 2rem;position:relative;overflow:hidden;">
+  <!-- Animated background -->
+  <div class="hero-grid" style="opacity:0.4;"></div>
+  <div class="hero-beams">
+    <div class="beam beam-1"></div>
+    <div class="beam beam-2"></div>
+    <div class="beam beam-3"></div>
+    <div class="beam beam-4"></div>
+    <div class="beam beam-5"></div>
+  </div>
+  <div class="hero-scanline"></div>
+  <div class="hero-particles">
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+    <div class="particle particle-7"></div>
+    <div class="particle particle-8"></div>
+  </div>
+  <div class="glow-orb glow-orb-violet" style="width:500px;height:500px;top:-200px;left:50%;transform:translateX(-50%);opacity:0.45;"></div>
+  <div class="glow-orb glow-orb-cyan" style="width:300px;height:300px;top:40%;left:10%;opacity:0.2;animation:floatOrb 9s ease-in-out infinite;"></div>
+  <div class="glow-orb glow-orb-violet" style="width:200px;height:200px;top:60%;right:15%;opacity:0.15;animation:floatOrb 12s ease-in-out infinite reverse;"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
     <div class="text-center mb-lg reveal">
       <div class="section-eyebrow">Framework Comparison</div>
       <h1 class="heading-xl">NexGo vs<br><span class="gradient-violet">The Alternatives</span></h1>
@@ -35,7 +59,7 @@
         <div class="stat-label">npm packages</div>
       </div>
       <div class="card text-center">
-        <div class="stat-value" data-count="3130" data-suffix="" style="font-size:2rem;">0</div>
+        <div class="stat-value" data-count="14000" data-suffix="" style="font-size:2rem;">0</div>
         <div class="stat-label">Lines of source</div>
       </div>
     </div>
@@ -380,6 +404,69 @@
                 <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/renderer)</span></td>
                 <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
               </tr>
+              <tr>
+                <td><strong>JWT Auth</strong></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Manual</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">next-auth</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/auth)</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Manual</span></td>
+              </tr>
+              <tr>
+                <td><strong>Session Management</strong></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Manual</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/session)</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
+              <tr>
+                <td><strong>WebSocket</strong></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Manual</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Manual</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/websocket)</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Manual</span></td>
+              </tr>
+              <tr>
+                <td><strong>Database/ORM</strong></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Prisma (ext)</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/orm)</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
+              <tr>
+                <td><strong>i18n</strong></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">react-intl</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">next-intl</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/i18n)</span></td>
+                <td><span class="badge badge-green">Built-in</span></td>
+              </tr>
+              <tr>
+                <td><strong>Rate Limiting</strong></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Manual</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/ratelimit)</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
+              <tr>
+                <td><strong>Deployment Adapters</strong></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Vercel only</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">8 platforms built-in</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
+              <tr>
+                <td><strong>Plugin System</strong></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/plugin)</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
+              <tr>
+                <td><strong>Cluster Mode</strong></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/cluster)</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -523,6 +610,70 @@
               <td class="partial">~</td>
               <td class="partial">~</td>
             </tr>
+            <tr>
+              <td><strong>JWT Authentication</strong></td>
+              <td class="check">✓</td>
+              <td class="partial">~</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>WebSocket Support</strong></td>
+              <td class="check">✓</td>
+              <td class="partial">~</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="check">✓</td>
+            </tr>
+            <tr>
+              <td><strong>Database/ORM</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>i18n / RTL</strong></td>
+              <td class="check">✓</td>
+              <td class="partial">~</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Plugin System</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Deployment Adapters</strong></td>
+              <td class="check">✓</td>
+              <td class="partial">~</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Health Checks</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Cluster Mode</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -550,6 +701,8 @@
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">50,000+ requests per second</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Go's type safety and performance</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Zero external dependencies</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Built-in auth, sessions, CSRF</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">WebSockets, ORM, plugin system</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Deploy anywhere Go runs</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">No React ecosystem</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Smaller community (for now)</span></li>
@@ -681,7 +834,7 @@
             <li>→ Your team only knows JavaScript/TypeScript</li>
             <li>→ You need a complex SPA with rich UI</li>
             <li>→ You need maximum raw routing performance</li>
-            <li>→ You want GraphQL subscriptions or WebSockets (coming soon)</li>
+            <li>→ You need native mobile app support</li>
           </ul>
         </div>
       </div>

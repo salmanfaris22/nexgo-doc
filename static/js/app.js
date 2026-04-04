@@ -101,6 +101,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── Hero Parallax on Mouse Move ───────
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const orbs = hero.querySelectorAll('.glow-orb');
+    const beams = hero.querySelector('.hero-beams');
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      orbs.forEach((orb, i) => {
+        const depth = (i + 1) * 12;
+        orb.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
+      });
+      if (beams) {
+        beams.style.transform = `translate(${x * 5}px, ${y * 3}px)`;
+      }
+    });
+    hero.addEventListener('mouseleave', () => {
+      orbs.forEach(orb => { orb.style.transform = ''; });
+      if (beams) beams.style.transform = '';
+    });
+  }
+
   // ── Active Nav Link ───────────────────
   const path = window.location.pathname;
   document.querySelectorAll('.nav-links a, .mobile-menu-links a').forEach(a => {

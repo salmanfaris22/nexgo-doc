@@ -3,6 +3,7 @@ package api
 import (
 	"net/http"
 
+	info "github.com/salmanfaris22/nexgo-website/config"
 	"github.com/salmanfaris22/nexgo/pkg/api"
 	"github.com/salmanfaris22/nexgo/pkg/router"
 )
@@ -17,7 +18,7 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 		"GET": func(w http.ResponseWriter, r *http.Request) {
 			api.JSON(w, map[string]interface{}{
 				"message": "Welcome to NexGo!",
-				"version": "1.1.0",
+				"version": info.Version,
 				"docs":    "https://salmanfaris.dev/nexgo/docs",
 			})
 		},

@@ -181,6 +181,30 @@ section { padding: 5rem 0; }
   background: rgba(245,243,255,0.85);
 }
 
+[data-theme="light"] .beam {
+  background: linear-gradient(180deg, transparent 0%, rgba(109,40,217,0.15) 30%, rgba(109,40,217,0.3) 50%, rgba(109,40,217,0.15) 70%, transparent 100%);
+}
+
+[data-theme="light"] .beam::after {
+  background: linear-gradient(180deg, transparent 0%, rgba(109,40,217,0.04) 30%, rgba(109,40,217,0.08) 50%, rgba(109,40,217,0.04) 70%, transparent 100%);
+}
+
+[data-theme="light"] .hero-scanline {
+  background: linear-gradient(90deg, transparent 0%, rgba(109,40,217,0.2) 20%, rgba(109,40,217,0.5) 50%, rgba(109,40,217,0.2) 80%, transparent 100%);
+  box-shadow: 0 0 15px rgba(109,40,217,0.2);
+}
+
+[data-theme="light"] .particle {
+  background: var(--violet-mid);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .beam, .hero-scanline, .particle, .hero-grid { animation: none !important; }
+  .hero-install .install-box::before { animation: none !important; }
+  .glow-orb { animation: none !important; }
+}
+
 .nav-inner {
   display: flex;
   align-items: center;
@@ -733,6 +757,88 @@ tr:hover td { background: var(--surface-2); }
 .cross  { color: #f87171; font-size: 1rem; }
 .partial { color: #ffc800; font-size: 1rem; }
 
+/* ── Glowing NexGo Table Column ───────── */
+th[style*="color:#a78bfa"] {
+  position: relative;
+  text-shadow: 0 0 12px rgba(167,139,250,0.6);
+  animation: nexgoHeaderGlow 3s ease-in-out infinite;
+}
+
+@keyframes nexgoHeaderGlow {
+  0%, 100% { text-shadow: 0 0 8px rgba(167,139,250,0.4); }
+  50% { text-shadow: 0 0 20px rgba(167,139,250,0.8), 0 0 40px rgba(124,58,237,0.3); }
+}
+
+/* NexGo highlight cells in tables */
+td[style*="background:rgba(139,92,246"] {
+  position: relative;
+  animation: nexgoCellPulse 4s ease-in-out infinite;
+}
+
+@keyframes nexgoCellPulse {
+  0%, 100% { background: rgba(139,92,246,0.08); }
+  50% { background: rgba(139,92,246,0.16); }
+}
+
+/* Animated table rows on hover */
+table tbody tr {
+  transition: all 0.3s ease;
+}
+
+table tbody tr:hover td {
+  background: var(--surface-2);
+}
+
+table tbody tr:hover td[style*="background:rgba(139,92,246"] {
+  background: rgba(139,92,246,0.22) !important;
+  box-shadow: inset 0 0 20px rgba(124,58,237,0.1);
+}
+
+/* NexGo column vertical glow line */
+.table-wrap {
+  position: relative;
+}
+
+/* ── Version card glow animation ──────── */
+.version-card-latest {
+  animation: latestCardGlow 4s ease-in-out infinite;
+}
+
+@keyframes latestCardGlow {
+  0%, 100% { border-color: rgba(124,58,237,0.3); box-shadow: 0 0 0 rgba(124,58,237,0); }
+  50% { border-color: rgba(124,58,237,0.5); box-shadow: 0 0 30px rgba(124,58,237,0.15); }
+}
+
+/* ── Comparison column highlight pulse ── */
+.comparison-col-highlight {
+  animation: compColGlow 3s ease-in-out infinite;
+}
+
+@keyframes compColGlow {
+  0%, 100% { border-color: rgba(124,58,237,0.3); box-shadow: 0 0 20px rgba(124,58,237,0.1); }
+  50% { border-color: rgba(124,58,237,0.5); box-shadow: 0 0 40px rgba(124,58,237,0.2); }
+}
+
+/* ── Badge shimmer animation ──────────── */
+.badge-violet {
+  animation: badgeShimmer 5s ease-in-out infinite;
+}
+
+@keyframes badgeShimmer {
+  0%, 100% { box-shadow: 0 0 0 rgba(124,58,237,0); }
+  50% { box-shadow: 0 0 12px rgba(124,58,237,0.3); }
+}
+
+/* ── Change badge pulse (new features) ── */
+.change-badge.change-new {
+  animation: newBadgePulse 3s ease-in-out infinite;
+}
+
+@keyframes newBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(74,222,128,0); }
+  50% { box-shadow: 0 0 8px rgba(74,222,128,0.3); }
+}
+
 /* ── Footer ────────────────────────────── */
 .site-footer {
   border-top: 1px solid var(--border-2);
@@ -850,6 +956,186 @@ tr:hover td { background: var(--surface-2); }
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 100%);
+  animation: gridPulse 6s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ── Hero Light Beams ─────────────────── */
+.hero-beams {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.beam {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(124,58,237,0.3) 30%, rgba(124,58,237,0.6) 50%, rgba(124,58,237,0.3) 70%, transparent 100%);
+  opacity: 0;
+  animation: beamPass 8s linear infinite;
+}
+
+.beam::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 9px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(124,58,237,0.08) 30%, rgba(167,139,250,0.15) 50%, rgba(124,58,237,0.08) 70%, transparent 100%);
+  filter: blur(3px);
+}
+
+.beam-1 { left: 10%; animation-delay: 0s; animation-duration: 7s; }
+.beam-2 { left: 30%; animation-delay: 1.5s; animation-duration: 9s; }
+.beam-3 { left: 50%; animation-delay: 3s; animation-duration: 6s; }
+.beam-4 { left: 70%; animation-delay: 4.5s; animation-duration: 8s; }
+.beam-5 { left: 90%; animation-delay: 2s; animation-duration: 10s; }
+
+@keyframes beamPass {
+  0% { opacity: 0; transform: translateY(-100%) scaleY(0.3); }
+  10% { opacity: 0.7; }
+  40% { opacity: 1; transform: translateY(0%) scaleY(1); }
+  60% { opacity: 0.7; }
+  90% { opacity: 0; transform: translateY(100%) scaleY(0.3); }
+  100% { opacity: 0; }
+}
+
+/* ── Hero Scanline ────────────────────── */
+.hero-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(124,58,237,0.4) 20%, rgba(167,139,250,0.8) 50%, rgba(124,58,237,0.4) 80%, transparent 100%);
+  box-shadow: 0 0 20px rgba(124,58,237,0.4), 0 0 60px rgba(124,58,237,0.2);
+  pointer-events: none;
+  animation: scanline 5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes scanline {
+  0% { top: -2px; opacity: 0; }
+  5% { opacity: 1; }
+  50% { top: 100%; opacity: 0.6; }
+  95% { opacity: 0; }
+  100% { top: -2px; opacity: 0; }
+}
+
+/* ── Hero Particles ───────────────────── */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--violet-light);
+  opacity: 0;
+  animation: particleFloat 12s ease-in-out infinite;
+}
+
+.particle-1 { left: 15%; top: 80%; animation-delay: 0s; animation-duration: 10s; }
+.particle-2 { left: 25%; top: 70%; animation-delay: 1.5s; animation-duration: 14s; }
+.particle-3 { left: 40%; top: 85%; animation-delay: 3s; animation-duration: 11s; }
+.particle-4 { left: 55%; top: 75%; animation-delay: 0.8s; animation-duration: 13s; }
+.particle-5 { left: 65%; top: 90%; animation-delay: 4s; animation-duration: 9s; }
+.particle-6 { left: 75%; top: 80%; animation-delay: 2.5s; animation-duration: 12s; }
+.particle-7 { left: 85%; top: 70%; animation-delay: 5s; animation-duration: 15s; }
+.particle-8 { left: 50%; top: 65%; animation-delay: 1s; animation-duration: 11s; width: 2px; height: 2px; background: var(--cyan); }
+
+@keyframes particleFloat {
+  0% { opacity: 0; transform: translateY(0) scale(0.5); }
+  10% { opacity: 0.8; }
+  50% { opacity: 0.4; transform: translateY(-200px) scale(1); }
+  90% { opacity: 0; }
+  100% { opacity: 0; transform: translateY(-400px) scale(0.3); }
+}
+
+/* ── Floating Orb Animation ───────────── */
+@keyframes floatOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(15px, -20px) scale(1.05); }
+  50% { transform: translate(-10px, -35px) scale(0.95); }
+  75% { transform: translate(20px, -15px) scale(1.02); }
+}
+
+/* ── Shimmer border on cards ──────────── */
+.feat-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.feat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(124,58,237,0.06) 50%, transparent 100%);
+  transition: none;
+  pointer-events: none;
+}
+
+.feat-card:hover::before {
+  animation: cardShimmer 0.8s ease forwards;
+}
+
+@keyframes cardShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ── Glowing border animation for install box ── */
+.hero-install .install-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-install .install-box::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, transparent 0%, var(--violet) 10%, transparent 20%, transparent 80%, var(--violet-light) 90%, transparent 100%);
+  z-index: -1;
+  animation: borderSpin 4s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes borderSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Enhanced stat counter glow ───────── */
+.stat-card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+}
+
+.stat-card:hover .stat-value {
+  filter: drop-shadow(0 0 12px rgba(124,58,237,0.5));
 }
 
 .hero-badge {

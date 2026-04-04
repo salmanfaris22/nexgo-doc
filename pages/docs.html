@@ -48,6 +48,31 @@
       <li><a href="#worker-pools">Worker Pools</a></li>
       <li><a href="#isr">ISR</a></li>
 
+      <li class="nav-section">v2.0.1 Features</li>
+      <li><a href="#env">Environment Variables</a></li>
+      <li><a href="#sessions">Sessions</a></li>
+      <li><a href="#auth">Authentication (JWT)</a></li>
+      <li><a href="#csrf">CSRF Protection</a></li>
+      <li><a href="#rate-limiting">Rate Limiting</a></li>
+      <li><a href="#i18n">i18n</a></li>
+      <li><a href="#image-optimization">Image Optimization</a></li>
+      <li><a href="#websocket">WebSocket</a></li>
+      <li><a href="#health-checks">Health Checks</a></li>
+      <li><a href="#logging">Structured Logging</a></li>
+      <li><a href="#metrics">Metrics</a></li>
+      <li><a href="#database">Database</a></li>
+      <li><a href="#migrations">Migrations</a></li>
+      <li><a href="#plugin-system">Plugin System</a></li>
+      <li><a href="#server-actions">Server Actions</a></li>
+      <li><a href="#error-pages">Error Pages</a></li>
+      <li><a href="#testing">Testing</a></li>
+      <li><a href="#per-route-middleware">Per-Route Middleware</a></li>
+      <li><a href="#deployment">Deployment Adapters</a></li>
+      <li><a href="#redis-cache">Redis Cache</a></li>
+      <li><a href="#asset-pipeline">Asset Pipeline</a></li>
+      <li><a href="#orm">ORM</a></li>
+      <li><a href="#cluster-mode">Cluster Mode</a></li>
+
       <li class="nav-section">CLI</li>
       <li><a href="#cli">CLI Commands</a></li>
     </ul>
@@ -693,6 +718,519 @@ isr.Serve(w, r, func() (int, http.Header, []byte, error) {
 
 isr.Revalidate("/page", generateFunc)
 isr.Purge("/page")</code></pre>
+
+    <!-- ENVIRONMENT VARIABLES -->
+    <h2 id="env">Environment Variables</h2>
+    <p>The <code>pkg/env</code> package loads <code>.env</code> files with priority-based overrides and provides type-safe access to environment variables. Files are loaded in order: <code>.env</code>, <code>.env.local</code>, <code>.env.{mode}</code>, with later files taking precedence.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/env"
+
+// Load .env files (call once at startup)
+env.LoadGlobal()              // loads .env, .env.local, .env.development
+env.LoadGlobal("production")  // loads .env, .env.local, .env.production
+
+// Create a store for typed access
+store := env.NewStore()
+store.Get("DATABASE_URL")              // returns value or ""
+store.MustGet("SECRET_KEY")            // panics if missing
+store.GetInt("PORT", 3000)             // with default
+store.GetBool("DEBUG", false)</code></pre>
+
+    <!-- SESSIONS -->
+    <h2 id="sessions">Sessions</h2>
+    <p>Cookie-based session management with pluggable backends. Ships with <code>MemoryStore</code> (development) and <code>FileStore</code> (production). Supports flash messages for one-time notifications.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/session"
+
+mgr := session.NewManager(session.Options{
+    Store:    session.NewMemoryStore(),  // or session.NewFileStore("./sessions")
+    MaxAge:   3600,
+    HTTPOnly: true,
+    Secure:   true,
+})
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    sess := mgr.Start(w, r)
+    sess.Set("user", "alice")
+    name := sess.Get("user")  // "alice"
+
+    // Flash messages (auto-cleared after read)
+    sess.Flash("success", "Item created!")
+    msgs := sess.Flashes("success")  // ["Item created!"]
+}</code></pre>
+
+    <!-- AUTHENTICATION -->
+    <h2 id="auth">Authentication (JWT)</h2>
+    <p>JWT token generation, verification, middleware, role-based access control, and password hashing via <code>pkg/auth</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/auth"
+
+// Generate a JWT
+token, err := auth.GenerateToken(auth.Claims{
+    UserID: "123",
+    Role:   "admin",
+}, "my-secret-key", 24*time.Hour)
+
+// Verify a JWT
+claims, err := auth.VerifyToken(token, "my-secret-key")
+
+// Middleware: protect routes
+mux.Handle("/dashboard", auth.RequireAuth("my-secret-key")(dashboardHandler))
+mux.Handle("/admin", auth.RequireRole("admin", "my-secret-key")(adminHandler))
+
+// Password hashing
+hash, _ := auth.HashPassword("s3cret")
+ok := auth.CheckPassword("s3cret", hash)  // true</code></pre>
+
+    <!-- CSRF PROTECTION -->
+    <h2 id="csrf">CSRF Protection</h2>
+    <p>Token-based CSRF protection via <code>pkg/csrf</code>. Generates a per-session token, validates it on POST/PUT/DELETE requests, and provides a template helper for forms.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/csrf"
+
+// Apply middleware
+handler := csrf.Protect("my-csrf-secret")(myHandler)
+
+// In templates, use the helper to embed the token in forms:
+// &lt;form method="POST"&gt;
+//   {"{"}{ csrfField }{"}"} &lt;!-- renders hidden input --&gt;
+//   &lt;button type="submit"&gt;Submit&lt;/button&gt;
+// &lt;/form&gt;
+
+// For AJAX, read the token from the meta tag or cookie:
+// X-CSRF-Token: &lt;token&gt;</code></pre>
+
+    <!-- RATE LIMITING -->
+    <h2 id="rate-limiting">Rate Limiting</h2>
+    <p>Protect endpoints from abuse with token bucket and sliding window algorithms via <code>pkg/ratelimit</code>. Apply as global middleware or per-route.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/ratelimit"
+
+// Token bucket: 100 requests per minute per IP
+limiter := ratelimit.PerMinute(100)
+mux.Handle("/api/", limiter.Middleware()(apiHandler))
+
+// Sliding window: 10 requests per second
+strict := ratelimit.PerSecond(10)
+mux.Handle("/api/login", strict.Middleware()(loginHandler))
+
+// Custom configuration
+limiter := ratelimit.New(ratelimit.Config{
+    Rate:     50,
+    Window:   time.Minute,
+    Strategy: ratelimit.SlidingWindow,
+    KeyFunc:  func(r *http.Request) string { return r.RemoteAddr },
+})</code></pre>
+
+    <!-- I18N -->
+    <h2 id="i18n">Internationalization (i18n)</h2>
+    <p>Locale routing, JSON translation files, RTL support, and automatic locale detection via <code>pkg/i18n</code>. Place translation files in <code>locales/</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/i18n"
+
+// locales/en.json: {"greeting": "Hello, {"{"}name{"}"}!", "nav.home": "Home"}
+// locales/ar.json: {"greeting": "!{"{"}name{"}"} ,مرحبا", "nav.home": "الرئيسية"}
+
+bundle := i18n.New(i18n.Config{
+    DefaultLocale: "en",
+    Locales:       []string{"en", "fr", "ar"},
+    Directory:     "locales",
+    RTLLocales:    []string{"ar", "he"},
+})
+
+// In handlers
+t := bundle.T("en")
+t.Get("greeting", map[string]string{"name": "World"}) // "Hello, World!"
+
+// Locale detection middleware (Accept-Language, cookie, URL prefix)
+mux.Handle("/", bundle.Middleware()(handler))</code></pre>
+
+    <!-- IMAGE OPTIMIZATION -->
+    <h2 id="image-optimization">Image Optimization</h2>
+    <p>Automatic responsive images, lazy loading, srcset generation, and blur placeholders via <code>pkg/image</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/image"
+
+opt := image.NewOptimizer(image.Config{
+    Widths:      []int{320, 640, 1024, 1920},
+    Quality:     80,
+    LazyLoad:    true,
+    Placeholder: image.BlurPlaceholder,
+})
+
+// In templates, generates &lt;img&gt; with srcset, sizes, loading="lazy"
+// {"{"}{ optimizeImage "/static/hero.jpg" "Hero image" }{"}"}</code></pre>
+    <pre><code>&lt;!-- Output --&gt;
+&lt;img src="/static/hero.jpg"
+     srcset="/static/hero-320w.jpg 320w, /static/hero-640w.jpg 640w, /static/hero-1024w.jpg 1024w"
+     sizes="(max-width: 640px) 100vw, 50vw"
+     loading="lazy"
+     alt="Hero image"&gt;</code></pre>
+
+    <!-- WEBSOCKET -->
+    <h2 id="websocket">WebSocket</h2>
+    <p>Native WebSocket support using HTTP hijacking via <code>pkg/websocket</code>. Includes a Hub for managing rooms and broadcasting messages.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/websocket"
+
+hub := websocket.NewHub()
+go hub.Run()
+
+mux.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+    conn, err := websocket.Upgrade(w, r)
+    if err != nil { return }
+    client := hub.Register(conn)
+    defer hub.Unregister(client)
+
+    // Join a room
+    hub.Join(client, "chat-room-1")
+
+    // Broadcast to all clients
+    hub.Broadcast([]byte("Hello everyone!"))
+
+    // Broadcast to a specific room
+    hub.BroadcastTo("chat-room-1", []byte("Room message"))
+})</code></pre>
+
+    <!-- HEALTH CHECKS -->
+    <h2 id="health-checks">Health Checks</h2>
+    <p>Kubernetes-compatible health check endpoints via <code>pkg/health</code>. Exposes <code>/health</code>, <code>/ready</code>, and <code>/live</code> with dependency checks.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/health"
+
+checker := health.New()
+
+// Register dependency checks
+checker.AddCheck("database", func() error {
+    return db.Ping()
+})
+checker.AddCheck("redis", func() error {
+    return redis.Ping()
+})
+
+// Mount endpoints
+mux.Handle("/health", checker.Handler())    // overall status
+mux.Handle("/ready", checker.ReadyHandler()) // readiness probe
+mux.Handle("/live", checker.LiveHandler())   // liveness probe
+
+// GET /health → {"status":"healthy","checks":{"database":"ok","redis":"ok"}}</code></pre>
+
+    <!-- STRUCTURED LOGGING -->
+    <h2 id="logging">Structured Logging</h2>
+    <p>Leveled, structured logging with JSON output, colored console mode, and file rotation via <code>pkg/logger</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/logger"
+
+log := logger.New(logger.Config{
+    Level:    logger.Info,
+    Format:   logger.JSON,       // or logger.Console (colored)
+    Output:   "logs/app.log",    // file path or "stdout"
+    Rotation: logger.Daily,      // Daily, Hourly, or by Size
+})
+
+log.Info("server started", "port", 3000)
+log.Error("query failed", "err", err, "query", sql)
+log.Debug("request", "method", r.Method, "path", r.URL.Path)
+
+// Request logger middleware
+mux.Handle("/", logger.RequestMiddleware(log)(handler))
+// → {"level":"info","method":"GET","path":"/","status":200,"duration":"1.2ms"}</code></pre>
+
+    <!-- METRICS -->
+    <h2 id="metrics">Metrics</h2>
+    <p>Prometheus-compatible metrics with counters, gauges, and histograms via <code>pkg/metrics</code>. Includes built-in HTTP middleware and a <code>/metrics</code> endpoint.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/metrics"
+
+m := metrics.New()
+
+// Define metrics
+requestCount := m.Counter("http_requests_total", "Total HTTP requests")
+activeConns := m.Gauge("http_active_connections", "Active connections")
+latency := m.Histogram("http_request_duration_seconds", "Request latency")
+
+// Use in handlers
+requestCount.Inc()
+activeConns.Set(42)
+latency.Observe(0.023)
+
+// Expose /metrics endpoint (Prometheus scrape target)
+mux.Handle("/metrics", m.Handler())
+
+// Auto-instrument all HTTP traffic
+mux.Handle("/", m.Middleware()(handler))</code></pre>
+
+    <!-- DATABASE -->
+    <h2 id="database">Database</h2>
+    <p>Lightweight data layer via <code>pkg/db</code> with a JSON file database for prototyping and a SQL query builder for production.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/db"
+
+// JSON file database (zero setup)
+store := db.NewJSONStore("data/")
+store.Insert("users", map[string]interface{}{"name": "Alice", "age": 30})
+users := store.FindAll("users")
+store.Update("users", "id-123", map[string]interface{}{"age": 31})
+store.Delete("users", "id-123")
+
+// SQL query builder
+q := db.Table("users").
+    Where("age > ?", 18).
+    OrderBy("name ASC").
+    Limit(10).
+    SelectSQL()
+// → "SELECT * FROM users WHERE age > ? ORDER BY name ASC LIMIT 10"</code></pre>
+
+    <!-- MIGRATIONS -->
+    <h2 id="migrations">Migrations</h2>
+    <p>Version-tracked database migrations with up/down support via <code>pkg/migrate</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/migrate"
+
+mgr := migrate.New(db)
+
+mgr.RegisterSQL("001_create_users",
+    "CREATE TABLE users (id SERIAL PRIMARY KEY, name TEXT, email TEXT)",
+    "DROP TABLE users",
+)
+mgr.RegisterSQL("002_add_role",
+    "ALTER TABLE users ADD COLUMN role TEXT DEFAULT 'user'",
+    "ALTER TABLE users DROP COLUMN role",
+)
+
+mgr.Up()       // run all pending migrations
+mgr.Down()     // rollback last migration
+mgr.Status()   // list applied and pending
+mgr.Pending()  // list unapplied migrations</code></pre>
+
+    <!-- PLUGIN SYSTEM -->
+    <h2 id="plugin-system">Plugin System</h2>
+    <p>Hook-based plugin architecture via <code>pkg/plugin</code>. Plugins can add middleware, routes, template functions, and respond to lifecycle events.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/plugin"
+
+// Define a plugin
+myPlugin := plugin.New("analytics", func(p *plugin.Plugin) {
+    // Add middleware to all routes
+    p.AddMiddleware(trackingMiddleware)
+
+    // Add a new route
+    p.AddRoute("GET", "/analytics", analyticsHandler)
+
+    // Add template functions
+    p.AddTemplateFunc("trackEvent", func(name string) string {
+        return fmt.Sprintf(`&lt;script&gt;track("%s")&lt;/script&gt;`, name)
+    })
+
+    // Lifecycle hooks
+    p.OnStart(func() { log.Println("Analytics plugin started") })
+    p.OnShutdown(func() { flushEvents() })
+})
+
+// Register with the app
+app.Use(myPlugin)</code></pre>
+
+    <!-- SERVER ACTIONS -->
+    <h2 id="server-actions">Server Actions</h2>
+    <p>Form-based server mutations with built-in validation via <code>pkg/actions</code>. Similar to Next.js Server Actions but using standard HTML forms.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/actions"
+
+actions.Register("createPost", func(ctx *actions.Context) error {
+    title := ctx.FormValue("title")
+    body := ctx.FormValue("body")
+
+    // Validation
+    ctx.Validate("title", title != "", "Title is required")
+    ctx.Validate("body", len(body) > 10, "Body must be at least 10 chars")
+    if ctx.HasErrors() { return ctx.ValidationError() }
+
+    db.Insert("posts", map[string]interface{}{"title": title, "body": body})
+    return ctx.RedirectTo("/blog")
+})</code></pre>
+    <pre><code>&lt;!-- In templates --&gt;
+&lt;form method="POST" action="/actions/createPost"&gt;
+  {"{"}{ actionField "createPost" }{"}"} &lt;!-- hidden input with action name --&gt;
+  &lt;input name="title" type="text"&gt;
+  &lt;textarea name="body"&gt;&lt;/textarea&gt;
+  &lt;button type="submit"&gt;Create Post&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+    <!-- ERROR PAGES -->
+    <h2 id="error-pages">Error Pages</h2>
+    <p>Convention-based error pages via <code>pkg/errorpage</code>. Place <code>404.html</code> or <code>500.html</code> in <code>pages/</code> or any subdirectory for per-section error boundaries.</p>
+    <pre><code>pages/
+├── 404.html              # Global 404
+├── 500.html              # Global 500
+└── admin/
+    └── 404.html          # Admin-specific 404</code></pre>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/errorpage"
+
+// Apply middleware (auto-discovers error pages)
+handler := errorpage.Middleware("pages")(mux)
+
+// Error pages receive:
+// {"{"}{ .StatusCode }{"}"} — 404, 500, etc.
+// {"{"}{ .Message }{"}"} — human-readable error message
+// {"{"}{ .Path }{"}"} — the requested URL path</code></pre>
+
+    <!-- TESTING -->
+    <h2 id="testing">Testing</h2>
+    <p>Test client with HTTP method helpers and assertions via <code>pkg/testing</code>. Spin up your app in-process and make real HTTP requests.</p>
+    <pre><code>import nextest "github.com/salmanfaris22/nexgo/pkg/testing"
+
+func TestHomePage(t *testing.T) {
+    app := nextest.NewClient(myHandler)
+
+    // GET request
+    resp := app.GET("/")
+    resp.AssertStatus(200)
+    resp.AssertContains("Welcome")
+
+    // POST with form data
+    resp = app.POST("/api/users", nextest.Form{"name": "Alice", "email": "a@b.com"})
+    resp.AssertStatus(201)
+    resp.AssertJSON("name", "Alice")
+
+    // PUT / DELETE
+    app.PUT("/api/users/1", nextest.JSON{"name": "Bob"}).AssertStatus(200)
+    app.DELETE("/api/users/1").AssertStatus(204)
+}
+
+// Benchmarking
+func BenchmarkAPI(b *testing.B) {
+    app := nextest.NewClient(myHandler)
+    nextest.Bench(b, func() { app.GET("/api/data") })
+}</code></pre>
+
+    <!-- PER-ROUTE MIDDLEWARE -->
+    <h2 id="per-route-middleware">Per-Route Middleware</h2>
+    <p>Apply middleware to individual routes or groups via <code>pkg/middleware</code>. Includes built-in timeout, request ID, and CSP middleware with nonce support.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/middleware"
+
+// Per-route middleware
+mux.Handle("/api/slow", middleware.RouteMiddleware(
+    middleware.Timeout(5*time.Second),
+    middleware.RequestID(),
+)(slowHandler))
+
+// Route groups
+api := middleware.RouteGroup("/api",
+    middleware.Timeout(10*time.Second),
+    middleware.RequestID(),
+)
+api.Handle("/users", usersHandler)
+api.Handle("/posts", postsHandler)
+
+// CSP with nonce (auto-injected into templates as .CSPNonce)
+mux.Handle("/", middleware.CSP(middleware.CSPConfig{
+    ScriptSrc: "'nonce-{"{"}nonce{"}"}'",
+    StyleSrc:  "'self'",
+})(handler))</code></pre>
+
+    <!-- DEPLOYMENT ADAPTERS -->
+    <h2 id="deployment">Deployment Adapters</h2>
+    <p>One-command deployment to 8 platforms via <code>pkg/deploy</code>. Each adapter generates the necessary config files (Dockerfile, serverless handler, etc.).</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/deploy"
+
+// Generate deployment config
+deploy.Generate("docker")       // Dockerfile + docker-compose.yml
+deploy.Generate("vercel")       // vercel.json
+deploy.Generate("cloudflare")   // wrangler.toml
+deploy.Generate("lambda")       // serverless.yml + handler wrapper
+deploy.Generate("netlify")      // netlify.toml
+deploy.Generate("fly")          // fly.toml
+deploy.Generate("railway")      // railway.json
+deploy.Generate("k8s")          // deployment.yaml + service.yaml</code></pre>
+    <pre><code># CLI shortcut
+nexgo deploy docker      # generates Dockerfile and builds image
+nexgo deploy vercel      # generates vercel.json and deploys
+nexgo deploy k8s         # generates K8s manifests</code></pre>
+
+    <!-- REDIS CACHE -->
+    <h2 id="redis-cache">Redis Cache</h2>
+    <p>Zero-dependency Redis client using raw RESP protocol via <code>pkg/cache</code>. Includes connection pooling, key prefixing, and a <code>CacheAdapter</code> interface for swappable backends.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/cache"
+
+rc := cache.NewRedis(cache.RedisConfig{
+    Addr:      "localhost:6379",
+    Password:  "",
+    DB:        0,
+    PoolSize:  10,
+    KeyPrefix: "myapp:",
+})
+
+rc.Set("user:123", userData, 5*time.Minute)
+val, err := rc.Get("user:123")
+rc.Delete("user:123")
+
+// Use as CacheAdapter (swap in-memory / Redis without code changes)
+var store cache.CacheAdapter = rc
+store.Set("key", value, ttl)
+store.Get("key")</code></pre>
+
+    <!-- ASSET PIPELINE -->
+    <h2 id="asset-pipeline">Asset Pipeline</h2>
+    <p>CSS and JS minification, bundling, fingerprinting, and critical CSS extraction via <code>pkg/asset</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/asset"
+
+pipeline := asset.New(asset.Config{
+    SourceDir:  "static",
+    OutputDir:  ".nexgo/assets",
+    Minify:     true,
+    Bundle:     true,
+    Fingerprint: true,
+})
+
+// Process all assets
+pipeline.Build()
+
+// In templates, reference fingerprinted URLs:
+// &lt;link rel="stylesheet" href="{"{"}{ asset "/css/app.css" }{"}"}"&gt;
+// → &lt;link rel="stylesheet" href="/static/css/app.a1b2c3d4.css"&gt;
+
+// Critical CSS (inline above-the-fold styles)
+critical := pipeline.ExtractCritical("pages/index.html")
+// Inject into &lt;head&gt; as &lt;style&gt;...&lt;/style&gt;</code></pre>
+
+    <!-- ORM -->
+    <h2 id="orm">ORM</h2>
+    <p>Lightweight ORM with model definitions, auto-migration SQL generation, CRUD operations (JSON backend), and a fluent query DSL via <code>pkg/orm</code>.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/orm"
+
+// Define a model
+type User struct {
+    orm.Model
+    Name  string `json:"name"`
+    Email string `json:"email"`
+    Age   int    `json:"age"`
+}
+
+db := orm.New("data/")
+db.AutoMigrate(&amp;User{})  // generates CREATE TABLE SQL
+
+// CRUD
+db.Create(&amp;User{Name: "Alice", Email: "alice@example.com", Age: 30})
+
+var user User
+db.Find(&amp;user, "id = ?", 1)
+
+db.Where("age > ?", 18).Order("name").Limit(10).FindAll(&amp;users)
+
+// Fluent query with joins
+db.Table("users").
+    Join("posts", "users.id = posts.user_id").
+    Where("posts.published = ?", true).
+    Select("users.name", "COUNT(posts.id) as post_count").
+    GroupBy("users.name").
+    QuerySQL()</code></pre>
+
+    <!-- CLUSTER MODE -->
+    <h2 id="cluster-mode">Cluster Mode</h2>
+    <p>Run your app across multiple worker goroutines with graceful shutdown and zero-downtime restart via <code>pkg/cluster</code>. The built-in load balancer distributes requests across workers.</p>
+    <pre><code>import "github.com/salmanfaris22/nexgo/pkg/cluster"
+
+c := cluster.New(cluster.Config{
+    Workers:         4,                  // number of worker goroutines
+    GracefulTimeout: 30 * time.Second,   // max shutdown wait
+    Handler:         mux,
+    Addr:            ":3000",
+})
+
+// Start with automatic load balancing
+c.Start()
+
+// Zero-downtime restart (new workers start before old ones stop)
+// Send SIGUSR2 to trigger:
+// kill -USR2 &lt;pid&gt;
+
+// Graceful shutdown on SIGINT/SIGTERM
+// Workers finish in-flight requests before exiting</code></pre>
 
     <!-- CLI -->
     <h2 id="cli">CLI Commands</h2>

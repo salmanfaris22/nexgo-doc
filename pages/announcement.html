@@ -1,4 +1,4 @@
-<!-- pages/announcement.html — NexGo v1.2.0 Announcement -->
+<!-- pages/announcement.html — NexGo v2.0.1 Announcement -->
 
 <section class="announcement-hero">
   <div class="glow-orb glow-orb-violet" style="width:600px;height:600px;top:-200px;left:50%;transform:translateX(-50%);opacity:0.5;"></div>
@@ -11,11 +11,11 @@
     </div>
 
     <h1 class="display">
-      NexGo <span class="gradient-violet">v1.2.0</span>
+      NexGo <span class="gradient-violet">{{ .Props.versionBadge }}</span>
     </h1>
 
     <p class="announcement-desc">
-      Production-ready features: <strong>SEO tools</strong>, <strong>Streaming SSR</strong>, <strong>ISR</strong>, <strong>Worker Pools</strong>, <strong>Response Caching</strong>, <strong>Parallel Data Loading</strong>, and <strong>Template Caching</strong>.
+      The biggest release yet &mdash; <strong>Auth &amp; JWT</strong>, <strong>WebSockets</strong>, <strong>ORM</strong>, <strong>Deployment Adapters</strong>, <strong>Plugin System</strong>, <strong>i18n</strong>, <strong>Rate Limiting</strong>, <strong>Metrics</strong>, and <strong>17 more packages</strong> for production-grade Go apps.
     </p>
 
     <div class="announcement-actions">
@@ -31,9 +31,9 @@
     <div class="install-box" style="max-width:600px;width:100%;margin:2rem auto 0;">
       <div class="install-cmd">
         <span class="cmd-prefix">$</span>
-        <span class="cmd-text">go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.2.0</span>
+        <span class="cmd-text">{{ .Props.installCmd }}</span>
       </div>
-      <button class="copy-btn" data-copy="go install github.com/salmanfaris22/nexgo/cmd/nexgo@v1.2.0" title="Copy to clipboard">
+      <button class="copy-btn" data-copy="{{ .Props.installCmd }}" title="Copy to clipboard">
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <rect x="9" y="9" width="13" height="13" rx="2"/>
           <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
@@ -49,89 +49,274 @@
   <div class="container">
     <div class="text-center mb-lg">
       <div class="section-eyebrow">What's New</div>
-      <h2 class="heading-xl">7 New <span class="gradient-violet">Features</span></h2>
-      <p class="text-muted" style="max-width:500px;margin:1rem auto 0;">
-        Everything you need to build production-grade web apps with Go.
+      <h2 class="heading-xl">27 New <span class="gradient-violet">Features</span></h2>
+      <p class="text-muted" style="max-width:560px;margin:1rem auto 0;">
+        From authentication to deployment &mdash; everything you need to ship production apps with Go, all built in.
       </p>
     </div>
 
     <div class="grid-3 stagger">
 
       <div class="card feat-card announce-card">
-        <div class="feat-icon feat-icon-violet">🔍</div>
-        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">SEO Package</h3>
-        <p class="text-muted text-sm">Meta tags, OpenGraph, Twitter Cards, sitemap.xml, robots.txt, and JSON-LD structured data — all built into <code>pkg/seo</code>.</p>
+        <div class="feat-icon feat-icon-green">🌐</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Environment Variables</h3>
+        <p class="text-muted text-sm">Load <code>.env</code> files, validate required vars, set defaults, and access typed values. Supports multiple environments out of the box.</p>
         <div class="announce-tags">
-          <span class="announce-tag">OpenGraph</span>
-          <span class="announce-tag">Twitter Cards</span>
-          <span class="announce-tag">Sitemap</span>
-          <span class="announce-tag">JSON-LD</span>
+          <span class="announce-tag">pkg/env</span>
+          <span class="announce-tag">.env</span>
+          <span class="announce-tag">Typed Access</span>
         </div>
       </div>
 
       <div class="card feat-card announce-card">
-        <div class="feat-icon feat-icon-cyan">⚡</div>
-        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Streaming SSR</h3>
-        <p class="text-muted text-sm">Send HTML progressively as it's ready. Show the shell immediately, stream content later. Includes SSE support for real-time updates.</p>
+        <div class="feat-icon feat-icon-cyan">🗂️</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Session Management</h3>
+        <p class="text-muted text-sm">Cookie-backed sessions with configurable stores. Supports Flash messages, expiry, and secure defaults for production.</p>
         <div class="announce-tags">
-          <span class="announce-tag">Progressive</span>
-          <span class="announce-tag">SSE</span>
-          <span class="announce-tag">Fast TTFB</span>
+          <span class="announce-tag">pkg/session</span>
+          <span class="announce-tag">Cookies</span>
+          <span class="announce-tag">Flash</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-violet">🔑</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">JWT Authentication</h3>
+        <p class="text-muted text-sm">Sign, verify, and refresh JSON Web Tokens. Includes middleware for protected routes and role-based access control helpers.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/auth</span>
+          <span class="announce-tag">JWT</span>
+          <span class="announce-tag">RBAC</span>
+          <span class="announce-tag">Middleware</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-pink">🛡️</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">CSRF Protection</h3>
+        <p class="text-muted text-sm">Automatic token generation and validation middleware. Works with forms and AJAX requests, integrates with sessions.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/csrf</span>
+          <span class="announce-tag">Token</span>
+          <span class="announce-tag">Middleware</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-cyan">⏱️</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Rate Limiting</h3>
+        <p class="text-muted text-sm">IP-based and key-based rate limiting with sliding window algorithm. Returns standard rate-limit headers automatically.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/ratelimit</span>
+          <span class="announce-tag">Sliding Window</span>
+          <span class="announce-tag">Headers</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-green">🌍</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">i18n &amp; RTL</h3>
+        <p class="text-muted text-sm">Internationalization with locale files, pluralization rules, and automatic RTL layout detection. Template helpers included.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/i18n</span>
+          <span class="announce-tag">Locales</span>
+          <span class="announce-tag">Plurals</span>
+          <span class="announce-tag">RTL</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-violet">🖼️</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Image Optimization</h3>
+        <p class="text-muted text-sm">Resize, crop, and convert images on the fly. WebP output, lazy-load attributes, and responsive srcset generation.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/image</span>
+          <span class="announce-tag">WebP</span>
+          <span class="announce-tag">Resize</span>
+          <span class="announce-tag">Srcset</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-pink">🔌</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">WebSocket Support</h3>
+        <p class="text-muted text-sm">Full-duplex WebSocket connections with rooms, broadcast, and per-client messaging. Built on gorilla/websocket under the hood.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/websocket</span>
+          <span class="announce-tag">Rooms</span>
+          <span class="announce-tag">Broadcast</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-green">💚</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Health Checks</h3>
+        <p class="text-muted text-sm">Liveness and readiness endpoints for Kubernetes and load balancers. Register custom checkers for DB, Redis, and more.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/health</span>
+          <span class="announce-tag">Liveness</span>
+          <span class="announce-tag">Readiness</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-cyan">📋</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Structured Logging</h3>
+        <p class="text-muted text-sm">JSON and text loggers with levels, context fields, and request-scoped tracing. Drop-in replacement for the standard library.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/logger</span>
+          <span class="announce-tag">JSON</span>
+          <span class="announce-tag">Levels</span>
+          <span class="announce-tag">Trace ID</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-violet">📊</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Prometheus Metrics</h3>
+        <p class="text-muted text-sm">Expose request duration, status codes, and custom counters at <code>/metrics</code>. Grafana-ready with zero configuration.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/metrics</span>
+          <span class="announce-tag">Prometheus</span>
+          <span class="announce-tag">Grafana</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-pink">🗄️</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Database &amp; SQL Builder</h3>
+        <p class="text-muted text-sm">Fluent query builder for Postgres, MySQL, and SQLite. Connection pooling, transactions, and named parameters built in.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/db</span>
+          <span class="announce-tag">Postgres</span>
+          <span class="announce-tag">MySQL</span>
+          <span class="announce-tag">SQLite</span>
         </div>
       </div>
 
       <div class="card feat-card announce-card">
         <div class="feat-icon feat-icon-green">🔄</div>
-        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">ISR</h3>
-        <p class="text-muted text-sm">Incremental Static Regeneration — cache pages and rebuild them in the background after a configurable interval, like Next.js ISR.</p>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Migration System</h3>
+        <p class="text-muted text-sm">Version-controlled schema migrations with up/down support. CLI commands to create, run, rollback, and check migration status.</p>
         <div class="announce-tags">
-          <span class="announce-tag">Cache</span>
-          <span class="announce-tag">Background Rebuild</span>
+          <span class="announce-tag">pkg/migrate</span>
+          <span class="announce-tag">Up/Down</span>
+          <span class="announce-tag">CLI</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-cyan">🧩</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Plugin System</h3>
+        <p class="text-muted text-sm">Register, load, and compose plugins with lifecycle hooks. Build reusable modules that integrate cleanly into any NexGo app.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/plugin</span>
+          <span class="announce-tag">Lifecycle</span>
+          <span class="announce-tag">Composable</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-violet">⚡</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Server Actions</h3>
+        <p class="text-muted text-sm">Define server-side functions that can be called directly from templates. Form handling, validation, and redirect helpers included.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/actions</span>
+          <span class="announce-tag">Forms</span>
+          <span class="announce-tag">Validation</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-pink">🚨</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Error Pages &amp; Boundaries</h3>
+        <p class="text-muted text-sm">Custom error pages for 404, 500, and any status code. Error boundaries catch panics and render fallback templates gracefully.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/errorpage</span>
+          <span class="announce-tag">404/500</span>
+          <span class="announce-tag">Boundaries</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-green">🧪</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Testing Utilities</h3>
+        <p class="text-muted text-sm">Test helpers for routes, middleware, and templates. Includes a mock server, request builders, and assertion helpers.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/testing</span>
+          <span class="announce-tag">Mock Server</span>
+          <span class="announce-tag">Assertions</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-cyan">🔒</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Per-Route Middleware &amp; CSP</h3>
+        <p class="text-muted text-sm">Attach middleware to individual routes or groups. Content Security Policy headers with nonce generation for inline scripts.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/middleware</span>
+          <span class="announce-tag">CSP</span>
+          <span class="announce-tag">Nonce</span>
+          <span class="announce-tag">Groups</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-violet">🚀</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Deployment Adapters</h3>
+        <p class="text-muted text-sm">One-command deploy to 8 platforms: Docker, Fly.io, Railway, Render, Vercel, AWS Lambda, GCP Cloud Run, and DigitalOcean.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/deploy</span>
+          <span class="announce-tag">Docker</span>
+          <span class="announce-tag">Fly.io</span>
+          <span class="announce-tag">AWS</span>
+          <span class="announce-tag">+5 more</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-pink">💾</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Redis Cache</h3>
+        <p class="text-muted text-sm">Redis-backed caching with TTL, tags, and invalidation. Includes middleware for full-page caching and fragment caching helpers.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/cache</span>
+          <span class="announce-tag">Redis</span>
           <span class="announce-tag">TTL</span>
-        </div>
-      </div>
-
-      <div class="card feat-card announce-card">
-        <div class="feat-icon feat-icon-pink">🧵</div>
-        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Worker Pools</h3>
-        <p class="text-muted text-sm">Run tasks concurrently with controlled parallelism. Map, ForEach, and global pool support with error handling.</p>
-        <div class="announce-tags">
-          <span class="announce-tag">Concurrent</span>
-          <span class="announce-tag">Map</span>
-          <span class="announce-tag">ForEach</span>
-        </div>
-      </div>
-
-      <div class="card feat-card announce-card">
-        <div class="feat-icon feat-icon-violet">💾</div>
-        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Response Caching</h3>
-        <p class="text-muted text-sm">Cache GET responses in memory with TTL. Automatic X-Cache: HIT/MISS headers. Middleware and manual API.</p>
-        <div class="announce-tags">
-          <span class="announce-tag">TTL</span>
-          <span class="announce-tag">Middleware</span>
-          <span class="announce-tag">X-Cache</span>
-        </div>
-      </div>
-
-      <div class="card feat-card announce-card">
-        <div class="feat-icon feat-icon-cyan">🔀</div>
-        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Parallel Data Loading</h3>
-        <p class="text-muted text-sm">Load multiple data sources concurrently and merge results — like Promise.all() in JS. Perfect for dashboards and complex pages.</p>
-        <div class="announce-tags">
-          <span class="announce-tag">Promise.all</span>
-          <span class="announce-tag">Concurrent</span>
-          <span class="announce-tag">Merge</span>
+          <span class="announce-tag">Tags</span>
         </div>
       </div>
 
       <div class="card feat-card announce-card">
         <div class="feat-icon feat-icon-green">📦</div>
-        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Template Caching</h3>
-        <p class="text-muted text-sm">Templates compiled once and cached for fast subsequent renders. Parallel template loading with worker pool for large projects.</p>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Asset Pipeline</h3>
+        <p class="text-muted text-sm">Bundle, minify, and fingerprint CSS and JS assets. Automatic cache-busting URLs and source map support for development.</p>
         <div class="announce-tags">
-          <span class="announce-tag">Compile Once</span>
-          <span class="announce-tag">Parallel Load</span>
-          <span class="announce-tag">Cache Stats</span>
+          <span class="announce-tag">pkg/asset</span>
+          <span class="announce-tag">Minify</span>
+          <span class="announce-tag">Fingerprint</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-cyan">🏗️</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">ORM Layer</h3>
+        <p class="text-muted text-sm">Lightweight ORM with model definitions, relationships (has-one, has-many, belongs-to), eager loading, and soft deletes.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/orm</span>
+          <span class="announce-tag">Relations</span>
+          <span class="announce-tag">Eager Load</span>
+          <span class="announce-tag">Soft Delete</span>
+        </div>
+      </div>
+
+      <div class="card feat-card announce-card">
+        <div class="feat-icon feat-icon-violet">🖧</div>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Cluster Mode</h3>
+        <p class="text-muted text-sm">Run multiple NexGo instances with shared state. Sticky sessions, distributed locks, and leader election for zero-downtime deploys.</p>
+        <div class="announce-tags">
+          <span class="announce-tag">pkg/cluster</span>
+          <span class="announce-tag">Sticky Sessions</span>
+          <span class="announce-tag">Leader Election</span>
         </div>
       </div>
 
@@ -139,36 +324,40 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════ SEO DEEP DIVE ═══════════════════════════ -->
+<!-- ═══════════════════════════ AUTH DEEP DIVE ═══════════════════════════ -->
 <section style="background:var(--bg-2);border-top:1px solid var(--border-2);">
   <div class="container">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;" class="responsive-split">
       <div class="reveal">
-        <div class="section-eyebrow">New in v1.2.0</div>
-        <h2 class="heading-lg" style="margin-bottom:1rem;">Built-in <span class="gradient-violet">SEO Tools</span></h2>
+        <div class="section-eyebrow">New in {{ .Props.versionBadge }}</div>
+        <h2 class="heading-lg" style="margin-bottom:1rem;">Built-in <span class="gradient-violet">Auth &amp; Sessions</span></h2>
         <p class="text-muted" style="margin-bottom:1.5rem;line-height:1.75;">
-          NexGo now ships with a complete SEO package. Generate meta tags, sitemaps, robots.txt, and JSON-LD structured data — no external libraries needed.
+          NexGo now ships with a complete authentication package. JWT tokens, session management, role-based access control, and CSRF protection &mdash; no external libraries needed.
         </p>
         <div style="display:flex;flex-direction:column;gap:0.75rem;">
           <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
-            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
-            <span class="text-muted">Meta tags with OpenGraph & Twitter Cards</span>
+            <span style="color:#4ade80;font-size:1.1rem;">&#10003;</span>
+            <span class="text-muted">JWT sign, verify, and refresh with configurable expiry</span>
           </div>
           <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
-            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
-            <span class="text-muted">Automatic sitemap.xml generation</span>
+            <span style="color:#4ade80;font-size:1.1rem;">&#10003;</span>
+            <span class="text-muted">Cookie-backed sessions with flash messages</span>
           </div>
           <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
-            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
-            <span class="text-muted">Robots.txt with allow/disallow rules</span>
+            <span style="color:#4ade80;font-size:1.1rem;">&#10003;</span>
+            <span class="text-muted">Role-based access control middleware</span>
           </div>
           <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
-            <span style="color:#4ade80;font-size:1.1rem;">✓</span>
-            <span class="text-muted">JSON-LD structured data for rich results</span>
+            <span style="color:#4ade80;font-size:1.1rem;">&#10003;</span>
+            <span class="text-muted">CSRF token generation &amp; validation</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.75rem;font-size:0.9rem;">
+            <span style="color:#4ade80;font-size:1.1rem;">&#10003;</span>
+            <span class="text-muted">Protected route groups with a single line</span>
           </div>
         </div>
         <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
-          <a href="/docs#seo" class="btn btn-primary">SEO Docs →</a>
+          <a href="/docs#auth" class="btn btn-primary">Auth Docs &rarr;</a>
         </div>
       </div>
 
@@ -176,30 +365,37 @@
         <div class="code-block">
           <div class="code-block-header">
             <div class="code-dots"><span></span><span></span><span></span></div>
-            <span class="code-label">SEO Setup</span>
+            <span class="code-label">Auth Setup</span>
           </div>
-          <div class="code-body"><pre><span class="c-keyword">import</span> <span class="c-string">"github.com/salmanfaris22/nexgo/pkg/seo"</span>
+          <div class="code-body"><pre><span class="c-keyword">import</span> (
+    <span class="c-string">"github.com/salmanfaris22/nexgo/pkg/auth"</span>
+    <span class="c-string">"github.com/salmanfaris22/nexgo/pkg/session"</span>
+)
 
-<span class="c-comment">// Meta tags</span>
-meta := seo.<span class="c-func">DefaultMeta</span>(<span class="c-string">"My Site"</span>, <span class="c-string">"A great website"</span>, <span class="c-string">"https://mysite.com"</span>)
-meta.Keywords = []<span class="c-type">string</span>{<span class="c-string">"go"</span>, <span class="c-string">"web"</span>, <span class="c-string">"framework"</span>}
-meta.OGImage = <span class="c-string">"https://mysite.com/og.png"</span>
-meta.TwitterCard = <span class="c-string">"summary_large_image"</span>
-
-<span class="c-comment">// Sitemap</span>
-entries := []seo.SitemapEntry{
-    {Loc: <span class="c-string">"https://mysite.com/"</span>, ChangeFreq: <span class="c-string">"daily"</span>, Priority: <span class="c-num">1.0</span>},
-    {Loc: <span class="c-string">"https://mysite.com/about"</span>, ChangeFreq: <span class="c-string">"monthly"</span>, Priority: <span class="c-num">0.8</span>},
+<span class="c-comment">// Configure JWT</span>
+jwtCfg := auth.<span class="c-func">JWTConfig</span>{
+    Secret:    []<span class="c-type">byte</span>(<span class="c-string">"my-secret-key"</span>),
+    ExpiresIn: <span class="c-num">24</span> * time.Hour,
+    Issuer:    <span class="c-string">"myapp"</span>,
 }
-xml, _ := seo.<span class="c-func">RenderSitemap</span>(entries)
 
-<span class="c-comment">// JSON-LD</span>
-data := <span class="c-keyword">map</span>[<span class="c-type">string</span>]<span class="c-type">interface</span>{}{
-    <span class="c-string">"@context"</span>: <span class="c-string">"https://schema.org"</span>,
-    <span class="c-string">"@type"</span>:    <span class="c-string">"Organization"</span>,
-    <span class="c-string">"name"</span>:     <span class="c-string">"My Company"</span>,
-}
-jsonld := seo.<span class="c-func">JSONLD</span>(data)</pre></div>
+<span class="c-comment">// Sign a token</span>
+token, _ := auth.<span class="c-func">Sign</span>(jwtCfg, auth.<span class="c-func">Claims</span>{
+    UserID: <span class="c-string">"usr_123"</span>,
+    Role:   <span class="c-string">"admin"</span>,
+})
+
+<span class="c-comment">// Protect routes</span>
+app.<span class="c-func">Group</span>(<span class="c-string">"/dashboard"</span>,
+    auth.<span class="c-func">RequireJWT</span>(jwtCfg),
+    auth.<span class="c-func">RequireRole</span>(<span class="c-string">"admin"</span>),
+)
+
+<span class="c-comment">// Sessions</span>
+store := session.<span class="c-func">NewCookieStore</span>(<span class="c-string">"session-secret"</span>)
+sess, _ := store.<span class="c-func">Get</span>(r, <span class="c-string">"sid"</span>)
+sess.<span class="c-func">Set</span>(<span class="c-string">"user"</span>, <span class="c-string">"usr_123"</span>)
+sess.<span class="c-func">Flash</span>(<span class="c-string">"Welcome back!"</span>)</pre></div>
         </div>
       </div>
     </div>
@@ -254,6 +450,121 @@ jsonld := seo.<span class="c-func">JSONLD</span>(data)</pre></div>
             <td>Template Caching</td>
             <td><code>LoadAll()</code>, <code>LoadParallel()</code>, <code>CacheInfo()</code>, <code>NewParallelLoader()</code></td>
           </tr>
+          <tr>
+            <td><code>pkg/env</code></td>
+            <td>Environment Variables</td>
+            <td><code>Load()</code>, <code>Get()</code>, <code>MustGet()</code>, <code>GetInt()</code>, <code>GetBool()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/session</code></td>
+            <td>Session Management</td>
+            <td><code>NewCookieStore()</code>, <code>Get()</code>, <code>Set()</code>, <code>Flash()</code>, <code>Destroy()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/auth</code></td>
+            <td>JWT Authentication</td>
+            <td><code>Sign()</code>, <code>Verify()</code>, <code>Refresh()</code>, <code>RequireJWT()</code>, <code>RequireRole()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/csrf</code></td>
+            <td>CSRF Protection</td>
+            <td><code>Generate()</code>, <code>Validate()</code>, <code>Middleware()</code>, <code>TemplateField()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/ratelimit</code></td>
+            <td>Rate Limiting</td>
+            <td><code>New()</code>, <code>Allow()</code>, <code>Middleware()</code>, <code>ByIP()</code>, <code>ByKey()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/i18n</code></td>
+            <td>i18n &amp; RTL</td>
+            <td><code>Load()</code>, <code>T()</code>, <code>Plural()</code>, <code>SetLocale()</code>, <code>IsRTL()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/image</code></td>
+            <td>Image Optimization</td>
+            <td><code>Resize()</code>, <code>Crop()</code>, <code>ToWebP()</code>, <code>Srcset()</code>, <code>LazyAttr()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/websocket</code></td>
+            <td>WebSocket Support</td>
+            <td><code>Upgrade()</code>, <code>OnMessage()</code>, <code>Broadcast()</code>, <code>JoinRoom()</code>, <code>Send()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/health</code></td>
+            <td>Health Checks</td>
+            <td><code>NewChecker()</code>, <code>AddCheck()</code>, <code>LiveHandler()</code>, <code>ReadyHandler()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/logger</code></td>
+            <td>Structured Logging</td>
+            <td><code>New()</code>, <code>Info()</code>, <code>Error()</code>, <code>WithFields()</code>, <code>WithTraceID()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/metrics</code></td>
+            <td>Prometheus Metrics</td>
+            <td><code>Handler()</code>, <code>Counter()</code>, <code>Histogram()</code>, <code>Middleware()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/db</code></td>
+            <td>Database &amp; SQL Builder</td>
+            <td><code>Connect()</code>, <code>Select()</code>, <code>Insert()</code>, <code>Where()</code>, <code>Tx()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/migrate</code></td>
+            <td>Migration System</td>
+            <td><code>Create()</code>, <code>Up()</code>, <code>Down()</code>, <code>Status()</code>, <code>Rollback()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/plugin</code></td>
+            <td>Plugin System</td>
+            <td><code>Register()</code>, <code>Load()</code>, <code>OnInit()</code>, <code>OnShutdown()</code>, <code>List()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/actions</code></td>
+            <td>Server Actions</td>
+            <td><code>Handle()</code>, <code>Validate()</code>, <code>Redirect()</code>, <code>BindForm()</code>, <code>Errors()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/errorpage</code></td>
+            <td>Error Pages &amp; Boundaries</td>
+            <td><code>Register()</code>, <code>Render()</code>, <code>Boundary()</code>, <code>Fallback()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/testing</code></td>
+            <td>Testing Utilities</td>
+            <td><code>NewServer()</code>, <code>Request()</code>, <code>AssertStatus()</code>, <code>AssertBody()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/middleware</code></td>
+            <td>Per-Route Middleware &amp; CSP</td>
+            <td><code>Use()</code>, <code>Group()</code>, <code>CSP()</code>, <code>Nonce()</code>, <code>Chain()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/deploy</code></td>
+            <td>Deployment Adapters</td>
+            <td><code>Docker()</code>, <code>Fly()</code>, <code>Railway()</code>, <code>Vercel()</code>, <code>Lambda()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/cache</code></td>
+            <td>Redis Cache</td>
+            <td><code>NewRedis()</code>, <code>Get()</code>, <code>Set()</code>, <code>Invalidate()</code>, <code>TaggedCache()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/asset</code></td>
+            <td>Asset Pipeline</td>
+            <td><code>Bundle()</code>, <code>Minify()</code>, <code>Fingerprint()</code>, <code>URL()</code>, <code>SourceMap()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/orm</code></td>
+            <td>ORM Layer</td>
+            <td><code>Model()</code>, <code>HasMany()</code>, <code>BelongsTo()</code>, <code>Eager()</code>, <code>SoftDelete()</code></td>
+          </tr>
+          <tr>
+            <td><code>pkg/cluster</code></td>
+            <td>Cluster Mode</td>
+            <td><code>Join()</code>, <code>Sticky()</code>, <code>Lock()</code>, <code>Elect()</code>, <code>Broadcast()</code></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -266,13 +577,13 @@ jsonld := seo.<span class="c-func">JSONLD</span>(data)</pre></div>
     <div style="text-align:center;padding:4rem 0;position:relative;overflow:hidden;">
       <div class="glow-orb glow-orb-violet" style="width:500px;height:300px;top:-50px;left:50%;transform:translateX(-50%);opacity:0.5;position:absolute;"></div>
       <div style="position:relative;z-index:1;" class="reveal">
-        <h2 class="heading-xl" style="margin-bottom:1rem;">Ready to upgrade to <span class="gradient-violet">v1.2.0</span>?</h2>
+        <h2 class="heading-xl" style="margin-bottom:1rem;">Ready to upgrade to <span class="gradient-violet">{{ .Props.versionBadge }}</span>?</h2>
         <p class="text-muted" style="max-width:480px;margin:0 auto 2.5rem;">
-          Drop-in upgrade — no breaking changes. Just install and start building.
+          Drop-in upgrade from {{ .Props.prevBadge }} &mdash; no breaking changes. Just install and start building.
         </p>
         <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
           <a href="/docs#quick-start" class="btn btn-primary btn-lg">
-            Get Started →
+            Get Started &rarr;
           </a>
           <a href="https://github.com/salmanfaris22/nexgo" target="_blank" class="btn btn-secondary btn-lg">
             Star on GitHub
