@@ -8,31 +8,44 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/salmanfaris22/nexgo/pkg/config"
-	"github.com/salmanfaris22/nexgo/pkg/server"
+	"github.com/salmanfaris22/nexgo/v2/pkg/builder"
+	"github.com/salmanfaris22/nexgo/v2/pkg/config"
+	"github.com/salmanfaris22/nexgo/v2/pkg/renderer"
+	"github.com/salmanfaris22/nexgo/v2/pkg/server"
 
 	info "github.com/salmanfaris22/nexgo-website/config"
 )
 
-func main() {
-	cfg, err := config.Load(".")
-	if err != nil {
-		log.Fatal(err)
-	}
+// Shared data loaders — used by both server and builder
+var versionData = map[string]interface{}{
+	"version":        info.Version,
+	"prevVersion":    info.PrevVersion,
+	"goVersion":      info.GoVersion,
+	"installCmd":     info.InstallCmd,
+	"prevInstallCmd": info.PrevInstallCmd,
+	"latestBadge":    info.LatestBadge,
+	"versionBadge":   info.VersionBadge,
+	"prevBadge":      info.PrevBadge,
+}
 
-	srv, err := server.New(cfg)
-	if err != nil {
-		log.Fatal(err)
-	}
+var versionLoader renderer.DataLoader = func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+	return versionData, nil
+}
 
-	// Register data loaders (like getServerSideProps in Next.js)
-	// srv.RegisterDataLoader("/blog/[slug]", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
-	//     return map[string]interface{}{"slug": params["slug"]}, nil
-	// })
+type loaderRegistrar interface {
+	RegisterDataLoader(route string, loader renderer.DataLoader)
+}
 
-	srv.RegisterDataLoader("/blog/[slug]", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
+func registerLoaders(r loaderRegistrar) {
+	r.RegisterDataLoader("/", versionLoader)
+	r.RegisterDataLoader("/docs", versionLoader)
+	r.RegisterDataLoader("/blog", versionLoader)
+	r.RegisterDataLoader("/compare", versionLoader)
+	r.RegisterDataLoader("/versions", versionLoader)
+	r.RegisterDataLoader("/announcement", versionLoader)
+
+	r.RegisterDataLoader("/blog/[slug]", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
 		slug := params["slug"]
-		// In a real app, fetch from DB or CMS
 		posts := getBlogPosts()
 		for _, post := range posts {
 			if post["slug"] == slug {
@@ -41,42 +54,31 @@ func main() {
 		}
 		return map[string]interface{}{"post": nil}, nil
 	})
+}
 
-	// Global version data for all pages
-	versionData := map[string]interface{}{
-		"version":        info.Version,
-		"prevVersion":    info.PrevVersion,
-		"goVersion":      info.GoVersion,
-		"installCmd":     info.InstallCmd,
-		"prevInstallCmd": info.PrevInstallCmd,
-		"latestBadge":    info.LatestBadge,
-		"versionBadge":   info.VersionBadge,
-		"prevBadge":      info.PrevBadge,
+func main() {
+	cfg, err := config.Load(".")
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	srv.RegisterDataLoader("/index", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
-		return versionData, nil
-	})
+	// Build mode: go run main.go build
+	if len(os.Args) > 1 && os.Args[1] == "build" {
+		b := builder.New(cfg)
+		registerLoaders(b)
+		if _, err := b.Build(); err != nil {
+			log.Fatal(err)
+		}
+		return
+	}
 
-	srv.RegisterDataLoader("/docs", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
-		return versionData, nil
-	})
+	// Server mode (default)
+	srv, err := server.New(cfg)
+	if err != nil {
+		log.Fatal(err)
+	}
+	registerLoaders(srv)
 
-	srv.RegisterDataLoader("/blog", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
-		return versionData, nil
-	})
-
-	srv.RegisterDataLoader("/compare", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
-		return versionData, nil
-	})
-
-	srv.RegisterDataLoader("/versions", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
-		return versionData, nil
-	})
-
-	srv.RegisterDataLoader("/announcement", func(req *http.Request, params map[string]string) (map[string]interface{}, error) {
-		return versionData, nil
-	})
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
 

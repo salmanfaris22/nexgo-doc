@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	info "github.com/salmanfaris22/nexgo-website/config"
-	"github.com/salmanfaris22/nexgo/pkg/api"
-	"github.com/salmanfaris22/nexgo/pkg/router"
+	"github.com/salmanfaris22/nexgo/v2/pkg/api"
+	"github.com/salmanfaris22/nexgo/v2/pkg/router"
 )
 
 func init() {

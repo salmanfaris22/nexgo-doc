@@ -1,8 +1,8 @@
 package info
 
 const (
-	Version     = "2.0.2"
-	PrevVersion = "1.2.0"
+	Version     = "2.0.3"
+	PrevVersion = "2.0.2"
 	GoVersion   = "1.22+"
 
 	InstallCmd     = "go install github.com/salmanfaris22/nexgo/v2/cmd/nexgo@v" + Version
