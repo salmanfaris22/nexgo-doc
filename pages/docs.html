@@ -119,6 +119,22 @@ cd my-app
 go mod tidy
 nexgo dev</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">Terminal Output</div>
+      <pre class="preview-pre"><code><span class="out-green">✓</span> Created project <span class="out-cyan">my-app</span> with NexGo template
+<span class="out-dim">  → pages/index.html</span>
+<span class="out-dim">  → layouts/default.html</span>
+<span class="out-dim">  → static/css/global.css</span>
+<span class="out-dim">  → nexgo.config.json</span>
+<span class="out-dim">  → main.go</span>
+
+<span class="out-green">✓</span> Dependencies installed
+
+<span class="out-violet">[NexGo]</span> Dev server → <span class="out-cyan">http://localhost:3000</span>
+<span class="out-violet">[NexGo]</span> Hot reload enabled. Watching 5 files…
+<span class="out-violet">[NexGo]</span> Press <span class="out-yellow">Ctrl+C</span> to stop.</code></pre>
+    </div>
+
     <p>Open <code>http://localhost:3000</code> — your app is live with hot reload enabled.</p>
 
     <!-- PROJECT STRUCTURE -->
@@ -182,6 +198,17 @@ nexgo dev</code></pre>
     <p>Access parameters in templates:</p>
     <pre><code>&lt;h1&gt;User {"{"}{ .Params.id }{"}"}&lt;/h1&gt;
 &lt;p&gt;Post: {"{"}{ .Params.slug }{"}"}&lt;/p&gt;</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Rendered Output — <code>/users/42</code></div>
+      <div class="preview-browser">
+        <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-url">localhost:3000/users/42</span></div>
+        <div class="browser-body">
+          <h1 style="font-size:1.25rem;margin:0 0 0.25rem;">User 42</h1>
+          <p style="margin:0;color:var(--text-muted);">Post: my-first-blog</p>
+        </div>
+      </div>
+    </div>
 
     <!-- LAYOUTS -->
     <h2 id="layouts">Layouts &amp; Components</h2>
@@ -248,6 +275,17 @@ func Hello(w http.ResponseWriter, r *http.Request) {
     })
 }</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">API Response — <code>GET /api/hello</code></div>
+      <pre class="preview-pre"><code><span class="out-dim">HTTP/1.1</span> <span class="out-green">200 OK</span>
+<span class="out-dim">Content-Type: application/json</span>
+
+{
+  <span class="out-cyan">"message"</span>: <span class="out-green">"Hello from NexGo!"</span>,
+  <span class="out-cyan">"method"</span>:  <span class="out-green">"GET"</span>
+}</code></pre>
+    </div>
+
     <!-- DATA LOADERS -->
     <h2 id="data-loaders">Data Loaders</h2>
     <p>Data loaders work like Next.js <code>getServerSideProps</code> — fetch data server-side before rendering:</p>
@@ -265,13 +303,31 @@ srv.RegisterDataLoader("/blog/[slug]", func(
 })</code></pre>
 
     <pre><code>&lt;!-- pages/blog/[slug].html --&gt;
-&lt;h1&gt;{"{"}{ .Props.post.Title }{"}"}&lt;/h1&gt;
+&lt;h1&gt;{"{"}{ .Props.post.Title }{"}"}&lt;/h1&gt;</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">Rendered Output — <code>/blog/hello-world</code></div>
+      <div class="preview-browser">
+        <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-url">localhost:3000/blog/hello-world</span></div>
+        <div class="browser-body">
+          <h1 style="font-size:1.25rem;margin:0;">Getting Started with NexGo</h1>
+          <p style="margin:0.5rem 0 0;color:var(--text-muted);font-size:0.85rem;">Data loaded server-side via DataLoader before page render</p>
+        </div>
+      </div>
+    </div>
 
     <!-- MIDDLEWARE -->
     <h2 id="middleware">Middleware</h2>
     <p>Built-in middleware is applied in this order:</p>
     <pre><code>Request → Recover → Logger → SecurityHeaders → [Gzip] → Handler</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Server Log — Middleware in action</div>
+      <pre class="preview-pre"><code><span class="out-violet">[NexGo]</span> <span class="out-green">GET</span>  /about       <span class="out-green">200</span>  <span class="out-dim">1.2ms</span>
+<span class="out-violet">[NexGo]</span> <span class="out-cyan">POST</span> /api/users   <span class="out-green">201</span>  <span class="out-dim">3.8ms</span>
+<span class="out-violet">[NexGo]</span> <span class="out-green">GET</span>  /not-found   <span class="out-yellow">404</span>  <span class="out-dim">0.4ms</span>
+<span class="out-violet">[NexGo]</span> <span class="out-green">GET</span>  /api/crash   <span class="out-red">500</span>  <span class="out-dim">0.1ms</span> <span class="out-red">recovered: nil pointer</span></code></pre>
+    </div>
 
     <div class="table-wrap" style="margin:1rem 0;">
       <table>
@@ -290,9 +346,19 @@ srv.RegisterDataLoader("/blog/[slug]", func(
     <!-- HOT RELOAD -->
     <h2 id="hot-reload">Hot Reload (HMR)</h2>
     <p>Run <code>nexgo dev</code> — file watcher polls every 500ms, broadcasts reload via SSE to all connected browsers.</p>
-    <pre><code>nexgo dev
-# [NexGo] Dev server → http://localhost:3000
-# [NexGo] Hot reload enabled. Press Ctrl+C to stop.</code></pre>
+    <pre><code>nexgo dev</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Terminal Output — Hot Reload</div>
+      <pre class="preview-pre"><code><span class="out-violet">[NexGo]</span> Dev server → <span class="out-cyan">http://localhost:3000</span>
+<span class="out-violet">[NexGo]</span> Hot reload enabled. Watching <span class="out-yellow">12</span> files…
+<span class="out-violet">[NexGo]</span> Press <span class="out-yellow">Ctrl+C</span> to stop.
+
+<span class="out-dim">— you edit pages/about.html —</span>
+
+<span class="out-violet">[HMR]</span> <span class="out-yellow">Change detected:</span> pages/about.html
+<span class="out-violet">[HMR]</span> <span class="out-green">✓</span> Browser reloaded <span class="out-dim">(12ms)</span></code></pre>
+    </div>
 
     <!-- DEVTOOLS -->
     <h2 id="devtools">DevTools Panel</h2>
@@ -312,9 +378,23 @@ srv.RegisterDataLoader("/blog/[slug]", func(
 
     <!-- BUILDING -->
     <h2 id="building">Building for Production</h2>
-    <pre><code>nexgo build       # Static site generation → .nexgo/out/
-nexgo start       # Production server (no HMR, Gzip on)
+    <pre><code>nexgo build
+nexgo start
 nexgo start --port 4000</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Terminal Output — Build &amp; Start</div>
+      <pre class="preview-pre"><code><span class="out-dim">$ nexgo build</span>
+<span class="out-violet">[NexGo]</span> Building static site…
+<span class="out-green">✓</span> Compiled <span class="out-cyan">8 pages</span>
+<span class="out-green">✓</span> Processed <span class="out-cyan">3 API routes</span>
+<span class="out-green">✓</span> Copied static assets <span class="out-dim">(14 files)</span>
+<span class="out-green">✓</span> Output → <span class="out-cyan">.nexgo/out/</span> <span class="out-dim">(234 KB)</span>
+
+<span class="out-dim">$ nexgo start</span>
+<span class="out-violet">[NexGo]</span> Production server → <span class="out-cyan">http://localhost:3000</span>
+<span class="out-violet">[NexGo]</span> Gzip <span class="out-green">enabled</span> · HMR <span class="out-dim">disabled</span></code></pre>
+    </div>
 
     <!-- DEPLOYING -->
     <h2 id="deploying">Deploying</h2>
@@ -353,15 +433,14 @@ ssh server '/opt/myapp/myapp'</code></pre>
     <h3>String</h3>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Function</th><th>Usage</th><th>Description</th></tr></thead>
+        <thead><tr><th>Function</th><th>Usage</th><th>Output</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td><code>upper</code></td><td><code>{"{"}{ upper "hello" }{"}"}</code></td><td>Uppercase</td></tr>
-          <tr><td><code>lower</code></td><td><code>{"{"}{ lower "HI" }{"}"}</code></td><td>Lowercase</td></tr>
-          <tr><td><code>title</code></td><td><code>{"{"}{ title "hello world" }{"}"}</code></td><td>Title case</td></tr>
-          <tr><td><code>trim</code></td><td><code>{"{"}{ trim "  hi  " }{"}"}</code></td><td>Trim whitespace</td></tr>
-          <tr><td><code>replace</code></td><td><code>{"{"}{ replace "hi" "i" "ey" }{"}"}</code></td><td>Replace substring</td></tr>
-          <tr><td><code>split</code></td><td><code>{"{"}{ split "a,b" "," }{"}"}</code></td><td>Split to slice</td></tr>
-
+          <tr><td><code>upper</code></td><td><code>{"{"}{ upper "hello" }{"}"}</code></td><td><code class="out-green">HELLO</code></td><td>Uppercase</td></tr>
+          <tr><td><code>lower</code></td><td><code>{"{"}{ lower "HI" }{"}"}</code></td><td><code class="out-green">hi</code></td><td>Lowercase</td></tr>
+          <tr><td><code>title</code></td><td><code>{"{"}{ title "hello world" }{"}"}</code></td><td><code class="out-green">Hello World</code></td><td>Title case</td></tr>
+          <tr><td><code>trim</code></td><td><code>{"{"}{ trim "  hi  " }{"}"}</code></td><td><code class="out-green">hi</code></td><td>Trim whitespace</td></tr>
+          <tr><td><code>replace</code></td><td><code>{"{"}{ replace "hi" "i" "ey" }{"}"}</code></td><td><code class="out-green">hey</code></td><td>Replace substring</td></tr>
+          <tr><td><code>split</code></td><td><code>{"{"}{ split "a,b" "," }{"}"}</code></td><td><code class="out-green">[a b]</code></td><td>Split to slice</td></tr>
         </tbody>
       </table>
     </div>
@@ -425,6 +504,15 @@ page, limit := api.Paginate(r) // ?page=2&amp;limit=10</code></pre>
     <h3><code>api.HTMXHTML(w, html)</code> — Send HTML fragment response</h3>
     <pre><code>api.HTMXHTML(w, "&lt;div&gt;Updated content&lt;/div&gt;")</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">HTTP Response — HTMX fragment</div>
+      <pre class="preview-pre"><code><span class="out-dim">HTTP/1.1</span> <span class="out-green">200 OK</span>
+<span class="out-dim">Content-Type:</span> text/html
+
+<span class="out-green">&lt;div&gt;Updated content&lt;/div&gt;</span>
+<span class="out-dim">↳ HTMX swaps this into the target element — no page reload</span></code></pre>
+    </div>
+
     <h3><code>api.HTMXTrigger(w, event)</code> — Fire client-side event after response</h3>
     <pre><code>api.HTMXTrigger(w, "todo-added")</code></pre>
 
@@ -453,8 +541,12 @@ sessionState.Set("user", "alice")</code></pre>
     <h2 id="html-helpers">HTML Helpers</h2>
 
     <h3><code>api.Escape(s)</code> — Sanitize HTML output</h3>
-    <pre><code>safe := api.Escape("&lt;script&gt;alert('xss')&lt;/script&gt;")
-// "&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;"</code></pre>
+    <pre><code>safe := api.Escape("&lt;script&gt;alert('xss')&lt;/script&gt;")</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Output</div>
+      <pre class="preview-pre"><code><span class="out-green">&amp;lt;script&amp;gt;alert(&amp;#39;xss&amp;#39;)&amp;lt;/script&amp;gt;</span></code></pre>
+    </div>
 
     <h3><code>api.HTML(w, html)</code> — Send raw HTML response</h3>
     <pre><code>api.HTML(w, "&lt;h1&gt;Hello&lt;/h1&gt;")</code></pre>
@@ -626,7 +718,12 @@ api.CacheDelete("/api/data")
 // Clear all
 api.CacheClear()</code></pre>
 
-    <p>Responses include <code>X-Cache: HIT</code> or <code>X-Cache: MISS</code> headers automatically.</p>
+    <div class="preview-output">
+      <div class="preview-label">Response Headers — Cache status</div>
+      <pre class="preview-pre"><code><span class="out-dim">First request:</span>   X-Cache: <span class="out-yellow">MISS</span>  <span class="out-dim">— generated fresh (45ms)</span>
+<span class="out-dim">Second request:</span>  X-Cache: <span class="out-green">HIT</span>   <span class="out-dim">— served from cache (0.2ms)</span>
+<span class="out-dim">After TTL:</span>       X-Cache: <span class="out-yellow">MISS</span>  <span class="out-dim">— cache expired, regenerated</span></code></pre>
+    </div>
 
     <!-- WORKER POOLS -->
     <h2 id="worker-pools">Worker Pools</h2>
@@ -735,6 +832,20 @@ store.MustGet("SECRET_KEY")            // panics if missing
 store.GetInt("PORT", 3000)             // with default
 store.GetBool("DEBUG", false)</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">Example <code>.env</code> files &amp; loaded values</div>
+      <pre class="preview-pre"><code><span class="out-dim"># .env</span>
+<span class="out-cyan">DATABASE_URL</span>=<span class="out-green">postgres://localhost/myapp</span>
+<span class="out-cyan">PORT</span>=<span class="out-yellow">3000</span>
+
+<span class="out-dim"># .env.production</span>
+<span class="out-cyan">DATABASE_URL</span>=<span class="out-green">postgres://prod-db/myapp</span>  <span class="out-dim">← overrides .env</span>
+<span class="out-cyan">SECRET_KEY</span>=<span class="out-green">a1b2c3d4...</span>
+
+<span class="out-dim">store.GetInt("PORT", 8080) →</span> <span class="out-yellow">3000</span>
+<span class="out-dim">store.GetBool("DEBUG", false) →</span> <span class="out-yellow">false</span></code></pre>
+    </div>
+
     <!-- SESSIONS -->
     <h2 id="sessions">Sessions</h2>
     <p>Cookie-based session management with pluggable backends. Ships with <code>MemoryStore</code> (development) and <code>FileStore</code> (production). Supports flash messages for one-time notifications.</p>
@@ -756,6 +867,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
     sess.Flash("success", "Item created!")
     msgs := sess.Flashes("success")  // ["Item created!"]
 }</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Session Cookie — Browser DevTools</div>
+      <pre class="preview-pre"><code><span class="out-dim">Set-Cookie:</span> <span class="out-cyan">nexgo_session</span>=<span class="out-green">abc123def456</span>;
+  Path=/; HttpOnly; Secure; Max-Age=<span class="out-yellow">3600</span>
+
+<span class="out-dim">Session Store:</span>
+  <span class="out-cyan">"user"</span>  → <span class="out-green">"alice"</span>
+  <span class="out-cyan">"flash:success"</span> → <span class="out-green">["Item created!"]</span> <span class="out-dim">(cleared after read)</span></code></pre>
+    </div>
 
     <!-- AUTHENTICATION -->
     <h2 id="auth">Authentication (JWT)</h2>
@@ -906,6 +1027,20 @@ mux.Handle("/live", checker.LiveHandler())   // liveness probe
 
 // GET /health → {"status":"healthy","checks":{"database":"ok","redis":"ok"}}</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">API Response — <code>GET /health</code></div>
+      <pre class="preview-pre"><code><span class="out-dim">HTTP/1.1</span> <span class="out-green">200 OK</span>
+
+{
+  <span class="out-cyan">"status"</span>: <span class="out-green">"healthy"</span>,
+  <span class="out-cyan">"checks"</span>: {
+    <span class="out-cyan">"database"</span>: <span class="out-green">"ok"</span>,
+    <span class="out-cyan">"redis"</span>:    <span class="out-green">"ok"</span>
+  },
+  <span class="out-cyan">"uptime"</span>: <span class="out-green">"2h 14m 32s"</span>
+}</code></pre>
+    </div>
+
     <!-- STRUCTURED LOGGING -->
     <h2 id="logging">Structured Logging</h2>
     <p>Leveled, structured logging with JSON output, colored console mode, and file rotation via <code>pkg/logger</code>.</p>
@@ -923,8 +1058,14 @@ log.Error("query failed", "err", err, "query", sql)
 log.Debug("request", "method", r.Method, "path", r.URL.Path)
 
 // Request logger middleware
-mux.Handle("/", logger.RequestMiddleware(log)(handler))
-// → {"level":"info","method":"GET","path":"/","status":200,"duration":"1.2ms"}</code></pre>
+mux.Handle("/", logger.RequestMiddleware(log)(handler))</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Log Output — JSON format</div>
+      <pre class="preview-pre"><code>{<span class="out-cyan">"level"</span>:<span class="out-green">"info"</span>,<span class="out-cyan">"msg"</span>:<span class="out-green">"server started"</span>,<span class="out-cyan">"port"</span>:<span class="out-yellow">3000</span>}
+{<span class="out-cyan">"level"</span>:<span class="out-green">"info"</span>,<span class="out-cyan">"method"</span>:<span class="out-green">"GET"</span>,<span class="out-cyan">"path"</span>:<span class="out-green">"/"</span>,<span class="out-cyan">"status"</span>:<span class="out-yellow">200</span>,<span class="out-cyan">"duration"</span>:<span class="out-green">"1.2ms"</span>}
+{<span class="out-cyan">"level"</span>:<span class="out-red">"error"</span>,<span class="out-cyan">"msg"</span>:<span class="out-green">"query failed"</span>,<span class="out-cyan">"err"</span>:<span class="out-green">"connection refused"</span>}</code></pre>
+    </div>
 
     <!-- METRICS -->
     <h2 id="metrics">Metrics</h2>
@@ -949,6 +1090,22 @@ mux.Handle("/metrics", m.Handler())
 // Auto-instrument all HTTP traffic
 mux.Handle("/", m.Middleware()(handler))</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">Output — <code>GET /metrics</code></div>
+      <pre class="preview-pre"><code><span class="out-dim"># HELP</span> http_requests_total Total HTTP requests
+<span class="out-dim"># TYPE</span> http_requests_total counter
+<span class="out-cyan">http_requests_total</span> <span class="out-yellow">1247</span>
+
+<span class="out-dim"># HELP</span> http_active_connections Active connections
+<span class="out-dim"># TYPE</span> http_active_connections gauge
+<span class="out-cyan">http_active_connections</span> <span class="out-yellow">42</span>
+
+<span class="out-dim"># HELP</span> http_request_duration_seconds Request latency
+<span class="out-dim"># TYPE</span> http_request_duration_seconds histogram
+<span class="out-cyan">http_request_duration_seconds_sum</span> <span class="out-yellow">28.6</span>
+<span class="out-cyan">http_request_duration_seconds_count</span> <span class="out-yellow">1247</span></code></pre>
+    </div>
+
     <!-- DATABASE -->
     <h2 id="database">Database</h2>
     <p>Lightweight data layer via <code>pkg/db</code> with a JSON file database for prototyping and a SQL query builder for production.</p>
@@ -966,8 +1123,12 @@ q := db.Table("users").
     Where("age > ?", 18).
     OrderBy("name ASC").
     Limit(10).
-    SelectSQL()
-// → "SELECT * FROM users WHERE age > ? ORDER BY name ASC LIMIT 10"</code></pre>
+    SelectSQL()</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Generated SQL</div>
+      <pre class="preview-pre"><code><span class="out-cyan">SELECT</span> * <span class="out-cyan">FROM</span> users <span class="out-cyan">WHERE</span> age > <span class="out-yellow">18</span> <span class="out-cyan">ORDER BY</span> name <span class="out-cyan">ASC</span> <span class="out-cyan">LIMIT</span> <span class="out-yellow">10</span></code></pre>
+    </div>
 
     <!-- MIGRATIONS -->
     <h2 id="migrations">Migrations</h2>
@@ -989,6 +1150,17 @@ mgr.Up()       // run all pending migrations
 mgr.Down()     // rollback last migration
 mgr.Status()   // list applied and pending
 mgr.Pending()  // list unapplied migrations</code></pre>
+
+    <div class="preview-output">
+      <div class="preview-label">Terminal Output — Migrations</div>
+      <pre class="preview-pre"><code><span class="out-dim">$ mgr.Up()</span>
+<span class="out-green">✓</span> Applied <span class="out-cyan">001_create_users</span> <span class="out-dim">(2ms)</span>
+<span class="out-green">✓</span> Applied <span class="out-cyan">002_add_role</span> <span class="out-dim">(1ms)</span>
+
+<span class="out-dim">$ mgr.Status()</span>
+  <span class="out-green">✓</span> 001_create_users  <span class="out-dim">applied 2026-04-06 10:23:01</span>
+  <span class="out-green">✓</span> 002_add_role      <span class="out-dim">applied 2026-04-06 10:23:01</span></code></pre>
+    </div>
 
     <!-- PLUGIN SYSTEM -->
     <h2 id="plugin-system">Plugin System</h2>
@@ -1132,6 +1304,19 @@ nexgo deploy docker      # generates Dockerfile and builds image
 nexgo deploy vercel      # generates vercel.json and deploys
 nexgo deploy k8s         # generates K8s manifests</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">Terminal Output — <code>nexgo deploy docker</code></div>
+      <pre class="preview-pre"><code><span class="out-violet">[NexGo]</span> Generating Docker deployment…
+<span class="out-green">✓</span> Created <span class="out-cyan">Dockerfile</span>
+<span class="out-green">✓</span> Created <span class="out-cyan">docker-compose.yml</span>
+<span class="out-green">✓</span> Created <span class="out-cyan">.dockerignore</span>
+
+<span class="out-violet">[NexGo]</span> Building image <span class="out-cyan">my-app:latest</span>…
+<span class="out-green">✓</span> Image built <span class="out-dim">(23.4 MB)</span>
+
+Run with: <span class="out-yellow">docker compose up</span></code></pre>
+    </div>
+
     <!-- REDIS CACHE -->
     <h2 id="redis-cache">Redis Cache</h2>
     <p>Zero-dependency Redis client using raw RESP protocol via <code>pkg/cache</code>. Includes connection pooling, key prefixing, and a <code>CacheAdapter</code> interface for swappable backends.</p>
@@ -1210,6 +1395,15 @@ db.Table("users").
     GroupBy("users.name").
     QuerySQL()</code></pre>
 
+    <div class="preview-output">
+      <div class="preview-label">Generated SQL — Join query</div>
+      <pre class="preview-pre"><code><span class="out-cyan">SELECT</span> users.name, <span class="out-cyan">COUNT</span>(posts.id) <span class="out-cyan">AS</span> post_count
+<span class="out-cyan">FROM</span> users
+<span class="out-cyan">JOIN</span> posts <span class="out-cyan">ON</span> users.id = posts.user_id
+<span class="out-cyan">WHERE</span> posts.published = <span class="out-yellow">true</span>
+<span class="out-cyan">GROUP BY</span> users.name</code></pre>
+    </div>
+
     <!-- CLUSTER MODE -->
     <h2 id="cluster-mode">Cluster Mode</h2>
     <p>Run your app across multiple worker goroutines with graceful shutdown and zero-downtime restart via <code>pkg/cluster</code>. The built-in load balancer distributes requests across workers.</p>
@@ -1248,6 +1442,13 @@ c.Start()
       </table>
     </div>
 
+    <div class="preview-output">
+      <div class="preview-label">Terminal Output — <code>nexgo version</code></div>
+      <pre class="preview-pre"><code><span class="out-violet">NexGo</span> v2.0.3
+<span class="out-dim">Go</span>    go1.22.5 linux/arm64
+<span class="out-dim">Built</span> 2026-04-06</code></pre>
+    </div>
+
     <div style="margin-top:3rem;padding:1.5rem;background:var(--violet-dim);border:1px solid rgba(124,58,237,0.25);border-radius:var(--radius-lg);">
       <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
         <strong style="color:var(--violet-light);">💬 Need help?</strong>
@@ -1273,5 +1474,94 @@ c.Start()
   font-size: 0.85rem;
   line-height: 1.7;
   color: var(--text);
+}
+
+/* ─── Preview Output Boxes ─────────────────────── */
+.preview-output {
+  margin: 1rem 0 1.5rem;
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(34,197,94,0.04), rgba(6,182,212,0.04));
+}
+.preview-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(34,197,94,0.9);
+  background: rgba(34,197,94,0.08);
+  border-bottom: 1px solid rgba(34,197,94,0.15);
+}
+.preview-label::before {
+  content: "▶";
+  font-size: 0.6rem;
+}
+.preview-label code {
+  font-size: 0.7rem !important;
+  color: rgba(34,197,94,0.8) !important;
+  background: rgba(34,197,94,0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+.preview-pre {
+  background: rgba(0,0,0,0.3) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 1rem 1.25rem !important;
+  font-size: 0.8rem !important;
+}
+.preview-pre code {
+  line-height: 1.8 !important;
+}
+
+/* Color spans for output */
+.out-green  { color: #22c55e; }
+.out-cyan   { color: #06b6d4; }
+.out-violet { color: #a78bfa; }
+.out-yellow { color: #eab308; }
+.out-red    { color: #ef4444; }
+.out-dim    { color: rgba(255,255,255,0.35); }
+
+/* ─── Browser Preview Frame ──────────────────── */
+.preview-browser {
+  margin: 0;
+}
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(0,0,0,0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.browser-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+.browser-dot:first-child { background: #ef4444; }
+.browser-dot:nth-child(2) { background: #eab308; }
+.browser-dot:nth-child(3) { background: #22c55e; }
+.browser-url {
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+  font-family: var(--font-code);
+  color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.06);
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+  flex: 1;
+  max-width: 300px;
+}
+.browser-body {
+  padding: 1.25rem 1.5rem;
+  background: rgba(0,0,0,0.2);
 }
 </style>
