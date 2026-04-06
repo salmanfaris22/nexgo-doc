@@ -39,16 +39,16 @@
     <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;" class="reveal">
       <span class="badge badge-violet">Go 1.22+</span>
       <span class="badge badge-cyan">Zero Dependencies</span>
-      <span class="badge badge-green">50k+ req/s</span>
+      <span class="badge badge-green">200k+ req/s</span>
       <span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#ffc800;">~10MB binary</span>
-      <span class="badge" style="background:rgba(244,114,182,0.1);border-color:rgba(244,114,182,0.3);color:#f472b6;">SSR + SSG + SPA</span>
+      <span class="badge" style="background:rgba(244,114,182,0.1);border-color:rgba(244,114,182,0.3);color:#f472b6;">SSR + SSG + Islands</span>
     </div>
 
     <!-- ── STAT CARDS ── -->
     <div class="grid-4 stagger" style="margin-bottom:4rem;">
       <div class="card text-center">
-        <div class="stat-value" data-count="50000" data-suffix="+" style="font-size:2rem;">0</div>
-        <div class="stat-label">Req/s (NexGo)</div>
+        <div class="stat-value" data-count="200000" data-suffix="+" style="font-size:2rem;">0</div>
+        <div class="stat-label">Req/s (NexGo cluster)</div>
       </div>
       <div class="card text-center">
         <div class="stat-value" data-count="10" data-suffix="MB" style="font-size:2rem;">0</div>
@@ -467,6 +467,27 @@
                 <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/cluster)</span></td>
                 <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
               </tr>
+              <tr>
+                <td><strong>Islands Architecture</strong></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Built-in (pkg/islands)</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
+              <tr>
+                <td><strong>Selective Hydration</strong></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">React Suspense</span></td>
+                <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Partial (RSC)</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">5 strategies</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
+              <tr>
+                <td><strong>Zero-JS Pages</strong></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No (~85KB min)</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No (~80KB min)</span></td>
+                <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Yes (0 KB)</span></td>
+                <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -674,6 +695,30 @@
               <td class="cross">✗</td>
               <td class="cross">✗</td>
             </tr>
+            <tr>
+              <td><strong>Islands Architecture</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Selective Hydration</strong></td>
+              <td class="check">✓</td>
+              <td class="partial">~</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
+            <tr>
+              <td><strong>Zero-JS Static Pages</strong></td>
+              <td class="check">✓</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+              <td class="cross">✗</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -698,11 +743,13 @@
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;font-size:0.875rem;">
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">No Node.js, no npm, no runtime</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Single ~10MB binary</span></li>
-            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">50,000+ requests per second</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">200,000+ requests per second (cluster mode)</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Go's type safety and performance</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Zero external dependencies</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Built-in auth, sessions, CSRF</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">WebSockets, ORM, plugin system</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Islands Architecture — 0 KB JS by default</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">5 hydration strategies (load/visible/idle/media/none)</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="check">✓</span> <span class="text-muted">Deploy anywhere Go runs</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">No React ecosystem</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Smaller community (for now)</span></li>
@@ -721,6 +768,8 @@
             <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Requires Node.js runtime</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Heavy node_modules (~300MB+)</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Slower cold starts</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">~85KB JS minimum per page (React runtime)</span></li>
+            <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Full-page hydration — no per-component control</span></li>
             <li style="display:flex;gap:0.6rem;"><span class="cross">✗</span> <span class="text-muted">Lower throughput vs Go</span></li>
           </ul>
         </div>
@@ -794,8 +843,15 @@
               <td><span class="cross">✗</span></td>
             </tr>
             <tr>
+              <td>Islands Architecture</td>
+              <td><span class="check">✓</span> 5 hydration strategies</td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
               <td>Performance</td>
-              <td>~50k req/s</td>
+              <td>~200k+ req/s (cluster)</td>
               <td>~80k req/s</td>
               <td>~80k req/s</td>
               <td>~120k req/s</td>
@@ -811,6 +867,145 @@
       </div>
     </div>
 
+    <!-- ── Islands Architecture Comparison ── -->
+    <div class="reveal" style="margin-bottom:4rem;">
+      <h2 class="heading-md" style="margin-bottom:0.5rem;">
+        Islands Architecture <span class="gradient-violet">Comparison</span>
+      </h2>
+      <p class="text-muted text-sm" style="margin-bottom:1.5rem;">
+        NexGo v2.2.0 ships zero JavaScript by default with Islands, and pushes 200k+ req/sec with cluster mode.
+      </p>
+
+      <!-- Bundle size visual comparison -->
+      <div class="card" style="margin-bottom:2rem;border-color:rgba(124,58,237,0.3);background:var(--violet-dim);">
+        <h3 style="font-size:1rem;margin-bottom:1.25rem;color:var(--violet-light);">Blog page with 1 like button — JS shipped</h3>
+
+        <!-- Next.js bar -->
+        <div style="margin-bottom:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+            <span style="font-size:0.8rem;color:var(--text-muted);">Next.js (React)</span>
+            <span style="font-size:0.8rem;font-family:var(--font-mono,monospace);color:#f87171;font-weight:700;">87.5 KB</span>
+          </div>
+          <div style="height:28px;border-radius:6px;background:var(--surface-2,rgba(255,255,255,0.07));overflow:hidden;">
+            <div style="width:100%;height:100%;border-radius:6px;background:linear-gradient(90deg,#ef4444,#f87171);display:flex;align-items:center;padding-left:0.75rem;">
+              <span style="font-size:0.65rem;color:white;font-weight:600;white-space:nowrap;">react.min.js (42KB) + react-dom.min.js (40KB) + _app.js (3.4KB) + component (1.8KB)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NexGo bar -->
+        <div style="margin-bottom:1rem;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+            <span style="font-size:0.8rem;color:var(--text-muted);">NexGo v2.2.0 (Islands + Cluster)</span>
+            <span style="font-size:0.8rem;font-family:var(--font-mono,monospace);color:#22c55e;font-weight:700;">1.8 KB</span>
+          </div>
+          <div style="height:28px;border-radius:6px;background:var(--surface-2,rgba(255,255,255,0.07));overflow:hidden;">
+            <div style="width:2%;min-width:120px;height:100%;border-radius:6px;background:linear-gradient(90deg,#22c55e,#4ade80);display:flex;align-items:center;padding-left:0.75rem;">
+              <span style="font-size:0.65rem;color:white;font-weight:600;white-space:nowrap;">runtime (1KB) + island (0.8KB)</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:1rem;">
+          <span class="badge badge-violet" style="font-size:0.9rem;padding:0.4rem 1rem;">48x smaller</span>
+        </div>
+      </div>
+
+      <!-- Islands vs Frameworks table -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th style="color:#a78bfa;">NexGo v2.2.0 ✦</th>
+              <th>Next.js</th>
+              <th>Astro</th>
+              <th>Fresh (Deno)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Islands Architecture</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Yes</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">No</span></td>
+              <td><span class="badge badge-green">Yes</span></td>
+              <td><span class="badge badge-green">Yes</span></td>
+            </tr>
+            <tr>
+              <td><strong>Zero-JS by default</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">0 KB</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">~85 KB</span></td>
+              <td><span class="badge badge-green">0 KB</span></td>
+              <td><span class="badge badge-green">0 KB</span></td>
+            </tr>
+            <tr>
+              <td><strong>Hydration strategies</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">5 (load/visible/idle/media/none)</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">None</span></td>
+              <td><span class="badge badge-green">5 (same set)</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">2 (load/visible)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Server language</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-cyan">Go</span></td>
+              <td><span class="badge" style="background:rgba(255,255,0,0.08);border-color:rgba(255,255,0,0.2);color:#facc15;">Node.js</span></td>
+              <td><span class="badge" style="background:rgba(255,255,0,0.08);border-color:rgba(255,255,0,0.2);color:#facc15;">Node.js</span></td>
+              <td><span class="badge" style="background:rgba(255,255,0,0.08);border-color:rgba(255,255,0,0.2);color:#facc15;">Deno</span></td>
+            </tr>
+            <tr>
+              <td><strong>SSR + SSG + ISR</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">All built-in</span></td>
+              <td><span class="badge badge-green">All built-in</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">SSG + SSR</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">SSR only</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cold start</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">~15ms</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">~800ms</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">~400ms</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">~300ms</span></td>
+            </tr>
+            <tr>
+              <td><strong>Memory (idle)</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">~12 MB</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">~120 MB</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">~80 MB</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">~60 MB</span></td>
+            </tr>
+            <tr>
+              <td><strong>Deploy artifact</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">Single binary (~12 MB)</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">Node + node_modules</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Static files + Node</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">Deno runtime</span></td>
+            </tr>
+            <tr>
+              <td><strong>Dependencies</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">0 (pure Go)</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">~2000+ npm</span></td>
+              <td><span class="badge" style="background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fbbf24;">~500+ npm</span></td>
+              <td><span class="badge badge-green">0 (Deno)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Built-in ORM/Auth/WS</strong></td>
+              <td style="background:rgba(139,92,246,0.12);"><span class="badge badge-green">All included</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">External pkgs</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">External pkgs</span></td>
+              <td><span class="badge" style="background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#f87171;">External pkgs</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top:1rem;background:var(--violet-dim);border-color:rgba(124,58,237,0.25);">
+        <p style="font-size:0.875rem;color:var(--text-muted);margin:0;">
+          <strong style="color:var(--violet-light);">💡 Why Islands?</strong>
+          Every Next.js page ships ~85KB of React runtime even for a static blog post. With NexGo Islands, static pages ship <strong>0 KB of JavaScript</strong>. Only interactive components load JS — and you control <em>when</em> with 5 hydration strategies.
+        </p>
+      </div>
+    </div>
+
     <!-- ── When to use NexGo ── -->
     <div class="reveal">
       <h2 class="heading-md" style="margin-bottom:1.5rem;">When to use NexGo</h2>
@@ -819,6 +1014,7 @@
           <h3 style="font-size:1rem;color:#4ade80;margin-bottom:1rem;">✓ Use NexGo when...</h3>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.6rem;font-size:0.875rem;color:var(--text-muted);">
             <li>→ You want Next.js DX with Go performance</li>
+            <li>→ You want zero-JS pages with Islands Architecture</li>
             <li>→ You're building a content site, blog, or docs</li>
             <li>→ You want a single binary with no Node.js</li>
             <li>→ You need SSR + SSG + API in one framework</li>

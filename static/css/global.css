@@ -285,6 +285,39 @@ section { padding: 5rem 0; }
   50% { opacity: 0.3; }
 }
 
+.nav-coming-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.coming-soon-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(34,211,238,0.2));
+  border: 1px solid rgba(124,58,237,0.3);
+  color: var(--cyan);
+  animation: comingSoonPulse 3s ease-in-out infinite;
+}
+
+@keyframes comingSoonPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; border-color: rgba(34,211,238,0.4); }
+}
+
 .nav-actions {
   display: flex;
   align-items: center;
