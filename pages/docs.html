@@ -1470,6 +1470,35 @@ c.Start()
       </div>
     </div>
 
+    <h3>Quick Start</h3>
+    <p>Add SEO to any NexGo app in 2 steps:</p>
+    <pre><code>// 1. Add to nexgo.config.json
+"seo": { "siteName": "My Site", "siteURL": "https://example.com", "autoSitemap": true }
+
+// 2. Add to layouts/default.html
+{{"{{" }} seoTags (seoMeta .Title .Description .Canonical) {{ "}}" }}
+{{"{{" }} breadcrumbs .Path {{ "}}" }}</code></pre>
+    <p>That's it. You now have: auto sitemap.xml, robots.txt, canonical URLs, OpenGraph, Twitter Cards, breadcrumb schema, and SEO meta tags on every page.</p>
+
+    <h3>SEO Template Functions (Reference)</h3>
+    <div class="table-wrap" style="margin:1rem 0;">
+      <table>
+        <thead><tr><th>Function</th><th>Usage</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>seoTags</code></td><td><code>{{"{{" }} seoTags (seoMeta .Title .Description .Canonical) {{ "}}" }}</code></td><td>Render all SEO meta tags</td></tr>
+          <tr><td><code>seoMeta</code></td><td><code>{{"{{" }} seoMeta "Title" "Desc" "/url" {{ "}}" }}</code></td><td>Create a Meta struct</td></tr>
+          <tr><td><code>breadcrumbs</code></td><td><code>{{"{{" }} breadcrumbs .Path {{ "}}" }}</code></td><td>Auto BreadcrumbList JSON-LD</td></tr>
+          <tr><td><code>jsonld</code></td><td><code>{{"{{" }} jsonld (dict "@type" "Event" ...) {{ "}}" }}</code></td><td>Generic JSON-LD tag</td></tr>
+          <tr><td><code>websiteSchema</code></td><td><code>{{"{{" }} websiteSchema "Name" "URL" "SearchURL" {{ "}}" }}</code></td><td>WebSite schema</td></tr>
+          <tr><td><code>orgSchema</code></td><td><code>{{"{{" }} orgSchema "Name" "URL" "Logo" {{ "}}" }}</code></td><td>Organization schema</td></tr>
+          <tr><td><code>faqSchema</code></td><td><code>{{"{{" }} faqSchema "Q?" "A." "Q?" "A." {{ "}}" }}</code></td><td>FAQ schema</td></tr>
+          <tr><td><code>preload</code></td><td><code>{{"{{" }} preload "/path" "style" {{ "}}" }}</code></td><td>Resource preload hint</td></tr>
+          <tr><td><code>vitals</code></td><td><code>{{"{{" }} vitals {{ "}}" }}</code></td><td>Core Web Vitals script</td></tr>
+          <tr><td><code>slugify</code></td><td><code>{{"{{" }} slugify "Hello World" {{ "}}" }}</code></td><td>SEO-friendly URL slug</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2 id="seo-config">SEO Configuration</h2>
     <p>All SEO settings live in <code>nexgo.config.json</code> under the <code>"seo"</code> key:</p>
     <pre><code>{
