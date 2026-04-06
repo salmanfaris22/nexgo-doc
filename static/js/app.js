@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => observer.observe(el));
 
   // ── Stagger reveal for card grids ─────
   document.querySelectorAll('.stagger').forEach(container => {
@@ -145,9 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function navigateTo(target) {
+    // Parse hash from target URL
+    const hashIndex = target.indexOf('#');
+    const hash = hashIndex !== -1 ? target.substring(hashIndex + 1) : null;
+    const fetchUrl = hashIndex !== -1 ? target.substring(0, hashIndex) || '/' : target;
+
     window.history.pushState({ path: target }, '', target);
 
-    fetch(target)
+    fetch(fetchUrl || target)
       .then(res => {
         if (!res.ok) throw new Error('Not found');
         return res.text();
@@ -176,11 +181,25 @@ document.addEventListener('DOMContentLoaded', () => {
           if (oldOGTitle) oldOGTitle.content = newOGTitle.content;
         }
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         initPageScripts();
 
+        // Scroll to hash target or top
+        if (hash) {
+          const el = document.getElementById(hash);
+          if (el) {
+            const headerOffset = 100;
+            const top = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+            setTimeout(() => window.scrollTo({ top, behavior: 'smooth' }), 50);
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        const navTarget = fetchUrl || target;
         document.querySelectorAll('.nav-links a, .mobile-menu-links a').forEach(a => a.classList.remove('active'));
-        document.querySelectorAll(`.nav-links a[href="${target}"], .mobile-menu-links a[href="${target}"]`).forEach(a => a.classList.add('active'));
+        document.querySelectorAll(`.nav-links a[href="${navTarget}"], .mobile-menu-links a[href="${navTarget}"]`).forEach(a => a.classList.add('active'));
       })
       .catch(() => {
         window.location.href = target;
@@ -261,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible), .reveal-scale:not(.visible)').forEach(el => observer.observe(el));
 
     document.querySelectorAll('.stagger').forEach(container => {
       const cards = container.querySelectorAll('.card, .blog-card, .feat-card, .stat-card');
@@ -298,10 +317,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    // Sidebar scroll navigation (re-init after SPA nav)
+    const sidebarEl = document.querySelector('.docs-sidebar');
     document.querySelectorAll('.sidebar-nav a').forEach(a => {
-      a.addEventListener('click', function() {
+      a.addEventListener('click', function(ev) {
+        ev.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          const headerOffset = 100;
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
         document.querySelectorAll('.sidebar-nav a').forEach(x => x.classList.remove('active'));
         this.classList.add('active');
+        if (sidebarEl) {
+          this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       });
     });
 
@@ -312,7 +345,11 @@ document.addEventListener('DOMContentLoaded', () => {
           if (e.isIntersecting) {
             const id = e.target.id;
             document.querySelectorAll('.sidebar-nav a').forEach(a => {
-              a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+              const isActive = a.getAttribute('href') === '#' + id;
+              a.classList.toggle('active', isActive);
+              if (isActive && sidebarEl) {
+                a.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              }
             });
           }
         });

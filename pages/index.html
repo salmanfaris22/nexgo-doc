@@ -34,14 +34,14 @@
   <div class="glow-orb glow-orb-violet" style="width:250px;height:250px;top:40%;right:10%;opacity:0.25;animation:floatOrb 8s ease-in-out infinite;"></div>
 
   <div class="container" style="position:relative;z-index:1;">
-    <div class="hero-badge">
+    <div class="hero-badge hero-badge-float">
       <span class="dot"></span>
       {{ .Props.latestBadge }}
     </div>
 
     <h1 class="display">
       Replace Your Frontend<br>
-      <span class="gradient-text"> Stack with NexGo</span>
+      <span class="gradient-text-animated"> Stack with NexGo</span>
     </h1>
 
  <p class="hero-desc">
@@ -51,7 +51,7 @@
 </p>
 
     <div class="hero-actions">
-      <a href="/docs#quick-start" class="btn btn-primary btn-lg">
+      <a href="/docs#quick-start" class="btn btn-primary btn-lg btn-primary-glow">
         <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
         Get Started
       </a>
@@ -118,15 +118,52 @@
 <!-- ═══════════════════════════ FEATURES ═══════════════════════════ -->
 <section>
   <div class="container">
-    <div class="text-center mb-lg reveal">
+    <div class="text-center mb-lg reveal-scale">
       <div class="section-eyebrow">Core Features</div>
-      <h2 class="heading-xl">Everything you need,<br><span class="gradient-violet">nothing you don't</span></h2>
+      <h2 class="heading-xl">Everything you need,<br><span class="gradient-text-animated">nothing you don't</span></h2>
       <p style="color:var(--text-muted);max-width:500px;margin:1rem auto 0;">
         NexGo ships with all the primitives to build production web apps — without the complexity.
       </p>
     </div>
 
     <div class="grid-3 stagger">
+
+      <!-- NEW: SEO Killer Mode — highlighted -->
+      <div class="card feat-card" style="border-color:rgba(244,114,182,0.35);background:linear-gradient(135deg, var(--surface), rgba(244,114,182,0.06));grid-column:1/-1;">
+        <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+          <div>
+            <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+              <div class="feat-icon feat-icon-pink" style="margin:0;">🔍</div>
+              <h3 style="font-size:1.25rem;margin:0;">SEO Killer Mode <span class="badge badge-violet" style="font-size:0.65rem;vertical-align:middle;margin-left:0.5rem;">NEW in v2.2.1</span></h3>
+            </div>
+            <p class="text-muted text-sm" style="max-width:600px;">The most <strong style="color:var(--pink);">SEO-complete Go framework</strong>. Auto sitemap, robots.txt, canonical URLs, 10 JSON-LD schema types, OpenGraph, Twitter Cards, RSS feeds, Core Web Vitals tracking, hreflang, breadcrumbs, SEO audit — all <strong style="color:var(--text);">built-in with zero config</strong>.</p>
+            <div style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <a href="/docs#seo-killer" class="btn btn-primary" style="font-size:0.85rem;">SEO Docs</a>
+              <a href="/announcement" class="btn btn-ghost" style="font-size:0.85rem;">What's New</a>
+            </div>
+          </div>
+          <div style="flex:1;min-width:260px;">
+            <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.85rem;">
+              <div style="display:flex;justify-content:space-between;padding:0.5rem 0.75rem;background:var(--surface-2);border-radius:6px;">
+                <span class="text-muted">Auto Sitemap + Robots.txt</span>
+                <strong style="color:#4ade80;">Built-in</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:0.5rem 0.75rem;background:var(--surface-2);border-radius:6px;">
+                <span class="text-muted">JSON-LD Schema Types</span>
+                <strong style="color:#4ade80;">10 types</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:0.5rem 0.75rem;background:var(--surface-2);border-radius:6px;">
+                <span class="text-muted">SEO Template Functions</span>
+                <strong style="color:#4ade80;">22+ funcs</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:0.5rem 0.75rem;background:var(--surface-2);border-radius:6px;">
+                <span class="text-muted">Core Web Vitals</span>
+                <strong style="color:#4ade80;">LCP + CLS + INP</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- NEW: Islands Architecture — highlighted -->
       <div class="card feat-card" style="border-color:rgba(34,211,238,0.35);background:linear-gradient(135deg, var(--surface), rgba(34,211,238,0.06));grid-column:1/-1;">
@@ -227,8 +264,8 @@
 
       <div class="card feat-card">
         <div class="feat-icon feat-icon-pink">🔍</div>
-        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">SEO Tools</h3>
-        <p class="text-muted text-sm">Meta tags, OpenGraph, Twitter Cards, sitemap.xml, robots.txt, and JSON-LD structured data — all built in.</p>
+        <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">SEO Killer Mode <span class="badge badge-violet" style="font-size:0.6rem;vertical-align:middle;">v2.2.1</span></h3>
+        <p class="text-muted text-sm">Auto sitemap, robots.txt, canonical URLs, 10 JSON-LD types, OpenGraph, Twitter Cards, RSS, Core Web Vitals, hreflang, breadcrumbs, SEO audit &amp; more.</p>
       </div>
 
       <div class="card feat-card">

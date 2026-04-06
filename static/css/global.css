@@ -1420,6 +1420,293 @@ table tbody tr:hover td[style*="background:rgba(139,92,246"] {
   transform: translateY(0);
 }
 
+/* ── Animated Gradient Text ───────────── */
+.gradient-text-animated {
+  background: linear-gradient(270deg, var(--violet-light), var(--cyan), var(--pink), var(--violet-bright), var(--violet-light));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Glowing CTA Button ─────────────── */
+.btn-primary-glow {
+  position: relative;
+  overflow: visible;
+}
+
+.btn-primary-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--violet), #a855f7, var(--cyan));
+  z-index: -1;
+  filter: blur(16px);
+  opacity: 0.5;
+  animation: ctaGlow 3s ease-in-out infinite;
+}
+
+@keyframes ctaGlow {
+  0%, 100% { opacity: 0.4; filter: blur(16px); }
+  50% { opacity: 0.7; filter: blur(22px); }
+}
+
+/* ── Floating badge animation ────────── */
+.hero-badge-float {
+  animation: fadeInDown 0.6s ease both, badgeFloat 4s ease-in-out 1s infinite;
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ── Typewriter cursor ──────────────── */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--violet-light);
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Section fade-in from different directions ── */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-scale.visible {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+/* ── Blog card gradient border on hover ── */
+.blog-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(124,58,237,0.06) 50%, transparent 100%);
+  pointer-events: none;
+  transition: none;
+}
+
+.blog-card:hover::before {
+  animation: cardShimmer 0.8s ease forwards;
+}
+
+/* ── Blog author link styling ────────── */
+.blog-author-link {
+  color: var(--violet-light);
+  font-weight: 600;
+  transition: all var(--transition);
+  position: relative;
+}
+
+.blog-author-link:hover {
+  color: var(--cyan);
+}
+
+.blog-author-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cyan);
+  transition: width 0.3s ease;
+}
+
+.blog-author-link:hover::after {
+  width: 100%;
+}
+
+/* ── Version timeline connector ──────── */
+.version-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.version-timeline::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--violet), var(--cyan), var(--violet-light), transparent);
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+.version-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-left: 56px;
+  transition: all var(--transition);
+}
+
+.version-card:hover {
+  border-color: var(--border);
+  box-shadow: var(--glow), var(--shadow);
+  transform: translateY(-2px);
+}
+
+.version-card::before {
+  content: '';
+  position: absolute;
+  left: -40px;
+  top: 2rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--violet);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 12px rgba(124,58,237,0.5);
+}
+
+.version-card-latest::before {
+  background: var(--cyan);
+  box-shadow: 0 0 16px rgba(34,211,238,0.6);
+  animation: timelineDotPulse 2s ease-in-out infinite;
+}
+
+@keyframes timelineDotPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(34,211,238,0.4); transform: scale(1); }
+  50% { box-shadow: 0 0 20px rgba(34,211,238,0.8); transform: scale(1.2); }
+}
+
+.version-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.version-date {
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+  font-family: var(--font-code);
+}
+
+.version-changes {
+  margin-top: 1rem;
+}
+
+.change-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-2);
+  align-items: flex-start;
+}
+
+.change-item:last-child {
+  border-bottom: none;
+}
+
+.change-badge {
+  flex-shrink: 0;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.change-new {
+  background: rgba(74,222,128,0.12);
+  border: 1px solid rgba(74,222,128,0.3);
+  color: #4ade80;
+}
+
+.change-improved {
+  background: rgba(34,211,238,0.12);
+  border: 1px solid rgba(34,211,238,0.3);
+  color: var(--cyan);
+}
+
+.change-fixed {
+  background: rgba(244,114,182,0.12);
+  border: 1px solid rgba(244,114,182,0.3);
+  color: var(--pink);
+}
+
+/* ── Blog page hero background ───────── */
+.blog-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.blog-hero .glow-orb {
+  position: absolute;
+}
+
+/* ── Stat card number glow on view ──── */
+.stat-card.visible .stat-value {
+  animation: statGlow 1.5s ease 0.3s both;
+}
+
+@keyframes statGlow {
+  0% { filter: drop-shadow(0 0 0 rgba(124,58,237,0)); }
+  50% { filter: drop-shadow(0 0 20px rgba(124,58,237,0.6)); }
+  100% { filter: drop-shadow(0 0 8px rgba(124,58,237,0.3)); }
+}
+
+/* ── Responsive version timeline ────── */
+@media (max-width: 600px) {
+  .version-timeline::before { display: none; }
+  .version-card { margin-left: 0; }
+  .version-card::before { display: none; }
+}
+
 /* ── Scrollbar ─────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }

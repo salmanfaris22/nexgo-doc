@@ -22,16 +22,16 @@
   <div class="glow-orb glow-orb-cyan" style="width:250px;height:250px;top:30%;right:10%;opacity:0.2;animation:floatOrb 10s ease-in-out infinite;"></div>
 
   <div class="container" style="position:relative;z-index:1;">
-    <div class="text-center mb-lg">
+    <div class="text-center mb-lg reveal-scale">
       <div class="section-eyebrow">Changelog</div>
-      <h1 class="heading-xl">NexGo <span class="gradient-violet">Versions</span></h1>
+      <h1 class="heading-xl">NexGo <span class="gradient-text-animated">Versions</span></h1>
       <p class="text-muted" style="max-width:520px;margin:1rem auto 0;">
         Track every release. See what changed between versions and what's coming next.
       </p>
       <div style="display:flex;gap:0.5rem;margin-top:1.25rem;justify-content:center;flex-wrap:wrap;">
-        <span class="badge badge-violet">v2.2.0 (Latest)</span>
-        <span class="badge badge-cyan">v2.1.0</span>
-        <span class="badge badge-green">v2.0.3</span>
+        <span class="badge badge-violet">v2.2.1 (Latest)</span>
+        <span class="badge badge-cyan">v2.2.0</span>
+        <span class="badge badge-green">v2.1.0</span>
       </div>
     </div>
 
@@ -40,12 +40,100 @@
     <!-- ─── Version Timeline ─────────────────────────────── -->
     <div class="version-timeline">
 
+      <!-- v2.2.1 -->
+      <div class="version-card version-card-latest reveal-left">
+        <div class="version-header">
+          <div>
+            <span class="badge badge-violet">v2.2.1</span>
+            <span class="badge badge-green" style="margin-left:0.5rem;">Latest</span>
+          </div>
+          <span class="version-date">April 2026</span>
+        </div>
+        <h3 style="font-size:1.25rem;margin:1rem 0 0.5rem;">SEO Killer Mode — The Most SEO-Complete Go Framework</h3>
+        <p class="text-muted text-sm" style="margin-bottom:1.5rem;">Comprehensive built-in SEO toolkit: auto sitemap.xml, robots.txt, canonical URLs, 10 JSON-LD schema types, OpenGraph + Twitter Cards, article OG tags, hreflang alternates, RSS feed generation, breadcrumbs, FAQ/Product/HowTo schemas, Core Web Vitals tracking, SEO audit, URL slugify, preload hints, HSTS, and SEO HTTP headers. Zero configuration needed.</p>
+
+        <div class="version-changes">
+          <h4 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--violet-light);margin-bottom:0.75rem;">SEO</h4>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Auto Sitemap &amp; Robots.txt</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Automatic /sitemap.xml from route table with lastmod, changefreq, priority. Auto /robots.txt with configurable allow/disallow rules.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>10 JSON-LD Schema Types</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">WebSite, Organization, LocalBusiness, Article, BreadcrumbList, FAQ, Product, Review, HowTo, and generic JSON-LD builder.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>OpenGraph + Twitter Cards + Article OG</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Full og:*, twitter:*, article:published_time, article:section, article:tag support via seoTags template function.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>RSS Feed Generation</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Built-in RSS 2.0 feed renderer with categories, author, pub date. Register /rss.xml endpoint in one call.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Hreflang &amp; Pagination SEO</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Hreflang alternate links for multilingual sites. rel=prev/next for paginated content.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Core Web Vitals Tracking</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Built-in LCP, CLS, INP measurement script with beacon reporting to configurable endpoint.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>SEO Audit &amp; Validation</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Programmatic meta tag and HTML auditing. Checks title length, description, H1 count, alt attributes, canonical URLs.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Redirects, Trailing Slash, HSTS, SEO Headers</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Config-based 301/302 redirects, trailing slash normalization, HSTS middleware, auto Content-Language and security headers.</p>
+            </div>
+          </div>
+
+          <div class="change-item">
+            <span class="change-badge change-new">New</span>
+            <div>
+              <strong>Preload Hints &amp; URL Slugify</strong>
+              <p class="text-muted text-sm" style="margin-top:0.25rem;">Template functions for resource preload/prefetch/prerender hints. Unicode-safe URL slug generation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- v2.2.0 -->
-      <div class="version-card version-card-latest">
+      <div class="version-card reveal-left">
         <div class="version-header">
           <div>
             <span class="badge badge-violet">v2.2.0</span>
-            <span class="badge badge-green" style="margin-left:0.5rem;">Latest</span>
           </div>
           <span class="version-date">April 2026</span>
         </div>
@@ -106,7 +194,7 @@
       </div>
 
       <!-- v2.1.0 -->
-      <div class="version-card">
+      <div class="version-card reveal-left">
         <div class="version-header">
           <div>
             <span class="badge badge-violet">v2.1.0</span>
@@ -186,7 +274,7 @@
       </div>
 
       <!-- v2.0.3 -->
-      <div class="version-card">
+      <div class="version-card reveal-left">
         <div class="version-header">
           <div>
             <span class="badge badge-violet">v2.0.3</span>
@@ -402,7 +490,7 @@
       </div>
 
       <!-- v1.2.0 -->
-      <div class="version-card">
+      <div class="version-card reveal-left">
         <div class="version-header">
           <div>
             <span class="badge badge-cyan">v1.2.0</span>
@@ -474,7 +562,7 @@
       </div>
 
       <!-- v1.1.0 -->
-      <div class="version-card">
+      <div class="version-card reveal-left">
         <div class="version-header">
           <div>
             <span class="badge badge-cyan">v1.1.0</span>
@@ -522,7 +610,7 @@
       </div>
 
       <!-- v1.0.5 -->
-      <div class="version-card">
+      <div class="version-card reveal-left">
         <div class="version-header">
           <div>
             <span class="badge badge-green">v1.0.5</span>

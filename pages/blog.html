@@ -1,44 +1,49 @@
 <!-- pages/blog.html — Blog Page -->
 
-<section style="padding:5rem 0 2rem;">
-  <div class="container">
-    <div class="text-center mb-lg">
+<section class="blog-hero" style="padding:5rem 0 2rem;position:relative;overflow:hidden;">
+  <!-- Subtle background effects -->
+  <div class="hero-grid" style="opacity:0.3;"></div>
+  <div class="glow-orb glow-orb-violet" style="width:400px;height:400px;top:-150px;left:50%;transform:translateX(-50%);opacity:0.3;"></div>
+  <div class="glow-orb glow-orb-cyan" style="width:200px;height:200px;top:60%;right:10%;opacity:0.15;animation:floatOrb 10s ease-in-out infinite;"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="text-center mb-lg reveal-scale">
       <div class="section-eyebrow">From the creator</div>
-      <h1 class="heading-xl">NexGo <span class="gradient-violet">Blog</span></h1>
+      <h1 class="heading-xl">NexGo <span class="gradient-text-animated">Blog</span></h1>
       <p class="text-muted" style="max-width:480px;margin:1rem auto 0;">
         Tutorials, release notes, and deep-dives into building Go web applications with NexGo.
       </p>
     </div>
 
     <!-- Featured post -->
-    <div class="card" style="background:var(--surface-2);border-color:var(--border);margin-bottom:3rem;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;" class="featured-post">
+    <div class="card reveal-left" style="background:var(--surface-2);border-color:rgba(244,114,182,0.3);margin-bottom:3rem;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
       <div>
         <span class="badge badge-violet" style="margin-bottom:1rem;">📌 Featured</span>
         <h2 style="font-size:1.75rem;margin-bottom:0.75rem;line-height:1.25;">
-          <a href="/blog/introducing-nexgo" style="color:var(--text);">Introducing NexGo — The Go Web Framework Inspired by Next.js</a>
+          <a href="/blog/seo-killer-mode" style="color:var(--text);">NexGo v2.2.1 — SEO Killer Mode: The Most SEO-Complete Go Framework</a>
         </h2>
         <p class="text-muted" style="margin-bottom:1.5rem;line-height:1.7;">
-          After months of development, NexGo v1.1.0 is here. Learn what makes it different from other Go frameworks and why we built it with Next.js DX principles in mind.
+          Auto sitemap, robots.txt, 10 JSON-LD schema types, OpenGraph, Twitter Cards, RSS feeds, Core Web Vitals tracking, hreflang, breadcrumbs, SEO audit — all built-in with zero configuration.
         </p>
         <div style="display:flex;align-items:center;gap:1.5rem;font-size:0.85rem;color:var(--text-muted);">
-          <span>Salman Faris</span>
+          <a href="https://instagram.com/salmanfaris.dev" target="_blank" class="blog-author-link">Salman Faris</a>
           <span>·</span>
-          <span>Dec 2024</span>
+          <span>April 2026</span>
           <span>·</span>
-          <span>8 min read</span>
+          <span>15 min read</span>
         </div>
       </div>
       <div style="background:var(--surface-3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;font-family:var(--font-code);font-size:0.8rem;line-height:1.8;color:var(--text-muted);">
-        <span style="color:var(--violet-light);">$ nexgo create blog-app</span><br>
-        <span style="color:#4ade80;">✓</span> Created blog-app/<br>
-        <span style="color:var(--text-subtle);">  pages/index.html</span><br>
-        <span style="color:var(--text-subtle);">  layouts/default.html</span><br>
-        <span style="color:var(--text-subtle);">  nexgo.config.json</span><br>
-        <span style="color:var(--text-subtle);">  main.go</span><br>
+        <span style="color:var(--violet-light);">// nexgo.config.json</span><br>
+        <span style="color:var(--pink);">"seo"</span>: {<br>
+        <span style="color:var(--text-subtle);">  "autoSitemap": </span><span style="color:#4ade80;">true</span>,<br>
+        <span style="color:var(--text-subtle);">  "autoRobotsTxt": </span><span style="color:#4ade80;">true</span>,<br>
+        <span style="color:var(--text-subtle);">  "autoCanonical": </span><span style="color:#4ade80;">true</span>,<br>
+        <span style="color:var(--text-subtle);">  "coreWebVitals": </span><span style="color:#4ade80;">true</span><br>
+        }<br>
         <br>
-        <span style="color:var(--violet-light);">$ nexgo dev</span><br>
-        <span style="color:#22d3ee;">⚡ NexGo Dev Server → :3000</span><br>
-        <span style="color:#4ade80;">✓</span> Hot reload enabled
+        <span style="color:var(--cyan);">// 22+ SEO template functions</span><br>
+        <span style="color:#4ade80;">✓</span> Zero config needed
       </div>
     </div>
 
@@ -46,11 +51,21 @@
     <div class="grid-3 stagger">
 
       <article class="blog-card">
+        <span class="blog-tag badge badge-violet">Release</span>
+        <h3><a href="/blog/seo-killer-mode" style="color:var(--text);">NexGo v2.2.1 — SEO Killer Mode</a></h3>
+        <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">The most SEO-complete Go framework. Auto sitemap, 10 JSON-LD types, Core Web Vitals, RSS feeds, hreflang, and 22+ template functions.</p>
+        <div class="blog-meta">
+          <a href="https://instagram.com/salmanfaris.dev" target="_blank" class="blog-author-link">Salman Faris</a>
+          <span>15 min read</span>
+        </div>
+      </article>
+
+      <article class="blog-card">
         <span class="blog-tag badge badge-cyan">Tutorial</span>
         <h3><a href="/blog/file-based-routing" style="color:var(--text);">File-Based Routing in NexGo: A Complete Guide</a></h3>
         <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">Learn how NexGo's automatic route discovery works, from static pages to dynamic segments and catch-all routes.</p>
         <div class="blog-meta">
-          <span>Salman Faris</span>
+          <a href="https://instagram.com/salmanfaris.dev" target="_blank" class="blog-author-link">Salman Faris</a>
           <span>6 min read</span>
         </div>
       </article>
@@ -60,7 +75,7 @@
         <h3><a href="/blog/data-loaders" style="color:var(--text);">Server-Side Data Loading: NexGo's getServerSideProps</a></h3>
         <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">How to use RegisterDataLoader to fetch data on the server before rendering — and why it's faster than client-side fetching.</p>
         <div class="blog-meta">
-          <span>Salman Faris</span>
+          <a href="https://instagram.com/salmanfaris.dev" target="_blank" class="blog-author-link">Salman Faris</a>
           <span>10 min read</span>
         </div>
       </article>
@@ -70,7 +85,7 @@
         <h3><a href="/blog/nexgo-v1-1-0" style="color:var(--text);">NexGo v1.1.0 — What's New</a></h3>
         <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">Full changelog for the 1.1.0 release: HTMX helpers, state management, HTML sanitization, and more.</p>
         <div class="blog-meta">
-          <span>Salman Faris</span>
+          <a href="https://instagram.com/salmanfaris.dev" target="_blank" class="blog-author-link">Salman Faris</a>
           <span>4 min read</span>
         </div>
       </article>
@@ -80,7 +95,7 @@
         <h3><a href="/blog/building-rest-api" style="color:var(--text);">Building a REST API with NexGo API Routes</a></h3>
         <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">Step-by-step guide to creating a full CRUD REST API using NexGo's API route system, method routing, and JSON helpers.</p>
         <div class="blog-meta">
-          <span>Salman Faris</span>
+          <a href="https://instagram.com/salmanfaris.dev" target="_blank" class="blog-author-link">Salman Faris</a>
           <span>12 min read</span>
         </div>
       </article>
@@ -90,7 +105,7 @@
         <h3><a href="/blog/benchmark" style="color:var(--text);">50,000+ req/s — How NexGo Achieves Go-Native Performance</a></h3>
         <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">Breaking down the benchmarks: how zero dependencies and Go's stdlib HTTP server deliver exceptional throughput.</p>
         <div class="blog-meta">
-          <span>Salman Faris</span>
+          <a href="https://instagram.com/salmanfaris.dev" target="_blank" class="blog-author-link">Salman Faris</a>
           <span>7 min read</span>
         </div>
       </article>
@@ -100,7 +115,7 @@
         <h3><a href="/blog/deploying" style="color:var(--text);">Deploying a NexGo App to Production</a></h3>
         <p class="text-muted text-sm" style="margin-top:0.5rem;line-height:1.6;">From single-binary build to running on a VPS, Docker, or serverless platform. All the deployment options explained.</p>
         <div class="blog-meta">
-          <span>Salman Faris</span>
+          <a href="https://instagram.com/salmanfaris.dev" target="_blank" class="blog-author-link">Salman Faris</a>
           <span>9 min read</span>
         </div>
       </article>
@@ -119,6 +134,7 @@
       </div>
     </div>
 
+  </div>
   </div>
 </section>
 
